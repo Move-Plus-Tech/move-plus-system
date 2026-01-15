@@ -28,11 +28,31 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Start Trainer ®",
+  title: "Move Plus | Seu kit de corrida, sem filas",
   icons: {
-    icon: "https://res.cloudinary.com/dytw21kw2/image/upload/v1765647128/logo_jlsna8.png",
-  }
+    icon: [
+      {
+        url: "https://res.cloudinary.com/dytw21kw2/image/upload/v1767756515/logo1black_orvmck.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "https://res.cloudinary.com/dytw21kw2/image/upload/v1767756342/logo1_lx6aky.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    apple: [
+      {
+        url: "https://res.cloudinary.com/dytw21kw2/image/upload/v1767756515/logo1black_orvmck.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "https://res.cloudinary.com/dytw21kw2/image/upload/v1767756342/logo1_lx6aky.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
 };
+
 
 export default function RootLayout({
   children,
