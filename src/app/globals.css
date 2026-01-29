@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #0f0f0f;
   --foreground: #171717;
 }
 
@@ -46,4 +46,24 @@ body::-webkit-scrollbar {
 }
 .thin-grey-scrollbar::-webkit-scrollbar-thumb:hover {
   filter: brightness(0.95);
+}
+
+/* Neon Button */
+@keyframes neonGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 140, 0, 0.4), 0 0 15px rgba(255, 140, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(255, 140, 0, 0.5), 0 0 20px rgba(255, 140, 0, 0.3);
+  }
+}
+
+.neon-button {
+  transition: all 0.3s ease;
+  animation: neonGlow 2s ease-in-out infinite;
+}
+
+.neon-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.7), 0 0 25px rgba(255, 140, 0, 0.5), 0 4px 15px rgba(0, 0, 0, 0.3);
 }
