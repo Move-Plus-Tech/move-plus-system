@@ -12,7 +12,6 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { useLoginModal } from "@/context/loginModalContext";
 import ProfileDropdown from "./ProfileDropdown";
 import MyEventsModal from "../modals/MyEventsModal";
-import { useRegisterModal } from "@/context/registerModalContext";
 
 const navLinks = [
   { label: "Inicio", href: "#inicio" },
@@ -23,7 +22,6 @@ const navLinks = [
 export default function Header() {
   const { user, logout, hydrated } = useAuth();
   const { openModal } = useLoginModal();
-  const { openModal: openRegisterModal } = useRegisterModal();
   const [openModalMyEvents, setOpenModalMyEvents] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

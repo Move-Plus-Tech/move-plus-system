@@ -1,6 +1,6 @@
-import ComingSoon from "@/components/carousels/ComingSoonCarousel";
 import Hero from "@/components/Hero";
 import MainContent from "@/components/MainContent";
+import HowItWorks from "@/components/HowItWorks";
 
 export default function Home() {
 
@@ -17,10 +17,7 @@ export default function Home() {
       </div>
 
 
-      <div className="flex flex-col items-start justify-center lg:px-[20%] mt-10 py-10"
-        style={{ backgroundImage: 'url(https://res.cloudinary.com/dytw21kw2/image/upload/v1765647023/main_lr3jsg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <ComingSoon />
-      </div>
+      <HowItWorks />
 
     </div>
   );

@@ -1,38 +1,48 @@
 import Image from "next/image"
-import { FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
+
+    const navLinks = [
+        { label: "Inicio", href: "#inicio" },
+        { label: "Kits", href: "#kits" },
+        { label: "Contato", href: "#contato" },
+    ]
+
     return (
-        <div className="flex flex-col text-white items-center justify-center w-full h-auto py-10 bg-white">
-            <div className="flex flex-col lg:flex-row justify-between items-center w-full max-w-7xl px-4 gap-8">
-                <div className="flex flex-col items-center">
-                    <Image src="https://res.cloudinary.com/dytw21kw2/image/upload/v1765647072/start_czqyaz.png" alt="Logo" width={600} height={400} className="object-contain w-[150px] lg:w-[200px]" />
-                    <p className="text-xs text-black text-center mt-4">© 2026 Start Trainer Oficial. Todos os direitos reservados.</p>
+        <div className="flex flex-col text-white items-center justify-center w-full h-auto py-10 bg-[#0f0f0f]">
+            <div className="flex flex-col lg:flex-row justify-between items-center w-full max-w-[80%] px-4 gap-8">
+
+                <Image src="https://res.cloudinary.com/dytw21kw2/image/upload/v1767756141/logo_zwilna.png" alt="Logo" width={600} height={400} className="object-contain w-[150px] lg:w-[200px]" />
+
+                <div>
+                    <h1 className="text-md mb-2 uppercase font-bold select-none">Links Rápidos</h1>
+                    {navLinks.map((link) => (
+                        <a key={link.href} href={link.href} className="text-sm mr-3 text-gray-400 hover:text-white cursor-pointer">
+                            {link.label}
+                        </a>
+                    ))}
                 </div>
 
-                <div className="flex flex-col  lg:self-center">
-                    <div className="flex justify-center gap-2 px-4">
-                        <Image src="https://res.cloudinary.com/dytw21kw2/image/upload/v1765647062/logoTrekking_bvrjd5.png" alt="Logo" width={600} height={400} className="object-contain w-[120px]" />
-                        <Image src="https://res.cloudinary.com/dytw21kw2/image/upload/v1765647062/logoRunners_pzttxv.png" alt="Logo" width={600} height={400} className="object-contain w-[120px]" />
-                        <Image src="https://res.cloudinary.com/dytw21kw2/image/upload/v1765647062/logoInstituto_zeh16p.png" alt="Logo" width={600} height={400} className="object-contain w-[120px]" />
-                    </div>
+                <div>
+                    <h1 className="text-md mb-2 uppercase font-bold select-none">Contato</h1>
+                    <p className="text-sm mb-2 text-gray-400 hover:text-white cursor-pointer">moveplusoficial@gmail.com</p>
+                    <p className="text-sm text-gray-400 hover:text-white cursor-pointer">(11) 99999-9999</p>
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-4 lg:gap-5 items-center">
-                    <h1 className="font-bold text-lg mb-2 lg:mb-0 text-black">Redes Sociais</h1>
-                    <div className="flex gap-4">
-                        <a href="https://www.instagram.com/starttraineroficial/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-12 h-12 bg-gray-700/20 rounded-full hover:text-gray-300 transition">
-                            <FaInstagram size={30} className="text-black" />
-                        </a>
-                        <a href="https://www.youtube.com/@falaatletastart" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-12 h-12 bg-gray-700/20 rounded-full hover:text-gray-300 transition">
-                            <FaYoutube size={30} className="text-black" />
-                        </a>
-                        <a href="https://chat.whatsapp.com/DqNvn6ZmHYE7CfrbYTFks8?mode=ems_share_t" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-12 h-12 bg-gray-700/20 rounded-full hover:text-gray-300 transition">
-                            <FaWhatsapp size={30} className="text-black" />
-                        </a>
-                    </div>
-                </div>
             </div>
+
+            <hr className="w-full max-w-[80%] my-8 border-white/10" />
+
+            <div className="flex w-full justify-between max-w-[80%]">
+                <p className="text-[10px] text-white text-center mt-4 select-none">© 2026 Move Plus. Todos os direitos reservados.</p>
+
+                <div className="flex gap-4">
+                    <h1 className="text-xs text-gray-400 hover:text-white text-center mt-4 cursor-pointer">Termos de Uso</h1>
+                    <h1 className="text-xs text-gray-400 hover:text-white text-center mt-4 cursor-pointer">Privacidade</h1>
+                </div>
+
+            </div>
+
         </div>
     )
 }
