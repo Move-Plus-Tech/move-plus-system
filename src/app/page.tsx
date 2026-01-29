@@ -2,22 +2,15 @@ import Carousel from "@/components/carousels/MainCarousel";
 import EventComponent from "@/components/tickets/EventsComponent";
 import ComingSoon from "@/components/carousels/ComingSoonCarousel";
 import Image from "next/image";
+import Hero from "@/components/Hero";
 
 export default function Home() {
 
   return (
     <div className="flex flex-col w-full">
 
-      <div className="relative w-full">
-        <Image
-          src="https://res.cloudinary.com/dytw21kw2/image/upload/v1765761625/baseBackground_t4yfyc.jpg"
-          alt="Start Trainer"
-          width={1920}
-          height={1080}
-          quality={100}
-          priority
-          className="w-full h-auto lg:h-[850px] object-cover"
-        />
+      <div className="relative w-full mt-10 md:mt-20">
+        <Hero />
       </div>
 
       <div id="agenda" className="flex flex-col items-center justify-center">
