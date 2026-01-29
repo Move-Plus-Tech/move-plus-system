@@ -22,32 +22,31 @@ export default function Hero() {
                         Do jeito mais fácil.
                     </h2>
 
-                    <p className="text-gray-300 text-base sm:text-lg mt-4">
-                        A Move+ busca seu kit esportivo direto com o organizador e
-                        <br className="hidden sm:block" />
+                    <p className="text-gray-300 text-xs sm:text-lg mt-4">
+                        A Move+ busca seu kit esportivo direto com o organizador e <br className="hidden sm:block" /> 
                         entrega no seu endereço em Belo Horizonte e regiões atendidas. <br className="hidden sm:block" /> Sem filas, sem estresse.
                     </p>
                 </div>
 
-                <div className="flex sm:gap-4 flex sm:flex-nowrap justify-center lg:justify-start">
+                <div className="flex gap-1 sm:gap-4 flex sm:flex-nowrap justify-center lg:justify-start">
                     <button className="neon-button mx-auto lg:mx-0 flex w-fit cursor-pointer 
         py-3 px-3 sm:py-3 sm:px-5 mt-8 sm:mt-10 bg-orange-500 rounded-lg items-center gap-2 text-white 
         text-xs sm:text-sm lg:text-base">
                         <span>Ver Kits disponíveis</span>
-                        <FaLongArrowAltRight size={16} className="sm:w-5 sm:h-5" />
+                        <FaLongArrowAltRight size={14} className="sm:w-5 sm:h-5" />
                     </button>
 
                     <button className="mx-auto lg:mx-0 flex w-fit cursor-pointer 
         py-3 px-2 sm:py-3 sm:px-5 mt-8 sm:mt-10 bg-transparent border border-white/40 hover:bg-white/10 
         rounded-lg items-center gap-2 text-white text-xs sm:text-sm lg:text-base">
-                        <span>Consultar Disponibilidade</span>
-                        <TbTruckDelivery size={16} className="sm:w-5 sm:h-5" />
+                        <span>Consultar região</span>
+                        <TbTruckDelivery size={14} className="sm:w-5 sm:h-5" />
                     </button>
                 </div>
 
-                <hr className="border-gray-500/30 w-[60vh] mt-8 lg:mt-12" />
+                <hr className="border-gray-500/30 max-w-[60vh] mt-8 lg:mt-12" />
 
-                <div className="flex gap-8 mt-4 lg:mt-8">
+                <div className="flex gap-8 mt-6 lg:mt-8">
                     <div>
                         <h1 className="text-white text-2xl lg:text-4xl font-black">28+</h1>
                         <p className="text-gray-400 text-xs lg:text-sm font-medium 
@@ -76,7 +75,7 @@ export default function Hero() {
                 height={1080}
                 quality={100}
                 priority
-                className="w-full h-[70vh] sm:h-[80vh] lg:h-[850px] object-cover"
+                className="w-full h-[75vh] lg:h-[850px] object-cover"
             />
         </div>
     );

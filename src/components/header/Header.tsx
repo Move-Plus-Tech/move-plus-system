@@ -65,7 +65,7 @@ export default function Header() {
               <>
                 <button
                   onClick={() => openModal()}
-                  className="px-7 py-2 text-sm font-medium text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 rounded-lg hover:brightness-90 transition-all cursor-pointer"
+                  className="px-7 neon-button py-2 text-sm font-medium text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 rounded-lg hover:brightness-90 transition-all cursor-pointer"
                 >
                   Entrar
                 </button>
