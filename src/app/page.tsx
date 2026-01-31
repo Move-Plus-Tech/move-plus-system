@@ -1,6 +1,8 @@
 import Hero from "@/components/Hero";
 import MainContent from "@/components/MainContent";
 import HowItWorks from "@/components/HowItWorks";
+import DeliveryRegions from "@/components/DeliveryRegions";
+import Cta from "@/components/Cta";
 
 export default function Home() {
 
@@ -18,6 +20,8 @@ export default function Home() {
 
 
       <HowItWorks />
+      <DeliveryRegions />
+      <Cta />
 
     </div>
   );
