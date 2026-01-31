@@ -8,7 +8,6 @@ import { useLoginModal } from "@/context/loginModalContext";
 import AboutEventsModal from "../modals/AboutEventsModal";
 import EventRegisterModal from "../modals/EventRegisterModal";
 
-import NavLink from "../NavLink";
 import Image from "next/image";
 
 import { getEvents, Event, getMyEvents, EventRegistration } from "@/services/events";
@@ -100,13 +99,6 @@ export default function EventComponent() {
 
     return (
         <>
-            <NavLink
-                labels={labels}
-                options={options}
-                selectedOption={selectedOption}
-                onSelect={setSelectedOption}
-            />
-
             <div className="flex flex-wrap justify-center gap-5 mt-4">
                 {loading && (
                     <div className="w-full flex justify-center items-center py-20">
