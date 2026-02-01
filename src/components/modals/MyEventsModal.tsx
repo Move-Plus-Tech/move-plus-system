@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/authContext";
 
 import { MdClose } from "react-icons/md";
-import MyEventsComponent from "../tickets/MyEventsComponent";
+import MyEventsComponent from "../kits/MyEventsComponent";
 import { getMyEvents, EventRegistration } from "@/services/events";
 
 

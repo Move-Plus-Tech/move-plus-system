@@ -100,8 +100,8 @@ export default function KitsComponent() {
                         {allEvents.map((event) => (
                             <div
                                 key={event.id}
-                                className="group bg-white border border-orange-500/20 rounded-2xl overflow-hidden 
-      flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                                className="group bg-white border border-gray-500/20 rounded-2xl overflow-hidden 
+      flex flex-col transition-all duration-300"
                             >
                                 {/* Image */}
                                 <div className="relative">
@@ -136,12 +136,12 @@ export default function KitsComponent() {
 
                                     <div className="space-y-2 text-sm text-gray-600">
                                         <div className="flex items-center gap-2">
-                                            <MdCalendarMonth className="text-orange-500" />
+                                            <MdCalendarMonth size={20} className="text-orange-500" />
                                             {formatDateBR(event.time)}
                                         </div>
 
                                         <div className="flex items-center gap-2">
-                                            <MdLocationPin className="text-orange-500" />
+                                            <MdLocationPin size={20} className="text-orange-500" />
                                             {event.location}
                                         </div>
                                     </div>
@@ -171,8 +171,8 @@ export default function KitsComponent() {
                                                     setSelectedEvent(event);
                                                     setIsRegisterOpen(true);
                                                 }}
-                                                className="w-full text-sm py-2 rounded-lg bg-orange-500 text-white 
-              font-semibold hover:bg-orange-600 transition cursor-pointer"
+                                                className="w-full text-sm py-2 rounded-lg bg-black text-orange-200 
+              font-semibold hover:bg-orange-600 hover:text-black transition cursor-pointer"
                                             >
                                                 Fazer inscrição
                                             </button>
@@ -184,7 +184,7 @@ export default function KitsComponent() {
                                                 setIsAboutOpen(true);
                                             }}
                                             className="w-full text-sm py-2 rounded-lg border border-black/20 
-            text-black/70 font-semibold transition cursor-pointer"
+            text-black/70 font-semibold transition cursor-pointer hover:bg-gray-100"
                                         >
                                             Sobre
                                         </button>

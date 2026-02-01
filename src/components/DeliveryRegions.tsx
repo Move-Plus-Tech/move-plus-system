@@ -85,7 +85,7 @@ export default function DeliveryRegions() {
                 <span
                   key={region}
                   className="px-3 py-1 text-xs font-semibold rounded-full 
-                    bg-orange-500/10 text-orange-300 border border-orange-500/30"
+                    bg-orange-500/10 text-orange-400 border border-orange-500/30"
                 >
                   {region}
                 </span>
@@ -115,7 +115,7 @@ export default function DeliveryRegions() {
                 <span
                   key={region}
                   className="px-3 py-1 text-xs font-semibold rounded-full 
-                    bg-orange-500/10 text-orange-300 border border-orange-500/30"
+                    bg-orange-500/10 text-orange-400 border border-orange-500/30"
                 >
                   {region}
                 </span>
