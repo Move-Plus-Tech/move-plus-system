@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import MainContent from "@/components/MainContent";
+import KitsComponent from "@/components/tickets/KitsComponent";
 import HowItWorks from "@/components/HowItWorks";
 import DeliveryRegions from "@/components/DeliveryRegions";
 import Cta from "@/components/Cta";
@@ -18,7 +19,7 @@ export default function Home() {
         <MainContent />
       </div>
 
-
+      <KitsComponent />
       <HowItWorks />
       <DeliveryRegions />
       <Cta />
