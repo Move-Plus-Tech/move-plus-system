@@ -21,7 +21,7 @@ export default function Cta() {
           <span className="font-bold">cruzar a linha de chegada.</span>
         </p>
 
-        <button
+        <a href="#kits"
           className="neon-button mt-8 sm:mt-10 flex items-center gap-2 
           rounded-lg bg-orange-500 
           px-4 py-3 sm:px-6 
@@ -30,7 +30,7 @@ export default function Cta() {
         >
           <span>Encontrar meu kit</span>
           <FaLongArrowAltRight className="w-4 h-4 sm:w-5 sm:h-5" />
-        </button>
+        </a>
       </div>
     </section>
   );
