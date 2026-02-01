@@ -55,19 +55,19 @@ export default function AboutEventsModal({
           max-h-[90dvh]
           rounded-xl shadow-xl
           px-7 py-6
-          overflow-y-auto thin-grey-scrollbar
+          overflow-y-auto thin-grey-scrollbar select-none
         "
             >
 
                 <button
                     onClick={handleClose}
-                    className="sticky top-0 ml-auto block text-[#5f2daf] z-50 bg-white"
+                    className="sticky top-0 ml-auto block text-black z-50 bg-gray-100 cursor-pointer p-1 rounded-full hover:bg-gray-200 transition"
                     aria-label="Fechar"
                 >
-                    <MdClose size={22} />
+                    <MdClose size={18} />
                 </button>
 
-                <h1 className="text-2xl text-center font-semibold text-[#5f2daf] mt-2">
+                <h1 className="text-2xl text-center font-semibold text-orange-500 mt-2">
                     {event?.name}
                 </h1>
 
@@ -79,23 +79,6 @@ export default function AboutEventsModal({
                     {event?.about}
                 </div>
 
-                {event?.type === "Beneficentes" && event?.urlLinkAbout && (
-                    <div className="mt-6 text-center">
-                        <a
-                            href={event.urlLinkAbout}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="
-                inline-block px-5 py-2
-                rounded-lg bg-[#5f2daf]
-                text-white text-sm
-                transition-colors hover:opacity-90
-              "
-                        >
-                            Saiba como ajudar aqui!
-                        </a>
-                    </div>
-                )}
             </div>
         </div>
     );
