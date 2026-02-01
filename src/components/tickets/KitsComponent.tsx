@@ -38,10 +38,6 @@ export default function KitsComponent() {
     const [registrations, setRegistrations] = useState<EventRegistration[]>([]);
     const [loading, setLoading] = useState(true);
 
-    type OptionType = "Trilhas" | "Corridas" | "Beneficentes";
-    const [selectedOption, setSelectedOption] =
-        useState<OptionType>("Trilhas");
-
     useEffect(() => {
         getEvents()
             .then(setAllEvents)
@@ -54,10 +50,6 @@ export default function KitsComponent() {
         getMyEvents(email).then(setRegistrations);
     }, [email]);
 
-    const filteredEvents = allEvents.filter(
-        (event) => event.type === selectedOption
-    );
-
     const registeredEventIds = useMemo(
         () => new Set(registrations.map((r) => r.event.id)),
         [registrations]
@@ -68,7 +60,7 @@ export default function KitsComponent() {
             <section id="kits" className="bg-gray-100 py-16 px-4">
                 <div className="max-w-7xl mx-auto flex flex-col items-center">
 
-                    
+
                     <div className="text-center mb-12">
                         <div className="inline-block bg-orange-500/20 px-4 py-1 rounded-full text-xs lg:text-sm 
               text-orange-600 font-semibold mb-4">
@@ -86,39 +78,42 @@ export default function KitsComponent() {
                             {" "}com toda a comodidade.
                         </p>
                     </div>
-                    
+
                     {loading && (
                         <LoadingSpinner />
                     )}
 
-                    {!loading && filteredEvents.length === 0 && (
+                    {!loading && allEvents.length === 0 && (
                         <div className="text-center">
                             <IoShirt size={40} className="text-gray-700 mx-auto mb-4" />
                             <h2 className="text-xl font-bold mb-2">
                                 Nenhum kit disponível
                             </h2>
                             <p className="text-gray-500 text-sm">
-                                Novos kits serão adicionados em breve.
+                                Não se preocupe, novos kits serão adicionados em breve.
                             </p>
                         </div>
                     )}
 
-                  
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-                        {filteredEvents.map((event) => (
+                        {allEvents.map((event) => (
                             <div
                                 key={event.id}
-                                className="bg-white border border-gray-200 rounded-2xl overflow-hidden flex flex-col"
+                                className="group bg-white border border-orange-500/20 rounded-2xl overflow-hidden 
+      flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                             >
                                 {/* Image */}
                                 <div className="relative">
+                                    <div className="absolute inset-0 bg-black/20 z-10" />
+
                                     <span
-                                        className={`absolute top-4 right-4 px-3 py-1 rounded-lg text-xs font-semibold
-                      ${event.status === "Disponível"
-                                                ? "bg-green-200 text-green-900"
+                                        className={`absolute top-4 right-4 z-20 px-3 py-1 rounded-full text-[11px] font-bold
+            ${event.status === "Disponível"
+                                                ? "bg-orange-500 text-white"
                                                 : event.status === "Em Breve"
-                                                    ? "bg-orange-200 text-orange-900"
-                                                    : "bg-red-200 text-red-900"
+                                                    ? "bg-orange-300 text-black"
+                                                    : "bg-red-500 text-white"
                                             }`}
                                     >
                                         {event.status}
@@ -129,38 +124,31 @@ export default function KitsComponent() {
                                         alt={event.name}
                                         width={400}
                                         height={250}
-                                        className="w-full h-48 object-cover"
+                                        className="w-full h-48 object-cover transition-transform duration-300 
+          group-hover:scale-105"
                                     />
                                 </div>
 
-                                {/* Content */}
                                 <div className="flex flex-col flex-1 p-5">
-                                    <h3 className="font-bold uppercase text-sm mb-3">
+                                    <h3 className="font-bold uppercase text-md mb-4 text-gray-900">
                                         {event.name}
                                     </h3>
 
-                                    <div className="space-y-2 text-sm text-gray-500">
+                                    <div className="space-y-2 text-sm text-gray-600">
                                         <div className="flex items-center gap-2">
-                                            <MdCalendarMonth className="text-purple-700" />
+                                            <MdCalendarMonth className="text-orange-500" />
                                             {formatDateBR(event.time)}
                                         </div>
 
                                         <div className="flex items-center gap-2">
-                                            <MdLocationPin className="text-purple-700" />
+                                            <MdLocationPin className="text-orange-500" />
                                             {event.location}
                                         </div>
-
-                                        {event.slots > 0 && (
-                                            <div className="flex items-center gap-2">
-                                                <MdPeople className="text-purple-700" />
-                                                {event.slots} vagas
-                                            </div>
-                                        )}
                                     </div>
 
                                     {/* Price */}
                                     {event.price > 0 && (
-                                        <div className="mt-4 font-bold text-xl text-purple-800">
+                                        <div className="mt-4 font-bold text-2xl text-black">
                                             R$ {event.price}
                                         </div>
                                     )}
@@ -170,7 +158,8 @@ export default function KitsComponent() {
                                         {registeredEventIds.has(event.id) ? (
                                             <button
                                                 disabled
-                                                className="w-full py-2 rounded-lg bg-gray-400 text-white font-semibold flex items-center justify-center gap-2"
+                                                className="w-full py-2 rounded-lg bg-gray-300 text-gray-700 
+              font-semibold flex items-center justify-center gap-2 cursor-not-allowed"
                                             >
                                                 <MdCheckCircle />
                                                 Já inscrito
@@ -182,7 +171,8 @@ export default function KitsComponent() {
                                                     setSelectedEvent(event);
                                                     setIsRegisterOpen(true);
                                                 }}
-                                                className="w-full py-2 rounded-lg bg-purple-800 text-white font-semibold hover:brightness-90 transition"
+                                                className="w-full text-sm py-2 rounded-lg bg-orange-500 text-white 
+              font-semibold hover:bg-orange-600 transition cursor-pointer"
                                             >
                                                 Fazer inscrição
                                             </button>
@@ -193,7 +183,8 @@ export default function KitsComponent() {
                                                 setSelectedEvent(event);
                                                 setIsAboutOpen(true);
                                             }}
-                                            className="w-full py-2 rounded-lg border border-purple-800 text-purple-800 font-semibold hover:bg-purple-800 hover:text-white transition"
+                                            className="w-full text-sm py-2 rounded-lg border border-black/20 
+            text-black/70 font-semibold transition cursor-pointer"
                                         >
                                             Sobre
                                         </button>
@@ -202,6 +193,7 @@ export default function KitsComponent() {
                             </div>
                         ))}
                     </div>
+
                 </div>
             </section>
 
