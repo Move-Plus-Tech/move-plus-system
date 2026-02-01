@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { TbTruckDelivery } from "react-icons/tb";
+import AnimatedNumber from "./ui/AnimatedNumber";
 
 export default function Hero() {
     return (
@@ -49,7 +50,9 @@ export default function Hero() {
                 <div className="flex gap-10 mt-6 lg:mt-8">
 
                     <div>
-                        <h1 className="text-white text-2xl lg:text-4xl font-black">250+</h1>
+                        <h1 className="text-white text-2xl lg:text-4xl font-black">
+                            <AnimatedNumber from={0} to={250} duration={1000} />+
+                        </h1>
                         <p className="text-gray-400 text-xs lg:text-sm font-medium 
             flex items-center self-center">
                             Kits entregues
@@ -57,7 +60,9 @@ export default function Hero() {
                     </div>
 
                     <div>
-                        <h1 className="text-white text-2xl lg:text-4xl font-black">28+</h1>
+                        <h1 className="text-white text-2xl lg:text-4xl font-black">
+                            28+
+                        </h1>
                         <p className="text-gray-400 text-xs lg:text-sm font-medium 
             flex items-center self-center">
                             Corridas parceiras

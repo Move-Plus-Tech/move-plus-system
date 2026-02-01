@@ -13,7 +13,7 @@ import { useLoginModal } from "@/context/loginModalContext";
 
 import AboutEventsModal from "../modals/AboutEventsModal";
 import EventRegisterModal from "../modals/EventRegisterModal";
-import LoadingSpinner from "../LoadingSpinner";
+import LoadingSpinner from "../ui/LoadingSpinner";
 
 import Image from "next/image";
 
