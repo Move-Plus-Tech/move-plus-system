@@ -1,6 +1,6 @@
 export default function TermosUso() {
     return (
-        <div className="max-w-4xl bg-gray-50 mx-auto px-6 py-26 text-gray-800">
+        <div className="w-full bg-gray-50 mx-auto px-12 py-26 text-gray-800">
             <h1 className="text-3xl font-black mb-6">
                 Termos de Uso – Move+
             </h1>

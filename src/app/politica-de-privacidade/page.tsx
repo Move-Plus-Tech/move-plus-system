@@ -1,6 +1,6 @@
 export default function Politicas() {
     return (
-        <div className="bg-gray-50 max-w-4xl mx-auto px-6 py-26 text-gray-800">
+        <div className="bg-gray-50 w-full mx-auto px-12 py-26 text-gray-800">
             <h1 className="text-3xl font-bold mb-6">
                 Política de Privacidade — Move+
             </h1>
