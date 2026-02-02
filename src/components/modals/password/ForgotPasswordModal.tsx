@@ -36,12 +36,12 @@ export default function ForgotPasswordModal() {
 
         <button
           onClick={closeModal}
-          className="absolute right-4 top-4 w-6 h-6 flex items-center justify-center cursor-pointer"
+          className="absolute cursor-pointer right-4 top-4 w-6 h-6 flex items-center justify-center "
         >
-          <MdClose size={20} className="text-[#5f2daf]" />
+          <MdClose size={20} className="text-black" />
         </button>
 
-        <h2 className="text-lg font-bold text-[#5f2daf]">Recuperar senha</h2>
+        <h2 className="text-lg font-bold text-black">Recuperar senha</h2>
         <p className="text-sm text-gray-600 mt-1">
           Digite seu email para enviarmos um código de recuperação.
         </p>
@@ -56,7 +56,7 @@ export default function ForgotPasswordModal() {
         <button
           onClick={handleSend}
           disabled={!email.trim()}
-          className={`w-full h-12 mt-4 rounded-md font-bold transition-colors ${!email.trim() ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-[#5f2daf] hover:bg-[#61ffc2] hover:text-black text-white cursor-pointer'}`}
+          className={`w-full h-12 mt-4 rounded-md font-bold transition-colors ${!email.trim() ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-orange-500 hover:bg-orange-600 text-white cursor-pointer'}`}
         >
           {loading ? "Enviando..." : "Enviar código"}
         </button>

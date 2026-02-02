@@ -82,15 +82,15 @@ export default function ResetCodeModal() {
                             onChange={(e) => handleChange(e.target.value, i)}
                             onKeyDown={(e) => handleKeyDown(e, i)}
                             className="w-10 h-12 text-center text-xl font-semibold border
-                         rounded-md focus:outline-purple-600 focus:ring-2 
-                         focus:ring-purple-400"
+                         rounded-md focus:outline-orange-600 focus:ring-2 
+                         focus:ring-orange-400"
                         />
                     ))}
                 </div>
 
                 <button
                     onClick={handleSubmit}
-                    className="w-full hover:bg-[#61ffc2] bg-[#5f2daf] hover:text-black text-white py-2 rounded-md 
+                    className="w-full hover:bg-orange-600 bg-orange-500 hover:text-black text-white py-2 rounded-md 
                     transition cursor-pointer"
                 >
                     {loading ? "Validando..." : "Validar código"}

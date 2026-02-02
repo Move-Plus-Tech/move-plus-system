@@ -16,114 +16,153 @@ export default function LoginModal() {
     const { openModal: openRegisterModal } = useRegisterModal();
     const { openModal: openForgotPasswordModal } = useForgotPasswordModal();
     const { loginUser: loginContext } = useAuth();
+
     const [loading, setLoading] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     const [form, setForm] = useState({
         identifier: "",
-        password: ""
+        password: "",
     });
 
     useEffect(() => {
-        const element = document.documentElement;
-
         if (isOpen) {
-            element.classList.add("overflow-hidden");
+            setMounted(true);
+            document.documentElement.classList.add("overflow-hidden");
         } else {
-            element.classList.remove("overflow-hidden");
+            document.documentElement.classList.remove("overflow-hidden");
         }
 
-        return () => element.classList.remove("overflow-hidden");
+        return () =>
+            document.documentElement.classList.remove("overflow-hidden");
     }, [isOpen]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const data = await loginUser(form.identifier.trim(), form.password);
+            const data = await loginUser(
+                form.identifier.trim(),
+                form.password
+            );
             loginContext(data.user, data.token);
-            setLoading(false);
             closeModal();
         } catch (error: any) {
-            setLoading(false);
             toast.error(error?.message || error);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
-
-    const handleGoToRegister = () => {
-        closeModal();
-        openRegisterModal();
-    };
-
-    const handleForgotPassword = () => {
-        closeModal();
-        openForgotPasswordModal();
-    }
 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 h-screen overflow-hidden"
-            style={{ backdropFilter: 'blur(3px)' }}>
-
-            <div className="w-full lg:w-[500px] h-full lg:h-[600px] bg-white lg:rounded-xl shadow-xl flex flex-col items-center relative">
-
+        <div
+            className={`
+        fixed inset-0 z-50 flex items-center justify-center px-4
+        bg-black/70 backdrop-blur-sm
+        transition-opacity duration-200
+        ${mounted ? "opacity-100" : "opacity-0"}
+      `}
+        >
+            <div
+                className={`
+          relative w-full max-w-5xl bg-white rounded-xl overflow-hidden
+          flex flex-col lg:flex-row shadow-xl
+          transform transition-all duration-200
+          ${mounted ? "scale-100 opacity-100" : "scale-95 opacity-0"}
+        `}
+            >
+    
                 <button
                     onClick={closeModal}
-                    className="absolute right-10 top-8 w-6 h-6 items-center text-white cursor-pointer font-semibold"
+                    className="absolute top-4 right-4 z-20"
                 >
-                    <MdClose size={20} className="text-[#5f2daf]" />
+                    <MdClose
+                        size={22}
+                        className="text-gray-600 hover:text-black cursor-pointer"
+                    />
                 </button>
 
-                <div className="flex flex-col justify-center items-center w-full h-full">
+
+                <div className="relative w-full lg:w-1/2 h-56 sm:h-64 lg:h-[600px] bg-neutral-900">
                     <Image
-                        src="https://res.cloudinary.com/dytw21kw2/image/upload/v1765647072/start_czqyaz.png"
-                        alt="Start Trainer Oficial"
-                        width={1000}
-                        height={300}
+                        src="https://res.cloudinary.com/dytw21kw2/image/upload/v1769992443/backgroundLogin_ikjs9a.jpg"
+                        alt="Login background"
+                        fill
+                        className="object-cover"
                         draggable={false}
-                        className="w-full max-w-[200px] h-auto object-cover"
+                        priority
+                    />
+                </div>
+
+                <div className="flex w-full lg:w-1/2 flex-col items-center justify-center px-6 sm:px-10 py-8 lg:py-0">
+                    <Image
+                        src="https://res.cloudinary.com/dytw21kw2/image/upload/v1769992768/mainLogo_xn7vua.png"
+                        alt="Move+ Logo"
+                        width={200}
+                        height={80}
+                        draggable={false}
+                        className="mb-2"
                     />
 
-                    <h2 className="text-md font-bold text-center mt-1 px-4 text-black/70">
-                        A melhor comunidade de MG! 💜
+                    <h2 className="text-lg font-bold text-gray-700 mb-6">
+                        Seja bem-vindo 🟠
                     </h2>
 
-                    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center w-full">
-
+                    <form
+                        onSubmit={handleSubmit}
+                        className="w-full max-w-sm space-y-3"
+                    >
                         <input
                             type="text"
                             placeholder="Email"
-                            onChange={(e) => setForm({ ...form, identifier: e.target.value })}
-                            className="w-[80%] text-purple-700 placeholder:text-black/40 h-12 border border-gray-200 rounded-md px-3 mt-8 focus:outline-none"
+                            onChange={(e) =>
+                                setForm({ ...form, identifier: e.target.value })
+                            }
+                            className="w-full h-12 border border-gray-200 rounded-md px-3 text-orange-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-orange-500"
                         />
 
                         <input
                             type="password"
                             placeholder="Senha"
-                            onChange={(e) => setForm({ ...form, password: e.target.value })}
-                            className="w-[80%] h-12 text-purple-700 placeholder:text-black/40 border border-gray-200 rounded-md px-3 mt-2 focus:outline-none"
+                            onChange={(e) =>
+                                setForm({ ...form, password: e.target.value })
+                            }
+                            className="w-full h-12 border border-gray-200 rounded-md px-3 text-orange-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-orange-500"
                         />
 
-                        <button onClick={handleForgotPassword} className="text-sm cursor-pointer self-end mr-13 text-purple-700 mt-2">
+                        <button
+                            type="button"
+                            onClick={() => {
+                                closeModal();
+                                openForgotPasswordModal();
+                            }}
+                            className="text-sm text-orange-600 font-semibold cursor-pointer hover:underline text-right w-full"
+                        >
                             Esqueceu a senha?
                         </button>
 
                         <button
-                            className="w-[80%] h-12 bg-purple-600 text-white font-bold rounded-md cursor-pointer mt-6 hover:bg-[#61ffc2] hover:text-black transition-colors"
+                            type="submit"
+                            className="w-full h-12 bg-black cursor-pointer text-white font-bold rounded-md transition hover:bg-gray-800"
                         >
                             {loading ? "Entrando..." : "Entrar"}
                         </button>
 
                         <button
-                            onClick={handleGoToRegister}
                             type="button"
-                            className="text-sm text-gray-500 mt-4"
+                            onClick={() => {
+                                closeModal();
+                                openRegisterModal();
+                            }}
+                            className="text-sm text-gray-500 text-center w-full"
                         >
                             Não tem uma conta?
-                            <span className="text-purple-600 cursor-pointer"> Cadastre-se</span>
+                            <span className="text-orange-600 font-semibold cursor-pointer">
+                                {" "}Cadastre-se
+                            </span>
                         </button>
-
                     </form>
                 </div>
             </div>
