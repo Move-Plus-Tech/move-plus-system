@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   const navLinks = [
@@ -69,12 +70,12 @@ export default function Footer() {
         </p>
 
         <div className="flex gap-6">
-          <span className="text-xs text-gray-400 hover:text-white cursor-pointer transition">
+          <Link href="/termos-de-uso" className="text-xs text-gray-400 hover:text-white cursor-pointer transition">
             Termos de Uso
-          </span>
-          <span className="text-xs text-gray-400 hover:text-white cursor-pointer transition">
+          </Link>
+          <Link href="/politica-de-privacidade" className="text-xs text-gray-400 hover:text-white cursor-pointer transition">
             Privacidade
-          </span>
+          </Link>
         </div>
       </div>
     </footer>
