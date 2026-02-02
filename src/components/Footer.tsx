@@ -5,16 +5,15 @@ export default function Footer() {
   const navLinks = [
     { label: "Início", href: "#inicio" },
     { label: "Kits", href: "#kits" },
-    { label: "Contato", href: "#contato" },
+    { label: "Fale conosco", href: "#contato" },
   ];
 
   return (
     <footer className="w-full bg-[#0f0f0f] text-white py-10 px-4">
-      {/* Conteúdo principal */}
+
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row 
         items-center lg:items-start justify-between gap-10">
 
-        {/* Logo */}
         <Image
           src="https://res.cloudinary.com/dytw21kw2/image/upload/v1767756141/logo_zwilna.png"
           alt="Logo"
@@ -23,7 +22,6 @@ export default function Footer() {
           className="w-[140px] sm:w-[160px] lg:w-[200px] object-contain"
         />
 
-        {/* Links rápidos */}
         <div className="text-center lg:text-left">
           <h1 className="text-sm mb-3 uppercase font-bold select-none">
             Links Rápidos
@@ -42,7 +40,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Contato */}
         <div className="text-center lg:text-left">
           <h1 className="text-sm mb-3 uppercase font-bold select-none">
             Contato
@@ -58,10 +55,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Divider */}
       <hr className="my-8 border-white/10 max-w-6xl mx-auto" />
 
-      {/* Rodapé final */}
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row 
         items-center justify-between gap-4">
 

@@ -30,12 +30,12 @@ export default function Hero() {
                 </div>
 
                 <div className="flex gap-1 sm:gap-4 flex sm:flex-nowrap justify-center lg:justify-start">
-                    <button className="neon-button mx-auto lg:mx-0 flex w-fit cursor-pointer 
+                    <a href="#kits" className="neon-button mx-auto lg:mx-0 flex w-fit cursor-pointer 
         py-3 px-3 sm:py-3 sm:px-5 mt-8 sm:mt-10 bg-orange-500 rounded-lg items-center gap-2 text-white 
         text-xs sm:text-sm lg:text-base">
                         <span>Ver Kits disponíveis</span>
                         <FaLongArrowAltRight size={14} className="sm:w-5 sm:h-5" />
-                    </button>
+                    </a>
 
                     <a href="#delivery-regions" className="mx-auto lg:mx-0 flex w-fit cursor-pointer 
         py-3 px-2 sm:py-3 sm:px-5 mt-8 sm:mt-10 bg-transparent border border-white/40 hover:bg-white/10 
