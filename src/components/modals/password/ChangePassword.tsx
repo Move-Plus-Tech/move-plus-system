@@ -58,10 +58,10 @@ export default function ChangePasswordModal() {
           onClick={closeModal}
           className="absolute right-4 top-4 w-6 h-6 flex items-center justify-center cursor-pointer"
         >
-          <MdClose size={20} className="text-[#5f2daf]" />
+          <MdClose size={20} className="text-black" />
         </button>
 
-        <h2 className="text-lg font-bold text-[#5f2daf]">Trocar senha</h2>
+        <h2 className="text-lg font-bold text-black">Trocar senha</h2>
         <p className="text-sm text-gray-600 mt-1">
           Digite sua nova senha.
         </p>
@@ -87,7 +87,7 @@ export default function ChangePasswordModal() {
           disabled={!newPassword.trim() || !confirmPassword.trim() || loading}
           className={`w-full h-12 mt-4 rounded-md font-bold transition-colors ${!newPassword.trim() || !confirmPassword.trim() || loading
             ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-            : "bg-[#5f2daf] hover:bg-[#61ffc2] hover:text-black text-white cursor-pointer"
+            : "bg-black hover:bg-gray-800 text-white cursor-pointer"
             }`}
         >
           {loading ? "Alterando..." : "Trocar senha"}
