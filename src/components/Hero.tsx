@@ -6,6 +6,7 @@ import AnimatedNumber from "./ui/AnimatedNumber";
 export default function Hero() {
     return (
         <div className="relative">
+            <div className="absolute inset-0 bg-black/70 z-5"></div>
             <div className="absolute top-1/5 left-0 right-0 px-6 lg:px-20 z-10 flex flex-col lg:gap-0 
             text-left lg:ml-20">
 
@@ -81,13 +82,13 @@ export default function Hero() {
             </div>
 
             <Image
-                src="https://res.cloudinary.com/dytw21kw2/image/upload/v1769708897/background_yenhmk.png"
+                src="https://res.cloudinary.com/dytw21kw2/image/upload/v1770854089/bgMain_ygepmr.jpg"
                 alt="Move+"
                 width={1920}
                 height={1080}
                 quality={100}
                 priority
-                className="w-full h-[75vh] lg:h-[850px] object-cover"
+                className="w-full h-[75vh] lg:h-[900px] object-cover "
             />
         </div>
     );
