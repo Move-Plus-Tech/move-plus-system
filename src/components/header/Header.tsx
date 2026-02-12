@@ -23,7 +23,7 @@ const navLinks = [
 ];
 
 export default function Header() {
-  const { user, logout, hydrated } = useAuth();
+  const { user, logout, hydrated, role } = useAuth();
   const { openModal } = useLoginModal();
   const [openModalMyEvents, setOpenModalMyEvents] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -94,17 +94,21 @@ export default function Header() {
                       ),
                       onClick: () => setOpenModalMyEvents(true),
                     },
-                    {
-                      label: (
-                        <div className="flex gap-2 text-hero-foreground">
-                          <BsFileBarGraphFill size={17} />
-                          Gerenciamento de kits
-                        </div>
-                      ),
-                      onClick: () => {
-                        window.location.href = "/admin/kits";
-                      },
-                    },
+                    ...(role === "ADMIN"
+                      ? [
+                          {
+                            label: (
+                              <div className="flex gap-2 text-hero-foreground">
+                                <BsFileBarGraphFill size={17} />
+                                Gerenciamento de kits
+                              </div>
+                            ),
+                            onClick: () => {
+                              window.location.href = "/admin/kits";
+                            },
+                          },
+                        ]
+                      : []),
                     {
                       label: (
                         <div className="flex gap-2 text-hero-foreground">
@@ -150,7 +154,7 @@ export default function Header() {
                 </a>
 
               ))}
-              <div className="pt-2 mt-2 border-t border-hero-foreground/10 flex flex-col gap-2">
+              <div className="pt-4 mt-2 border-t border-hero-foreground/10 flex flex-col gap-2">
                 {!user ? (
                   <>
                     <button
@@ -168,7 +172,7 @@ export default function Header() {
                     user={{
                       name: `${user.name}`,
                       email: `${user.email}`,
-                      avatarUrl: "https://res.cloudinary.com/dytw21kw2/image/upload/v1770907174/307ce493-b254-4b2d-8ba4-d12c080d6651_m2d2ns.png",
+                      avatarUrl: "https://res.cloudinary.com/dytw21kw2/image/upload/v1770907227/ChatGPT_Image_Feb_12_2026_11_34_22_AM_eci0pt.png",
                     }}
                     menuItems={[
                       {
@@ -183,6 +187,21 @@ export default function Header() {
                           setIsMenuOpen(false);
                         },
                       },
+                      ...(role === "ADMIN"
+                        ? [
+                            {
+                              label: (
+                                <div className="flex gap-2 text-hero-foreground">
+                                  <BsFileBarGraphFill size={17} />
+                                  Gerenciamento de kits
+                                </div>
+                              ),
+                              onClick: () => {
+                                window.location.href = "/admin/kits";
+                              },
+                            },
+                          ]
+                        : []),
                       {
                         label: (
                           <div className="flex gap-2 text-hero-foreground">

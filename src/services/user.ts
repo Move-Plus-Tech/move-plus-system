@@ -30,7 +30,7 @@ export async function loginUser(email: string, password: string) {
     body: JSON.stringify({ identifier: email, password }),
   });
 
-  const data = await response.json(); // lê o JSON uma vez
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error(data.message || "Erro ao logar");
@@ -38,6 +38,8 @@ export async function loginUser(email: string, password: string) {
 
   localStorage.setItem("token", data.token);
   localStorage.setItem("user", JSON.stringify(data.user));
+
+  document.cookie = `token=${data.token}; path=/; max-age=86400; samesite=lax`;
 
   return data;
 }

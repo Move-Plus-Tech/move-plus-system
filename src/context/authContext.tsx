@@ -7,6 +7,7 @@ interface AuthContextType {
   user: any | null;
   token: string | null;
   email: string | null;
+  role: string | null;
   hydrated: boolean;
   loginUser: (user: any, token: string) => void;
   logout: () => void;
@@ -17,6 +18,7 @@ const AuthContext = createContext<AuthContextType>({
   token: null,
   email: null,
   hydrated: false,
+  role: null,
   loginUser: () => { },
   logout: () => { },
 });
@@ -25,6 +27,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<any | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
+  const [role, setRole] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
@@ -37,6 +40,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       try {
         const parsed = JSON.parse(savedUser);
         setEmail(parsed?.email ?? null);
+        setRole(parsed?.role ?? null);
       } catch (e) {
         setEmail(null);
       }
@@ -47,6 +51,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(loggedUser);
       setToken(storedToken);
       setEmail(loggedUser?.email ?? null);
+      setRole(loggedUser?.role ?? null);
     }
 
     setHydrated(true);
@@ -56,6 +61,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(userData);
     setToken(tokenData);
     setEmail(userData?.email ?? null);
+    setRole(userData?.role ?? null);
     localStorage.setItem('user', JSON.stringify(userData));
     localStorage.setItem('token', tokenData);
     if (userData?.email) localStorage.setItem('email', userData.email);
@@ -66,13 +72,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     setToken(null);
     setEmail(null);
+    setRole(null);
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     localStorage.removeItem('email');
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, email, loginUser, logout, hydrated }}>
+    <AuthContext.Provider value={{ user, token, email, role, loginUser, logout, hydrated }}>
       {children}
     </AuthContext.Provider>
   );
