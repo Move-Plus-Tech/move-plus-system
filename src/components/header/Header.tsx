@@ -5,9 +5,10 @@ import { useAuth } from "@/context/authContext";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
-import { HiOutlineTicket } from "react-icons/hi2";
+import { FaTshirt } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { BsFileBarGraphFill } from "react-icons/bs";
 
 import { useLoginModal } from "@/context/loginModalContext";
 
@@ -81,17 +82,28 @@ export default function Header() {
                   user={{
                     name: `${user.name}`,
                     email: `${user.email}`,
-                    avatarUrl: "https://res.cloudinary.com/dytw21kw2/image/upload/v1765647074/userIcon_oy1erm.png",
+                    avatarUrl: "https://res.cloudinary.com/dytw21kw2/image/upload/v1770907227/ChatGPT_Image_Feb_12_2026_11_34_22_AM_eci0pt.png",
                   }}
                   menuItems={[
                     {
                       label: (
                         <div className="flex gap-2 text-hero-foreground">
-                          <HiOutlineTicket size={18} />
-                          Meus eventos
+                          <FaTshirt size={17} />
+                          Meus kits
                         </div>
                       ),
                       onClick: () => setOpenModalMyEvents(true),
+                    },
+                    {
+                      label: (
+                        <div className="flex gap-2 text-hero-foreground">
+                          <BsFileBarGraphFill size={17} />
+                          Gerenciamento de kits
+                        </div>
+                      ),
+                      onClick: () => {
+                        window.location.href = "/admin/kits";
+                      },
                     },
                     {
                       label: (
@@ -156,14 +168,14 @@ export default function Header() {
                     user={{
                       name: `${user.name}`,
                       email: `${user.email}`,
-                      avatarUrl: "https://res.cloudinary.com/dytw21kw2/image/upload/v1765647074/userIcon_oy1erm.png",
+                      avatarUrl: "https://res.cloudinary.com/dytw21kw2/image/upload/v1770907174/307ce493-b254-4b2d-8ba4-d12c080d6651_m2d2ns.png",
                     }}
                     menuItems={[
                       {
                         label: (
                           <div className="flex gap-2 text-hero-foreground">
-                            <HiOutlineTicket size={18} />
-                            Meus eventos
+                            <FaTshirt size={17} />
+                            Meus kits
                           </div>
                         ),
                         onClick: () => {
