@@ -4,6 +4,7 @@ export type CreateUserData = {
   email: string;
   phone: string;
   password: string;
+  createdAt?: string;
 };
 
 export async function registerUser(data: CreateUserData) {
@@ -23,6 +24,7 @@ export async function registerUser(data: CreateUserData) {
 
   return resData;
 }
+
 export async function loginUser(email: string, password: string) {
   const response = await fetch(`${process.env.API_URL}/users/login`, {
     method: "POST",
@@ -42,4 +44,22 @@ export async function loginUser(email: string, password: string) {
   document.cookie = `token=${data.token}; path=/; max-age=86400; samesite=lax`;
 
   return data;
+}
+
+export async function updateUser(id: string, data: any) {
+  const response = await fetch (`${process.env.API_URL}/users/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  const resData = await response.json();
+
+  if (!response.ok) {
+    throw new Error(resData.message || "Erro ao atualizar dados do usuário");
+  }
+
+  return resData;
 }

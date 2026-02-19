@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, ReactNode } from "react";
+import { useAuth } from "@/context/authContext";
 
 interface ProfileDropdownProps {
   user: {
@@ -13,6 +14,7 @@ interface ProfileDropdownProps {
 
 export default function ProfileDropdown({ user, menuItems }: ProfileDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { role } = useAuth();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -33,16 +35,21 @@ export default function ProfileDropdown({ user, menuItems }: ProfileDropdownProp
         className="flex items-center gap-2 cursor-pointer select-none"
       >
         {user.avatarUrl && (
-          <div className="w-10 h-10 rounded-full overflow-hidden">
-            <img
-              src={user.avatarUrl}
-              alt="Avatar"
-              className="w-full h-full object-cover scale-130 object-[center_10%] transform-gpu"
-            />
+          <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-medium text-sm">
+            {user.avatarUrl}
           </div>
-
         )}
-        <p className="font-semibold text-orange-500 text-sm">Olá, {user.name.split(" ")[0]}!</p>
+
+        <div className="flex flex-col items-start gap-0.5 pl-0">
+          <p className="font-semibold text-white text-xs leading-tight">{user.name}</p>
+          <span className="text-[9px] text-gray-400 leading-tight">Ver perfil</span>
+        </div>
+
+        {role === "ADMIN" && (
+          <span className="px-2 py-0.5 text-[10px] font-bold bg-green-700 text-white rounded-sm ml-1">
+            ADMIN
+          </span>
+        )}
       </div>
 
       <div
@@ -51,8 +58,8 @@ export default function ProfileDropdown({ user, menuItems }: ProfileDropdownProp
       >
 
         <div className="px-4 py-3 border-b">
-          <p className="font-semibold text-white">{user.name}</p>
-          <p className="text-[11px] text-white">{user.email}</p>
+          <p className="font-semibold text-white">Olá, {user.name.split(" ")[0]}!</p>
+          <p className="text-[11px] text-orange-500">{user.email}</p>
         </div>
 
 

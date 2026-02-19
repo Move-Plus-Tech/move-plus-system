@@ -62,7 +62,7 @@ export default function Hero() {
 
                     <div>
                         <h1 className="text-white text-2xl lg:text-4xl font-black">
-                            <AnimatedNumber from={0} to={28} duration={1000} />+
+                            <AnimatedNumber from={0} to={31} duration={1000} />+
                         </h1>
                         <p className="text-gray-400 text-xs lg:text-sm font-medium 
             flex items-center self-center">

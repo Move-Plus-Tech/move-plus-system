@@ -135,13 +135,13 @@ export default function EventRegisterModal({
                 {/* Close nunca some */}
                 <button
                     onClick={handleClose}
-                    className="sticky top-0 ml-auto block text-[#5f2daf] z-50 bg-white"
+                    className="sticky top-0 ml-auto block text-gray-700 z-50 bg-white"
                     aria-label="Fechar"
                 >
                     <MdClose size={20} />
                 </button>
 
-                <h1 className="text-lg font-bold text-purple-700 text-center mt-2">
+                <h1 className="text-lg font-bold text-gray-900 text-center mt-2">
                     Inscrição - {event.name}
                 </h1>
 
@@ -149,13 +149,13 @@ export default function EventRegisterModal({
                     Preencha os campos obrigatórios para completar sua inscrição.
                 </p>
 
-                <p className="text-sm text-black text-center mt-3 bg-gray-100 px-4 py-2 rounded-md">
+                <div className="text-sm text-black text-center mt-3 bg-gray-100 px-4 py-2 rounded-md">
                     <span className="font-bold">Valor:</span> {formatCurrency(basePrice)} +{" "}
                     <span className="font-bold">Taxa:</span> {formatCurrency(includedFee)} —{" "}
-                    <span className="font-bold text-[#5f2daf]">
+                    <span className="font-bold text-[#db5614]">
                         Total: {formatCurrency(priceWithFee)}
                     </span>
-                </p>
+                </div>
 
                 <form
                     onSubmit={handleSubmit}
@@ -166,14 +166,14 @@ export default function EventRegisterModal({
                         placeholder="Nome completo *"
                         value={form.fullName}
                         onChange={(e) => setForm({ ...form, fullName: e.target.value })}
-                        className="w-[90%] text-purple-700 placeholder:text-black/40 h-12 border border-gray-200 outline-none rounded-md px-3"
+                        className="w-[90%] text-sm text-gray-900 placeholder:text-black/40 h-10 border border-gray-200 outline-none rounded-md px-3"
                     />
                     <input
                         type="email"
                         placeholder="Email *"
                         value={form.email}
                         readOnly
-                        className="w-[90%] text-purple-700 placeholder:text-black/40 h-12 border border-gray-200 outline-none rounded-md px-3 cursor-not-allowed"
+                        className="w-[90%] text-sm text-gray-900 placeholder:text-black/40 h-10 border border-gray-200 outline-none rounded-md px-3 cursor-not-allowed"
                     />
                     <input
                         type="text"
@@ -183,7 +183,7 @@ export default function EventRegisterModal({
                             const digits = onlyDigits(e.target.value).slice(0, 11);
                             setForm({ ...form, phone: digits });
                         }}
-                        className="w-[90%] text-purple-700 placeholder:text-black/40 h-12 border border-gray-200 outline-none rounded-md px-3"
+                        className="w-[90%] text-sm text-gray-900 placeholder:text-black/40 h-10 border border-gray-200 outline-none rounded-md px-3"
                     />
                     <input
                         type="text"
@@ -193,7 +193,7 @@ export default function EventRegisterModal({
                             const digits = onlyDigits(e.target.value).slice(0, 11);
                             setForm({ ...form, cpf: digits });
                         }}
-                        className="w-[90%] text-purple-700 placeholder:text-black/40 h-12 border border-gray-200 outline-none rounded-md px-3"
+                        className="w-[90%] text-sm text-gray-900 placeholder:text-black/40 h-10 border border-gray-200 outline-none rounded-md px-3"
                     />
                     <input
                         type="text"
@@ -212,7 +212,7 @@ export default function EventRegisterModal({
                                 setForm({ ...form, birthDate: digits });
                             }
                         }}
-                        className="w-[90%] text-purple-700 placeholder:text-black/40 h-12 border border-gray-200 outline-none rounded-md px-3"
+                        className="w-[90%] text-sm text-gray-900 placeholder:text-black/40 h-10 border border-gray-200 outline-none rounded-md px-3"
                     />
 
                     <div className="w-[90%] py-4 flex gap-2">
@@ -224,7 +224,7 @@ export default function EventRegisterModal({
                                     value={d}
                                     checked={form.distance === d}
                                     onChange={(e) => setForm({ ...form, distance: e.target.value })}
-                                    style={{ accentColor: "#5f2daf" }}
+                                    style={{ accentColor: "#db5614" }}
                                     className="w-4 h-4"
                                 />
                                 {d}
@@ -251,7 +251,7 @@ export default function EventRegisterModal({
                     <select
                         value={form.shirtSize}
                         onChange={(e) => setForm({ ...form, shirtSize: e.target.value })}
-                        className="w-[90%] h-12 px-4 text-purple-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none cursor-pointer"
+                        className="w-[90%] text-sm h-10 px-4 text-gray-900 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none cursor-pointer"
                     >
                         <option value="" disabled>
                             Selecione o tamanho *
@@ -266,8 +266,8 @@ export default function EventRegisterModal({
                     <button
                         type="submit"
                         disabled={loading}
-                        className={`w-[90%] h-12 font-bold rounded-md mt-4 transition-colors
-              ${loading ? "bg-gray-400 text-gray-200 cursor-not-allowed" : "bg-purple-600 text-white hover:bg-[#61ffc2] hover:text-black"}`}
+                        className={`w-[90%] text-sm h-10 font-bold rounded-md mt-4 transition-colors
+              ${loading ? "bg-gray-400 text-gray-200 cursor-not-allowed" : "bg-black text-orange-200 hover:bg-orange-600 hover:text-black cursor-pointer"}`}
                     >
                         {loading ? "Processando..." : "Prosseguir para pagamento"}
                     </button>
