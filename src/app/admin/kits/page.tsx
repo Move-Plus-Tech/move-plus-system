@@ -21,7 +21,7 @@ export default function AdminKits() {
 
   return (
     <div>
-      <h1>Admin Kits</h1>
+      <h1>Kits</h1>
       <p>Conteúdo somente para ADMIN</p>
     </div>
   );
