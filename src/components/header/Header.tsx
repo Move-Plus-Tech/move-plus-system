@@ -5,15 +5,18 @@ import { useAuth } from "@/context/authContext";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
-import { HiOutlineTicket } from "react-icons/hi2";
-import { CiLogout } from "react-icons/ci";
+import { FaUser } from "react-icons/fa";
+import { FaTshirt } from "react-icons/fa";
+import { IoExitOutline } from "react-icons/io5";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { BsFileBarGraphFill } from "react-icons/bs";
 
 import { useLoginModal } from "@/context/loginModalContext";
 
 import ProfileDropdown from "./ProfileDropdown";
 import MyEventsModal from "../modals/MyEventsModal";
 import Contact from "../modals/Contact";
+import UserProfileModal from "../modals/Profile";
 
 const navLinks = [
   { label: "Inicio", href: "#inicio" },
@@ -22,9 +25,10 @@ const navLinks = [
 ];
 
 export default function Header() {
-  const { user, logout, hydrated } = useAuth();
+  const { user, logout, hydrated, role } = useAuth();
   const { openModal } = useLoginModal();
   const [openModalMyEvents, setOpenModalMyEvents] = useState(false);
+  const [openModalProfile, setOpenModalProfile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openContact, setOpenContact] = useState(false);
 
@@ -81,23 +85,47 @@ export default function Header() {
                   user={{
                     name: `${user.name}`,
                     email: `${user.email}`,
-                    avatarUrl: "https://res.cloudinary.com/dytw21kw2/image/upload/v1765647074/userIcon_oy1erm.png",
+                    avatarUrl: user.name ? user.name.charAt(0).toUpperCase() : "?",
                   }}
                   menuItems={[
                     {
                       label: (
-                        <div className="flex gap-2 text-hero-foreground">
-                          <HiOutlineTicket size={18} />
-                          Meus eventos
+                        <div className="flex gap-2 text-xs text-hero-foreground">
+                          <FaUser size={15} />
+                          <span className="text-white">Meu Perfil</span>
+                        </div>
+                      ),
+                      onClick: () => setOpenModalProfile(true),
+                    },
+                    {
+                      label: (
+                        <div className="flex gap-2 text-xs text-hero-foreground">
+                          <FaTshirt size={17} />
+                          <span className="text-white">Meus Kits</span>
                         </div>
                       ),
                       onClick: () => setOpenModalMyEvents(true),
                     },
+                    ...(role === "ADMIN"
+                      ? [
+                        {
+                          label: (
+                            <div className="flex gap-2 text-xs text-hero-foreground">
+                              <BsFileBarGraphFill size={15} />
+                              <span className="text-white">Gerenciamento de kits</span>
+                            </div>
+                          ),
+                          onClick: () => {
+                            window.location.href = "/admin/kits";
+                          },
+                        },
+                      ]
+                      : []),
                     {
                       label: (
-                        <div className="flex gap-2 text-hero-foreground">
-                          <CiLogout size={17} />
-                          Sair
+                        <div className="flex gap-2 text-xs">
+                          <IoExitOutline size={16} className="text-hero-foreground" />
+                          <span className="text-white">Sair</span>
                         </div>
                       ),
                       onClick: () => logout(),
@@ -138,7 +166,7 @@ export default function Header() {
                 </a>
 
               ))}
-              <div className="pt-2 mt-2 border-t border-hero-foreground/10 flex flex-col gap-2">
+              <div className="pt-4 mt-2 ml-2 border-t border-hero-foreground/10 flex flex-col gap-2">
                 {!user ? (
                   <>
                     <button
@@ -156,32 +184,50 @@ export default function Header() {
                     user={{
                       name: `${user.name}`,
                       email: `${user.email}`,
-                      avatarUrl: "https://res.cloudinary.com/dytw21kw2/image/upload/v1765647074/userIcon_oy1erm.png",
+                      avatarUrl: user.name ? user.name.charAt(0).toUpperCase() : "?",
                     }}
                     menuItems={[
                       {
                         label: (
-                          <div className="flex gap-2 text-hero-foreground">
-                            <HiOutlineTicket size={18} />
-                            Meus eventos
+                          <div className="flex gap-2 text-xs text-hero-foreground">
+                            <FaUser size={15} />
+                            <span className="text-white">Meu Perfil</span>
                           </div>
                         ),
-                        onClick: () => {
-                          setOpenModalMyEvents(true);
-                          setIsMenuOpen(false);
-                        },
+                        onClick: () => setOpenModalProfile(true),
                       },
                       {
                         label: (
-                          <div className="flex gap-2 text-hero-foreground">
-                            <CiLogout size={17} />
-                            Sair
+                          <div className="flex gap-2 text-xs text-hero-foreground">
+                            <FaTshirt size={17} />
+                            <span className="text-white">Meus Kits</span>
                           </div>
                         ),
-                        onClick: () => {
-                          logout();
-                          setIsMenuOpen(false);
-                        },
+                        onClick: () => setOpenModalMyEvents(true),
+                      },
+                      ...(role === "ADMIN"
+                        ? [
+                          {
+                            label: (
+                              <div className="flex gap-2 text-xs text-hero-foreground">
+                                <BsFileBarGraphFill size={15} />
+                                <span className="text-white">Gerenciamento de kits</span>
+                              </div>
+                            ),
+                            onClick: () => {
+                              window.location.href = "/admin/kits";
+                            },
+                          },
+                        ]
+                        : []),
+                      {
+                        label: (
+                          <div className="flex gap-2 text-xs">
+                            <IoExitOutline size={16} className="text-hero-foreground" />
+                            <span className="text-white">Sair</span>
+                          </div>
+                        ),
+                        onClick: () => logout(),
                       },
                     ]}
                   />
@@ -194,6 +240,11 @@ export default function Header() {
         <MyEventsModal
           openModalEvents={openModalMyEvents}
           setOpenModalEvents={setOpenModalMyEvents}
+        />
+
+        <UserProfileModal
+          isOpen={openModalProfile}
+          onClose={() => setOpenModalProfile(false)}
         />
 
       </header>

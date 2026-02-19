@@ -6,6 +6,7 @@ import { useAuth } from "@/context/authContext";
 import { MdClose } from "react-icons/md";
 import MyEventsComponent from "../kits/MyEventsComponent";
 import { getMyEvents, EventRegistration } from "@/services/events";
+import { IoShirt } from "react-icons/io5";
 
 
 type MyEventsProps = {
@@ -85,19 +86,17 @@ export default function MyEventsModal({ openModalEvents, setOpenModalEvents }: M
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 h-screen overflow-hidden">
-            <div className="w-full h-screen lg:w-[500px] lg:h-[700px] bg-white lg:rounded-xl shadow-xl flex flex-col items-center relative ">
+            <div className="w-full h-screen lg:w-[500px] lg:h-[700px] bg-white rounded-lg shadow-xl flex flex-col items-center relative ">
                 <div className="flex items-center justify-center">
-                    <div className="text-center mb-2">
-                        <h1 className="mt-8 text-lg font-bold text-[#5f2daf] uppercase">MEUS EVENTOS</h1>
-                        <h2 className="text-sm font-bold text-center px-4 text-black/70">Navegue por todos os seus eventos!</h2>
+                    <div className="text-center mb-2 mt-4">
+                        <h1 className="mt-8 text-lg font-bold text-orange-500 uppercase">MEUS KITS</h1>
+                        <h2 className="text-xs font-bold text-center px-4 text-black/70">Navegue por todos os seus kits já adquiridos!</h2>
                     </div>
 
                     <button onClick={handleCloseModal} className="absolute right-10 top-8 w-6 h-6 items-center text-white cursor-pointer font-semibold">
-                        <MdClose size={20} className="text-[#5f2daf]" />
+                        <MdClose size={20} className="text-orange-500" />
                     </ button>
                 </div>
-
-                {/* <NavLink labels={["Eventos ativos", "Passados"]} options={["Eventos ativos", "Passados"]} /> */}
 
                 <div className="flex-wrap w-full">
                     {loading ? (
@@ -107,7 +106,17 @@ export default function MyEventsModal({ openModalEvents, setOpenModalEvents }: M
                             <MyEventsComponent key={ev.registrationId} registration={ev} />
                         ))
                     ) : (
-                        <p className="text-sm text-center w-full mt-6">Você não tem eventos cadastrados.</p>
+                        <div className="text-center justify-center mt-40">
+                            <IoShirt size={40} className="text-gray-700 mx-auto mb-4" />
+                            <h2 className="text-lg font-bold mb-2">
+                                Você ainda não possui kits
+                            </h2>
+                            <button onClick={handleCloseModal}>
+                                <a href="#kits" className="neon-button mx-auto flex w-fit cursor-pointer 
+        py-3 px-3 sm:py-3 sm:px-5 mt-2 bg-orange-500 rounded-lg items-center gap-2 text-white 
+        text-xs sm:text-sm lg:text-base">Veja os kits disponíveis</a>
+                            </button>
+                        </div>
                     )}
 
                 </div>

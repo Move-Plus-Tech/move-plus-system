@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, ReactNode } from "react";
+import { useAuth } from "@/context/authContext";
 
 interface ProfileDropdownProps {
   user: {
@@ -13,6 +14,7 @@ interface ProfileDropdownProps {
 
 export default function ProfileDropdown({ user, menuItems }: ProfileDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { role } = useAuth();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -33,23 +35,31 @@ export default function ProfileDropdown({ user, menuItems }: ProfileDropdownProp
         className="flex items-center gap-2 cursor-pointer select-none"
       >
         {user.avatarUrl && (
-          <img
-            src={user.avatarUrl}
-            alt="Avatar"
-            className="w-6 h-6 rounded-full object-cover "
-          />
+          <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-medium text-sm">
+            {user.avatarUrl}
+          </div>
         )}
-        <p className="font-semibold text-gray-800 text-sm">Olá, {user.name.split(" ")[0]}!</p>
+
+        <div className="flex flex-col items-start gap-0.5 pl-0">
+          <p className="font-semibold text-white text-xs leading-tight">{user.name}</p>
+          <span className="text-[9px] text-gray-400 leading-tight">Ver perfil</span>
+        </div>
+
+        {role === "ADMIN" && (
+          <span className="px-2 py-0.5 text-[10px] font-bold bg-green-700 text-white rounded-sm ml-1">
+            ADMIN
+          </span>
+        )}
       </div>
 
       <div
-        className={`absolute right-0 mt-2 w-56 rounded-xl border border-gray-200 bg-white shadow-lg transition-all duration-200 ease-out ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+        className={`absolute right-0 mt-2 w-56 rounded-xl border bg-black shadow-lg transition-all duration-200 ease-out ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
           } origin-top-right`}
       >
 
-        <div className="px-4 py-3 border-b border-gray-100">
-          <p className="font-semibold text-gray-900">{user.name}</p>
-          <p className="text-xs text-gray-500">{user.email}</p>
+        <div className="px-4 py-3 border-b">
+          <p className="font-semibold text-white">Olá, {user.name.split(" ")[0]}!</p>
+          <p className="text-[11px] text-orange-500">{user.email}</p>
         </div>
 
 
@@ -61,7 +71,7 @@ export default function ProfileDropdown({ user, menuItems }: ProfileDropdownProp
                 item.onClick();
                 setIsOpen(false);
               }}
-              className="w-full text-left font-medium px-4 py-2 text-sm text-black hover:bg-[#61ffc2] transition-colors cursor-pointer"
+              className="w-full text-left font-medium px-4 py-2 text-sm text-orange-500 hover:bg-white/10 transition-colors cursor-pointer"
             >
               {item.label}
             </button>
