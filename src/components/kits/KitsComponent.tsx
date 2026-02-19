@@ -37,6 +37,15 @@ export default function KitsComponent() {
     const [registrations, setRegistrations] = useState<EventRegistration[]>([]);
     const [loading, setLoading] = useState(true);
 
+    // Ordena eventos: populares primeiro, ambos por data
+    const sortedEvents = useMemo(() => {
+        return allEvents.slice().sort((a, b) => {
+            if (a.status === "Popular" && b.status !== "Popular") return -1;
+            if (a.status !== "Popular" && b.status === "Popular") return 1;
+            return new Date(a.time).getTime() - new Date(b.time).getTime();
+        });
+    }, [allEvents]);
+
     useEffect(() => {
         getEvents()
             .then(setAllEvents)
@@ -93,7 +102,7 @@ export default function KitsComponent() {
                     )}
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-                        {allEvents.map((event) => {
+                        {sortedEvents.map((event) => {
                             const isPopular = event.status === "Popular";
 
                             return (
