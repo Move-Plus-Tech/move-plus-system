@@ -50,7 +50,7 @@ export default function PaymentSuccess() {
 
                 <button
                     onClick={handleOk}
-                    className="mt-8 w-[80%] h-12 bg-purple-600 text-white font-bold rounded-md hover:bg-[#61ffc2] hover:text-black transition-colors cursor-pointer"
+                    className="mt-8 w-[80%] h-12 bg-orange-500 text-white font-bold rounded-md hover:bg-orange-600 transition-colors cursor-pointer"
                 >
                     OK
                 </button>
