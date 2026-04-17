@@ -233,8 +233,7 @@ export default function EventRegisterModal({
                     </div>
 
                     <Image
-                        src={event.imagekitUrl || "/fallback.jpg"}
-                        alt="Tabela de tamanhos de camisetas"
+                        src={event.imageUrl && (event.imageUrl.startsWith("/") || event.imageUrl.startsWith("http")) ? event.imageUrl : "/fallback.jpg"} alt="Tabela de tamanhos de camisetas"
                         width={400}
                         height={150}
                         quality={100}

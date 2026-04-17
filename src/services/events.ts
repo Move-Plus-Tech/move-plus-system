@@ -22,6 +22,7 @@ export type CreateEventData = {
   time: string;
   type: string;
   title: string;
+  slots?: number;
   imageUrl: string;
   imagekitUrl: string;
   urlLinkAbout: string;
@@ -58,6 +59,14 @@ export async function getEvents(): Promise<Event[]> {
   return res.json();
 }
 
+export async function deleteEvent(id: string) {
+  const res = await fetch(`${API_URL}/events/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!res.ok) throw new Error("Erro ao deletar evento");
+}
+
 export async function createEvent(data: CreateEventData): Promise<Event> {
   const res = await fetch(`${API_URL}/events`, {
     method: "POST",
@@ -66,6 +75,17 @@ export async function createEvent(data: CreateEventData): Promise<Event> {
   });
 
   if (!res.ok) throw new Error("Erro ao criar evento");
+  return res.json();
+}
+
+export async function updateEvent(id: number, data: CreateEventData): Promise<Event> {
+  const res = await fetch(`${API_URL}/events/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) throw new Error("Erro ao atualizar evento");
   return res.json();
 }
 

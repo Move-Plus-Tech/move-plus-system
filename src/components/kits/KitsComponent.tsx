@@ -148,7 +148,7 @@ export default function KitsComponent() {
                                         </div>
 
                                         <Image
-                                            src={event.imageUrl || "/fallback.jpg"}
+                                            src={event.imageUrl && (event.imageUrl.startsWith("/") || event.imageUrl.startsWith("http")) ? event.imageUrl : "/fallback.jpg"}
                                             alt={event.name}
                                             width={400}
                                             height={250}
