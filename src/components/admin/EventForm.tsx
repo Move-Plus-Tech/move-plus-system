@@ -8,7 +8,8 @@ import toast from "react-hot-toast";
 const initialState = {
   name: "",
   status: "Disponível",
-  price: 0,
+  price: "",
+  distances: "",
   location: "",
   time: "",
   type: "corrida",
@@ -50,6 +51,64 @@ export default function EventForm() {
     return result;
   }
 
+  function toInputDateDigits(value: string) {
+    if (!value) return "";
+
+    const isoMatch = value.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (isoMatch) {
+      const [, yyyy, mm, dd] = isoMatch;
+      return `${dd}${mm}${yyyy}`;
+    }
+
+    const brMatch = value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if (brMatch) {
+      const [, dd, mm, yyyy] = brMatch;
+      return `${dd}${mm}${yyyy}`;
+    }
+
+    return value.replace(/\D/g, "").slice(0, 8);
+  }
+
+  function formatPriceInput(value: string) {
+    return value.replace(/[^\d,\.]/g, "");
+  }
+
+  function toDatabasePrice(value: string | number) {
+    const raw = String(value).replace(/[^\d,\.]/g, "");
+    if (!raw) return 0;
+
+    const lastComma = raw.lastIndexOf(",");
+    const lastDot = raw.lastIndexOf(".");
+    const separatorIndex = Math.max(lastComma, lastDot);
+
+    if (separatorIndex === -1) {
+      const intOnly = Number(raw);
+      return Number.isFinite(intOnly) ? intOnly : 0;
+    }
+
+    const intPart = raw.slice(0, separatorIndex).replace(/[,.]/g, "");
+    const decimalPart = raw.slice(separatorIndex + 1).replace(/[,.]/g, "");
+    const normalized = `${intPart || "0"}.${decimalPart}`;
+    const parsed = Number(normalized);
+
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+
+  function parseDistances(value: string | string[] | undefined) {
+    if (!value) return [];
+
+    const source = Array.isArray(value) ? value.join(",") : value;
+
+    return Array.from(
+      new Set(
+        source
+          .split(/[\n,;]+/)
+          .map((item) => item.trim())
+          .filter(Boolean)
+      )
+    );
+  }
+
   async function loadEvents() {
     const data = await getEvents();
     setEvents(data);
@@ -62,6 +121,9 @@ export default function EventForm() {
   function handleEdit(event: any) {
     setForm({
       ...event,
+      price: event.price != null ? String(event.price) : "",
+      distances: parseDistances(event.distances).join(", "),
+      time: toInputDateDigits(event.time),
     });
   }
 
@@ -78,6 +140,12 @@ export default function EventForm() {
     >
   ) => {
     const { name, value } = e.target;
+
+    if (name === "price") {
+      setForm((prev) => ({ ...prev, price: formatPriceInput(value) }));
+      return;
+    }
+
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -93,7 +161,8 @@ export default function EventForm() {
 
     const payload = {
       ...form,
-      price: Number(form.price),
+      price: toDatabasePrice(form.price),
+      distances: parseDistances(form.distances),
       slots: 100,
       status: form.status as "Disponível",
       time: toISODate(formatInputDateTime(form.time)),
@@ -175,10 +244,23 @@ export default function EventForm() {
               <Field label="Preço (R$)">
                 <input
                   name="price"
-                  type="number"
+                  type="text"
+                  inputMode="decimal"
                   value={form.price}
                   onChange={handleChange}
                   placeholder="Ex: 49.90"
+                  className={inputStyle}
+                  required
+                />
+              </Field>
+
+              <Field label="Distâncias (separe por vírgula)">
+                <input
+                  name="distances"
+                  type="text"
+                  value={form.distances}
+                  onChange={handleChange}
+                  placeholder="Ex: 3 Km, 5 Km, 10 Km"
                   className={inputStyle}
                   required
                 />

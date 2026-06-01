@@ -3,6 +3,7 @@ export type Event = {
   name: string;
   status: "Disponível" | "Esgotado" | "Em Breve" | "Popular";
   price: number;
+  distances: string[];
   location: string;
   time: string;
   type: string;
@@ -18,6 +19,7 @@ export type CreateEventData = {
   name: string;
   status: "Disponível" | "Esgotado" | "Em Breve" | "Popular";
   price: number;
+  distances: string[];
   location: string;
   time: string;
   type: string;

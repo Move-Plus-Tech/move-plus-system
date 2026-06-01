@@ -14,7 +14,8 @@ interface EventRegisterModalProps {
     event: {
         id: number;
         name: string;
-        price: number;
+        price: number | string;
+        distances?: string[];
         imagekitUrl: string;
         imageUrl: string;
     };
@@ -90,10 +91,37 @@ export default function EventRegisterModal({
             currency: "BRL",
         }).format(value);
 
-    const priceWithFee = Number(event?.price ?? 0);
+    function parsePrice(value: number | string | null | undefined) {
+        if (typeof value === "number") return Number.isFinite(value) ? value : 0;
+        if (value == null) return 0;
+
+        const raw = String(value).trim().replace(/[^\d,.-]/g, "");
+        if (!raw) return 0;
+
+        const lastComma = raw.lastIndexOf(",");
+        const lastDot = raw.lastIndexOf(".");
+        const separatorIndex = Math.max(lastComma, lastDot);
+
+        if (separatorIndex === -1) {
+            const parsedInt = Number(raw);
+            return Number.isFinite(parsedInt) ? parsedInt : 0;
+        }
+
+        const intPart = raw.slice(0, separatorIndex).replace(/[,.]/g, "");
+        const decimalPart = raw.slice(separatorIndex + 1).replace(/[,.]/g, "");
+        const normalized = `${intPart || "0"}.${decimalPart}`;
+        const parsed = Number(normalized);
+
+        return Number.isFinite(parsed) ? parsed : 0;
+    }
+
+    const priceWithFee = parsePrice(event?.price);
     const feePercentage = 0.1;
     const basePrice = priceWithFee / (1 + feePercentage);
     const includedFee = priceWithFee - basePrice;
+    const distanceOptions = event.distances?.length
+        ? event.distances
+        : ["3 Km", "5 Km", "10 Km"];
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -135,7 +163,7 @@ export default function EventRegisterModal({
                 {/* Close nunca some */}
                 <button
                     onClick={handleClose}
-                    className="sticky top-0 ml-auto block text-gray-700 z-50 bg-white"
+                    className="sticky top-0 ml-auto block text-gray-700 z-50 bg-white cursor-pointer"
                     aria-label="Fechar"
                 >
                     <MdClose size={20} />
@@ -215,19 +243,20 @@ export default function EventRegisterModal({
                         className="w-[90%] text-sm text-gray-900 placeholder:text-black/40 h-10 border border-gray-200 outline-none rounded-md px-3"
                     />
 
-                    <div className="w-[90%] py-4 flex gap-2">
-                        {["CORRIDA 10KM", "CORRIDA 5KM", "CAMINHADA 4 KM"].map((d) => (
-                            <label key={d} className="inline-flex items-center gap-3 text-xs">
+                    <div className="w-[90%] py-3 flex gap-2 flex-wrap">
+                        <span className="w-full text-sm text-gray-700">Distância *</span>
+                        {distanceOptions.map((distance) => (
+                            <label key={distance} className="inline-flex items-center gap-2 text-sm text-gray-800">
                                 <input
                                     type="radio"
                                     name="distance"
-                                    value={d}
-                                    checked={form.distance === d}
+                                    value={distance}
+                                    checked={form.distance === distance}
                                     onChange={(e) => setForm({ ...form, distance: e.target.value })}
                                     style={{ accentColor: "#db5614" }}
                                     className="w-4 h-4"
                                 />
-                                {d}
+                                {distance}
                             </label>
                         ))}
                     </div>

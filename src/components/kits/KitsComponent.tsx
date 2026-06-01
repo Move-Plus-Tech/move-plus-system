@@ -63,6 +63,36 @@ export default function KitsComponent() {
         [registrations]
     );
 
+    const parsePrice = (value: number | string | null | undefined) => {
+        if (typeof value === "number") return Number.isFinite(value) ? value : 0;
+        if (value == null) return 0;
+
+        const raw = String(value).trim().replace(/[^\d,.-]/g, "");
+        if (!raw) return 0;
+
+        const lastComma = raw.lastIndexOf(",");
+        const lastDot = raw.lastIndexOf(".");
+        const separatorIndex = Math.max(lastComma, lastDot);
+
+        if (separatorIndex === -1) {
+            const parsedInt = Number(raw);
+            return Number.isFinite(parsedInt) ? parsedInt : 0;
+        }
+
+        const intPart = raw.slice(0, separatorIndex).replace(/[,.]/g, "");
+        const decimalPart = raw.slice(separatorIndex + 1).replace(/[,.]/g, "");
+        const normalized = `${intPart || "0"}.${decimalPart}`;
+        const parsed = Number(normalized);
+
+        return Number.isFinite(parsed) ? parsed : 0;
+    };
+
+    const formatCurrency = (value: number) =>
+        new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        }).format(value);
+
     return (
         <>
             <section id="kits" className="bg-gray-100 py-16 px-4">
@@ -104,6 +134,7 @@ export default function KitsComponent() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
                         {sortedEvents.map((event) => {
                             const isPopular = event.status === "Popular";
+                            const eventPrice = parsePrice(event.price);
 
                             return (
                                 <div
@@ -175,9 +206,9 @@ export default function KitsComponent() {
                                         </div>
 
                                         {/* Price */}
-                                        {event.price > 0 && (
+                                        {eventPrice > 0 && (
                                             <div className="mt-4 font-bold text-2xl text-black">
-                                                R$ {event.price}
+                                                {formatCurrency(eventPrice)}
                                             </div>
                                         )}
 
