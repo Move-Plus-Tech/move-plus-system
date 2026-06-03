@@ -134,6 +134,7 @@ export default function KitsComponent() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
                         {sortedEvents.map((event) => {
                             const isPopular = event.status === "Popular";
+                            const isComingSoon = event.status === "Em Breve";
                             const eventPrice = parsePrice(event.price);
 
                             return (
@@ -221,6 +222,14 @@ export default function KitsComponent() {
                                                 >
                                                     <MdCheckCircle />
                                                     Já inscrito
+                                                </button>
+                                            ) : isComingSoon ? (
+                                                <button
+                                                    disabled
+                                                    className="w-full py-2 rounded-lg bg-orange-100 text-orange-700
+                            font-semibold flex items-center justify-center gap-2 cursor-not-allowed"
+                                                >
+                                                    Em breve
                                                 </button>
                                             ) : (
                                                 <button
