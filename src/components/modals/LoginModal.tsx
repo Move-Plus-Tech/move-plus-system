@@ -138,14 +138,14 @@ export default function LoginModal() {
                                 closeModal();
                                 openForgotPasswordModal();
                             }}
-                            className="text-sm text-orange-600 font-semibold cursor-pointer hover:underline text-right w-full"
+                            className="text-xs text-orange-600 font-semibold cursor-pointer hover:underline text-right w-full"
                         >
                             Esqueceu a senha?
                         </button>
 
                         <button
                             type="submit"
-                            className="w-full h-12 bg-black cursor-pointer text-white font-bold rounded-md transition hover:bg-gray-800"
+                            className="w-full h-10 text-sm bg-black cursor-pointer text-white font-bold rounded-sm transition hover:bg-gray-800"
                         >
                             {loading ? "Entrando..." : "Entrar"}
                         </button>
@@ -156,7 +156,7 @@ export default function LoginModal() {
                                 closeModal();
                                 openRegisterModal();
                             }}
-                            className="text-sm text-gray-500 text-center w-full"
+                            className="text-xs text-gray-500 text-center w-full"
                         >
                             Não tem uma conta?
                             <span className="text-orange-600 font-semibold cursor-pointer">

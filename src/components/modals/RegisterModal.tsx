@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { FiUser, FiMail, FiLock, FiPhone } from "react-icons/fi";
@@ -226,7 +227,7 @@ export default function RegisterModal() {
                 type="submit"
                 disabled={loading}
                 className={`
-                  w-full cursor-pointer h-12 rounded-md font-bold text-white transition
+                  w-full cursor-pointer h-10 text-sm rounded-sm font-bold text-white transition
                   ${loading
                     ? "bg-black cursor-not-allowed"
                     : "bg-black hover:bg-gray-800"}
@@ -238,13 +239,21 @@ export default function RegisterModal() {
 
             <p className="text-xs text-gray-500 text-center mt-4">
               Ao se cadastrar, você concorda com nossos{" "}
-              <span className="text-orange-600 font-semibold cursor-pointer">
+              <Link
+                href="/termos-de-uso"
+                onClick={closeModal}
+                className="text-orange-600 font-semibold cursor-pointer"
+              >
                 Termos
-              </span>{" "}
+              </Link>{" "}
               e{" "}
-              <span className="text-orange-600 font-semibold cursor-pointer">
+              <Link
+                href="/politica-de-privacidade"
+                onClick={closeModal}
+                className="text-orange-600 font-semibold cursor-pointer"
+              >
                 Política de Privacidade
-              </span>
+              </Link>
               .
             </p>
           </div>
