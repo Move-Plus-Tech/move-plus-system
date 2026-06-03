@@ -236,7 +236,7 @@ export default function EventForm() {
                 >
                   <option>Disponível</option>
                   <option>Esgotado</option>
-                  <option>Em breve</option>
+                  <option>Em Breve</option>
                   <option>Popular</option>
                 </select>
               </Field>

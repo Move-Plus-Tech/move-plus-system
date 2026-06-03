@@ -168,7 +168,7 @@ export default function KitsComponent() {
                             ${event.status === "Disponível"
                                                             ? "bg-orange-500 text-white"
                                                             : event.status === "Em Breve"
-                                                                ? "bg-orange-300 text-black"
+                                                                ? "bg-gray-200 text-black/70"
                                                                 : event.status === "Esgotado"
                                                                     ? "bg-red-500 text-white"
                                                                     : "bg-gray-500 text-white"
@@ -226,7 +226,7 @@ export default function KitsComponent() {
                                             ) : isComingSoon ? (
                                                 <button
                                                     disabled
-                                                    className="w-full py-2 rounded-lg bg-orange-100 text-orange-700
+                                                    className="w-full text-sm py-2 rounded-lg bg-gray-100 text-black/70
                             font-semibold flex items-center justify-center gap-2 cursor-not-allowed"
                                                 >
                                                     Em breve
