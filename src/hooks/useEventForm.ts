@@ -115,6 +115,7 @@ export function useEventForm() {
   const stats = {
     total: events.length,
     available: events.filter((event) => event.status === "Disponível").length,
+    upcoming: events.filter((event) => event.status === "Em Breve").length,
     popular: events.filter((event) => event.status === "Popular").length,
     soldOut: events.filter((event) => event.status === "Esgotado").length,
   };

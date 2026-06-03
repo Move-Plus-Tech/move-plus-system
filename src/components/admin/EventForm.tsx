@@ -105,42 +105,44 @@ export default function EventForm() {
 
   return (
     <div className="min-h-screen bg-gray-50/60">
-      <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8">
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-start sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
               Painel de Administrador
             </h1>
-            <p className="text-sm text-gray-500 mt-0.5">
+            <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
               Cadastre, edite e monitore todos os kits de evento
             </p>
           </div>
           {!showForm && (
             <button
               onClick={openCreateForm}
-              className="inline-flex items-center gap-2 px-4 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold rounded-sm transition-colors shadow-sm cursor-pointer"
+              className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold rounded-sm transition-colors shadow-sm cursor-pointer shrink-0"
             >
               <Plus size={16} />
-              Novo Kit
+              <span className="hidden sm:inline">Novo Kit</span>
+              <span className="sm:hidden">Novo</span>
             </button>
           )}
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
           {[
             { label: "Total de kits", value: stats.total, icon: <Package size={18} />, color: "text-gray-600 bg-gray-100" },
             { label: "Disponíveis", value: stats.available, icon: <CheckCircle2 size={18} />, color: "text-emerald-600 bg-emerald-50" },
             { label: "Populares", value: stats.popular, icon: <TrendingUp size={18} />, color: "text-blue-600 bg-blue-50" },
+            { label: "Em Breve", value: stats.upcoming, icon: <Clock size={18} />, color: "text-yellow-600 bg-yellow-50" },
             { label: "Esgotados", value: stats.soldOut, icon: <Clock size={18} />, color: "text-red-600 bg-red-50" },
           ].map((stat) => (
-            <div key={stat.label} className="bg-white rounded-sm border border-gray-100 p-5 flex items-center gap-4">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${stat.color}`}>
+            <div key={stat.label} className="bg-white rounded-sm border border-gray-100 p-4 sm:p-5 flex items-center gap-3 sm:gap-4">
+              <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 ${stat.color}`}>
                 {stat.icon}
               </div>
-              <div>
-                <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                <p className="text-xs text-gray-500">{stat.label}</p>
+              <div className="min-w-0">
+                <p className="text-xl sm:text-2xl font-bold text-gray-900">{stat.value}</p>
+                <p className="text-xs text-gray-500 truncate">{stat.label}</p>
               </div>
             </div>
           ))}
@@ -148,9 +150,9 @@ export default function EventForm() {
 
         {showForm && (
           <div className="bg-white rounded-sm border border-gray-100 shadow-sm overflow-hidden">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+            <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-orange-50 rounded-sm flex items-center justify-center">
+                <div className="w-8 h-8 bg-orange-50 rounded-sm flex items-center justify-center shrink-0">
                   {isEditing ? <Pencil size={15} className="text-orange-500" /> : <Plus size={15} className="text-orange-500" />}
                 </div>
                 <div>
@@ -171,11 +173,11 @@ export default function EventForm() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <form onSubmit={handleSubmit} className="p-4 sm:p-6">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
 
                 <div className="space-y-4">
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
                     Informações básicas
                   </p>
 
@@ -208,7 +210,7 @@ export default function EventForm() {
                 </div>
 
                 <div className="space-y-4">
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
                     Detalhes do Kit
                   </p>
 
@@ -241,9 +243,8 @@ export default function EventForm() {
                   </Field>
                 </div>
 
-                {/* Col 3 — Mídia */}
                 <div className="space-y-4">
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
                     Mídia
                   </p>
 
@@ -264,13 +265,13 @@ export default function EventForm() {
                 </div>
               </div>
 
-              {/* Actions */}
-              <div className="flex items-center gap-3 mt-8 pt-6 border-t border-gray-100">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-8 pt-6 border-t border-gray-100">
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-sm text-sm font-semibold text-white transition cursor-pointer ${loading ? "bg-gray-300 cursor-not-allowed" : "bg-gray-900 hover:bg-gray-700"
-                    }`}
+                  className={`inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-sm text-sm font-semibold text-white transition cursor-pointer ${
+                    loading ? "bg-gray-300 cursor-not-allowed" : "bg-gray-900 hover:bg-gray-700"
+                  }`}
                 >
                   {loading
                     ? (isEditing ? "Salvando..." : "Cadastrando...")
@@ -279,7 +280,7 @@ export default function EventForm() {
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="px-6 py-2.5 rounded-sm text-sm font-semibold text-gray-600 border border-gray-200 hover:bg-gray-50 transition cursor-pointer"
+                  className="inline-flex items-center justify-center px-6 py-2.5 rounded-sm text-sm font-semibold text-gray-600 border border-gray-200 hover:bg-gray-50 transition cursor-pointer"
                 >
                   Cancelar
                 </button>
@@ -298,12 +299,12 @@ export default function EventForm() {
 
         {/* Table */}
         <div className="bg-white rounded-sm border border-gray-100 shadow-sm overflow-hidden">
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 sm:px-6 py-4 border-b border-gray-100">
             <h2 className="text-sm font-semibold text-gray-900">
               Kits cadastrados
               <span className="ml-2 text-xs font-normal text-gray-400">({events.length})</span>
             </h2>
-            <div className="relative w-60">
+            <div className="relative w-full sm:w-60">
               <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
@@ -340,18 +341,18 @@ export default function EventForm() {
                 return (
                   <div
                     key={event.id}
-                    className="flex items-center justify-between px-6 py-4 hover:bg-gray-50/60 transition-colors group"
+                    className="flex items-center justify-between px-4 sm:px-6 py-4 hover:bg-gray-50/60 transition-colors group"
                   >
-                    <div className="flex items-center gap-4 min-w-0">
+                    <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
                       <div className="w-9 h-9 rounded-sm bg-orange-50 flex items-center justify-center shrink-0">
                         <Package size={16} className="text-orange-400" />
                       </div>
                       <div className="min-w-0">
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2">
                           <p className="text-sm font-semibold text-gray-900 truncate">{event.name}</p>
                           <StatusBadge status={event.status} />
                         </div>
-                        <div className="flex items-center gap-3 mt-0.5">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-0.5">
                           {event.location && (
                             <span className="flex items-center gap-1 text-xs text-gray-400">
                               <MapPin size={11} /> {event.location}
@@ -368,11 +369,11 @@ export default function EventForm() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-6 shrink-0 ml-4">
-                      <span className="text-sm font-semibold text-gray-800">
+                    <div className="flex items-center gap-2 sm:gap-6 shrink-0 ml-2 sm:ml-4">
+                      <span className="text-sm font-semibold text-gray-800 hidden xs:block sm:block">
                         R${event.price}
                       </span>
-                      <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex items-center gap-1 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                         <button
                           onClick={() => handleEdit(event)}
                           className="w-8 h-8 flex items-center justify-center rounded-sm hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition cursor-pointer"
@@ -387,7 +388,7 @@ export default function EventForm() {
                         >
                           <Trash2 size={15} />
                         </button>
-                        <ChevronRight size={14} className="text-gray-300 ml-1" />
+                        <ChevronRight size={14} className="text-gray-300 ml-1 hidden sm:block" />
                       </div>
                     </div>
                   </div>
