@@ -6,7 +6,7 @@ import {
     MdLocationPin,
     MdCheckCircle,
 } from "react-icons/md";
-import { IoShirt } from "react-icons/io5";
+import { IoShirt, IoFlame } from "react-icons/io5";
 import { useAuth } from "@/context/authContext";
 import { useLoginModal } from "@/context/loginModalContext";
 
@@ -140,33 +140,32 @@ export default function KitsComponent() {
                             return (
                                 <div
                                     key={event.id}
-                                    className={`group bg-white border border-gray-500/20 rounded-md overflow-hidden 
-                    flex flex-col transition-all duration-300 relative
-                    ${isPopular ? "ring-1 ring-orange-400 shadow-xl shadow-orange-500/30" : ""}
-                  `}
+                                    className={`group bg-white rounded-md overflow-hidden flex flex-col 
+                                        transition-all duration-300 relative
+                                        ${isPopular
+                                            ? "border-2 border-orange-500 shadow-lg shadow-orange-500/20"
+                                            : "border border-gray-500/20"
+                                        }`}
                                 >
-
+                                    {/* Image area */}
                                     <div className="relative">
- 
                                         {isPopular && (
-                                            <div className="absolute inset-0 z-10 bg-gradient-to-t from-orange-500/25 via-transparent to-transparent  transition-transform duration-300 
-                        group-hover:scale-105" />
+                                            <div className="absolute inset-0 z-10 bg-gradient-to-t from-orange-500/30 via-transparent to-transparent" />
                                         )}
 
                                         <div className="absolute top-4 right-4 z-20 flex flex-row gap-2 items-center">
                                             {isPopular ? (
-                                                <span
-                                                    className="px-3 py-1 rounded-full text-[11px] font-extrabold 
-    bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/50 
-    animate-pulse flex items-center justify-center"
-                                                >
-                                                    🔥 MAIS PROCURADO
+                                                <span className="px-3 py-1 rounded-full text-[11px] font-bold
+                                                    bg-orange-500 text-white shadow-md shadow-orange-500/40
+                                                    flex items-center gap-1.5">
+                                                    <IoFlame size={12} />
+                                                    MAIS PROCURADO
                                                 </span>
                                             ) : (
                                                 <span
                                                     className={`px-3 py-1 rounded-full text-[11px] font-bold
-                            ${event.status === "Disponível"
-                                                            ? "bg-orange-500 text-white"
+                                                        ${event.status === "Disponível"
+                                                            ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white"
                                                             : event.status === "Em Breve"
                                                                 ? "bg-gray-200 text-black/70"
                                                                 : event.status === "Esgotado"
@@ -188,6 +187,16 @@ export default function KitsComponent() {
                                         />
                                     </div>
 
+                                    {/* Urgency bar — only for popular */}
+                                    {isPopular && (
+                                        <div className="bg-orange-500 px-4 py-1.5 flex items-center gap-2">
+                                            <IoFlame size={13} className="text-white" />
+                                            <span className="text-white text-[11px] font-bold tracking-wide uppercase">
+                                                Alta demanda — garanta o seu!
+                                            </span>
+                                        </div>
+                                    )}
+
                                     <div className="flex flex-col flex-1 p-5">
                                         <h3 className="font-bold uppercase text-md mb-4 text-gray-900">
                                             {event.name}
@@ -207,7 +216,7 @@ export default function KitsComponent() {
 
                                         {/* Price */}
                                         {eventPrice > 0 && (
-                                            <div className="mt-4 font-bold text-2xl text-black">
+                                            <div className={`mt-4 font-bold text-2xl ${isPopular ? "text-orange-500" : "text-black"}`}>
                                                 {formatCurrency(eventPrice)}
                                             </div>
                                         )}
@@ -218,7 +227,7 @@ export default function KitsComponent() {
                                                 <button
                                                     disabled
                                                     className="w-full py-2 rounded-lg bg-gray-300 text-gray-700 
-                            font-semibold flex items-center justify-center gap-2 cursor-not-allowed"
+                                                        font-semibold flex items-center justify-center gap-2 cursor-not-allowed"
                                                 >
                                                     <MdCheckCircle />
                                                     Já inscrito
@@ -226,8 +235,8 @@ export default function KitsComponent() {
                                             ) : isComingSoon ? (
                                                 <button
                                                     disabled
-                                                    className="w-full text-sm py-2 rounded-lg bg-gray-100 text-black/70
-                            font-semibold flex items-center justify-center gap-2 cursor-not-allowed"
+                                                    className="w-full text-sm py-2 rounded-sm bg-gray-100 text-black/70
+                                                        font-semibold flex items-center justify-center gap-2 cursor-not-allowed"
                                                 >
                                                     Em breve
                                                 </button>
@@ -239,11 +248,11 @@ export default function KitsComponent() {
                                                         setIsRegisterOpen(true);
                                                     }}
                                                     className={`w-full text-sm py-2 rounded-sm font-semibold transition-all duration-200
-                            ease-[cubic-bezier(0.2,0.8,0.2,1)] cursor-pointer transform-gpu
-                            hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]
-                            ${isPopular
-                                                            ? "bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 text-white hover:brightness-105"
-                                                            : "bg-black text-white hover:bg-orange-600 hover:text-black"
+                                                        ease-[cubic-bezier(0.2,0.8,0.2,1)] cursor-pointer transform-gpu
+                                                        hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]
+                                                        ${isPopular
+                                                            ? "bg-orange-500 text-white hover:bg-orange-600"
+                                                            : "bg-black text-white hover:bg-gray-800"
                                                         }`}
                                                 >
                                                     Fazer inscrição
@@ -251,12 +260,15 @@ export default function KitsComponent() {
                                             )}
 
                                             <button
+                                                disabled={isComingSoon}
                                                 onClick={() => {
                                                     setSelectedEvent(event);
                                                     setIsAboutOpen(true);
                                                 }}
                                                 className="w-full text-sm py-2 rounded-sm border border-black/20 
-                          text-black/70 font-semibold transition cursor-pointer hover:bg-gray-100"
+                                                    text-black/70 font-semibold transition cursor-pointer hover:bg-gray-100 
+                                                    disabled:hover:bg-transparent disabled:cursor-not-allowed 
+                                                    disabled:text-gray-400 disabled:border-gray-300"
                                             >
                                                 Sobre
                                             </button>
