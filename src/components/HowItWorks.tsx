@@ -6,13 +6,13 @@ export default function HowItWorks() {
   return (
     <div className="bg-white w-full py-10 flex flex-col items-center px-6 lg:px-0">
 
-      <div className="bg-orange-500/20 px-4 py-1 rounded-full text-xs lg:text-sm 
+      <div className="border px-4 py-1 rounded-full text-xs lg:text-sm 
         text-orange-600 font-semibold mb-4">
         Como funciona
       </div>
 
-      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-black text-center text-black">
-        Simples como <span className="text-orange-500">1, 2, 3</span>
+      <h1 className="text-2xl uppercase sm:text-3xl lg:text-5xl font-black text-center text-black">
+        Simples como <span className="text-orange-500">1..2..3</span>
       </h1>
 
       <p className="text-center text-xs sm:text-sm lg:text-base font-medium mt-3 
@@ -31,7 +31,7 @@ export default function HowItWorks() {
 
         {/* Card 01 */}
         <div className="relative z-10 flex flex-col w-full max-w-sm items-center justify-center
-          hover:shadow-lg transition bg-white rounded-xl px-6 py-8 border border-gray-400/30">
+          hover:shadow-lg transition bg-white rounded-sm px-6 py-8 border border-gray-400/30">
 
           <h1 className="absolute text-3xl lg:text-4xl font-black text-orange-500/20 right-6 top-4">
             01
@@ -52,7 +52,7 @@ export default function HowItWorks() {
 
         {/* Card 02 */}
         <div className="relative z-10 flex flex-col w-full max-w-sm items-center justify-center
-          hover:shadow-lg transition bg-white rounded-xl px-6 py-8 border border-gray-400/30">
+          hover:shadow-lg transition bg-white rounded-sm px-6 py-8 border border-gray-400/30">
 
           <h1 className="absolute text-3xl lg:text-4xl font-black text-orange-500/20 right-6 top-4">
             02
@@ -73,7 +73,7 @@ export default function HowItWorks() {
 
         {/* Card 03 */}
         <div className="relative z-10 flex flex-col w-full max-w-sm items-center justify-center
-          hover:shadow-lg transition bg-white rounded-xl px-6 py-8 border border-gray-400/30">
+          hover:shadow-lg transition bg-white rounded-sm px-6 py-8 border border-gray-400/30">
 
           <h1 className="absolute text-3xl lg:text-4xl font-black text-orange-500/20 right-6 top-4">
             03

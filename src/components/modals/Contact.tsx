@@ -14,14 +14,14 @@ export default function Contact({ isOpen, onClose }: ContactProps) {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-            <div className="bg-[#1a1a1a] rounded-lg max-w-md w-full border border-orange-500/10">
+            <div className="bg-[#1a1a1a] rounded-sm max-w-md w-full">
                 <div className="flex items-center justify-between p-6 border-b border-white/10">
                     <h2 className="text-xl font-bold text-white">Fale Conosco</h2>
                     <button
                         onClick={onClose}
                         className="text-gray-400 hover:text-white transition cursor-pointer"
                     >
-                        <X size={24} />
+                        <X size={18} />
                     </button>
                 </div>
 

@@ -53,7 +53,7 @@ export default function AboutEventsModal({
           relative bg-white
           w-full max-w-[414px] md:max-w-[600px]
           max-h-[90dvh]
-          rounded-xl shadow-xl
+          rounded-sm shadow-xl
           px-7 py-6
           overflow-y-auto thin-grey-scrollbar select-none
         "
@@ -61,7 +61,7 @@ export default function AboutEventsModal({
 
                 <button
                     onClick={handleClose}
-                    className="sticky top-0 ml-auto block text-black z-50 bg-gray-100 cursor-pointer p-1 rounded-full hover:bg-gray-200 transition"
+                    className="sticky top-0 ml-auto block text-black z-50 hover:bg-gray-100 cursor-pointer p-1 rounded-full transition"
                     aria-label="Fechar"
                 >
                     <MdClose size={18} />

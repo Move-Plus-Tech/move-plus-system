@@ -8,9 +8,9 @@ export default function DeliveryRegions() {
       className="bg-[#0f0f0f] w-full py-20 flex flex-col items-center px-4 sm:px-6"
     >
 
-      <div className="flex items-center gap-2 bg-orange-500/20 px-4 py-1 rounded-full 
-        text-xs sm:text-sm text-orange-600 font-semibold mb-4 mt-6">
-        <TbTruck size={18} className="text-orange-600" />
+      <div className="flex items-center gap-2 px-4 py-1 rounded-full 
+        text-xs sm:text-sm border text-orange-400 mb-4 mt-6">
+        <TbTruck size={18} className="text-orange-400" />
         Área de Cobertura
       </div>
 
@@ -29,7 +29,7 @@ export default function DeliveryRegions() {
 
         {/* BH */}
         <div className="bg-[#141414] border border-orange-500/40 
-          rounded-2xl p-5 sm:p-6">
+          rounded-sm p-5 sm:p-6">
           
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="flex items-center gap-2 text-sm font-bold text-white">
@@ -70,7 +70,7 @@ export default function DeliveryRegions() {
 
         {/* Nova Lima */}
         <div className="bg-[#141414] border border-orange-500/40 
-          rounded-2xl p-5 sm:p-6">
+          rounded-sm p-5 sm:p-6">
 
           <div className="flex items-center gap-2 mb-4">
             <IoLocationOutline size={18} className="text-orange-600" />
@@ -100,7 +100,7 @@ export default function DeliveryRegions() {
 
         {/* Contagem */}
         <div className="bg-[#141414] border border-orange-500/40 
-          rounded-2xl p-5 sm:p-6">
+          rounded-sm p-5 sm:p-6">
 
           <div className="flex items-center gap-2 mb-4">
             <IoLocationOutline size={18} className="text-orange-600" />

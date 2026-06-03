@@ -85,42 +85,53 @@ export default function MyEventsModal({ openModalEvents, setOpenModalEvents }: M
     if (!openModalEvents) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 h-screen overflow-hidden">
-            <div className="w-full h-screen lg:w-[500px] lg:h-[700px] bg-white rounded-lg shadow-xl flex flex-col items-center relative ">
-                <div className="flex items-center justify-center">
-                    <div className="text-center mb-2 mt-4">
-                        <h1 className="mt-8 text-lg font-bold text-orange-500 uppercase">MEUS KITS</h1>
-                        <h2 className="text-xs font-bold text-center px-4 text-black/70">Navegue por todos os seus kits já adquiridos!</h2>
+        <div className="fixed inset-0 z-50 flex min-h-dvh items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+            <div className="relative my-auto w-full max-w-[560px] max-h-[90dvh] bg-white rounded-sm shadow-2xl border border-black/5 overflow-hidden">
+                <div className="px-6 pt-6 pb-4 bg-gradient-to-b from-orange-50 to-white border-b border-gray-200">
+                    <div className="text-center">
+                        <h1 className="text-lg font-black tracking-wide text-orange-500 uppercase">Histórico de Compras</h1>
+                        <h2 className="text-xs font-semibold mt-1 text-black/70">Navegue por todos os seus kits já adquiridos</h2>
                     </div>
 
-                    <button onClick={handleCloseModal} className="absolute right-10 top-8 w-6 h-6 items-center text-white cursor-pointer font-semibold">
-                        <MdClose size={20} className="text-orange-500" />
-                    </ button>
+                    <button
+                        onClick={handleCloseModal}
+                        className="absolute rounded-full hover:bg-gray-100 right-5 top-5 w-8 h-8 flex items-center justify-center cursor-pointer font-semibold transition-colors"
+                        aria-label="Fechar modal"
+                    >
+                        <MdClose size={18} className="text-black" />
+                    </button>
                 </div>
 
-                <div className="flex-wrap w-full">
+                <div className="w-full overflow-y-auto max-h-[calc(90dvh-96px)] px-4 pb-5 thin-grey-scrollbar">
                     {loading ? (
-                        <p className="text-sm text-center w-full mt-6">Carregando...</p>
+                        <div className="space-y-3 animate-pulse">
+                            <div className="h-20 rounded-sm bg-gray-100" />
+                            <div className="h-20 rounded-sm bg-gray-100" />
+                            <div className="h-20 rounded-sm bg-gray-100" />
+                        </div>
                     ) : events && events.length > 0 ? (
-                        events.map((ev) => (
-                            <MyEventsComponent key={ev.registrationId} registration={ev} />
-                        ))
+                        <div className="space-y-3">
+                            {events.map((ev) => (
+                                <MyEventsComponent key={ev.registrationId} registration={ev} />
+                            ))}
+                        </div>
                     ) : (
-                        <div className="text-center justify-center mt-40">
-                            <IoShirt size={40} className="text-gray-700 mx-auto mb-4" />
-                            <h2 className="text-lg font-bold mb-2">
-                                Você ainda não possui kits
-                            </h2>
-                            <button onClick={handleCloseModal}>
-                                <a href="#kits" className="neon-button mx-auto flex w-fit cursor-pointer 
-        py-3 px-3 sm:py-3 sm:px-5 mt-2 bg-orange-500 rounded-lg items-center gap-2 text-white 
-        text-xs sm:text-sm lg:text-base">Veja os kits disponíveis</a>
-                            </button>
+                        <div className="min-h-[360px] flex flex-col items-center justify-center text-center px-4">
+                            <div className="w-14 h-14 rounded-sm bg-orange-100 text-orange-500 flex items-center justify-center mb-4">
+                                <IoShirt size={30} />
+                            </div>
+                            <h2 className="text-lg font-bold text-black mb-1">Você ainda não possui kits</h2>
+                            <p className="text-sm text-black/60 mb-5 max-w-[280px]">Participe dos próximos eventos para garantir seu kit com entrega em casa.</p>
+                            <a
+                                href="#kits"
+                                onClick={handleCloseModal}
+                                className="mx-auto flex w-fit cursor-pointer py-3 px-5 bg-orange-500 rounded-sm items-center gap-2 text-white text-sm font-semibold transition-all duration-200 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:bg-orange-600 active:scale-[0.98]"
+                            >
+                                Veja os kits disponíveis
+                            </a>
                         </div>
                     )}
-
                 </div>
-
             </div>
         </div>
     )

@@ -99,7 +99,7 @@ export default function KitsComponent() {
                 <div className="max-w-7xl mx-auto flex flex-col items-center">
                     <div className="text-center mb-12">
                         <div
-                            className="inline-block bg-orange-500/20 px-4 py-1 rounded-full text-xs lg:text-sm 
+                            className="inline-block border px-4 py-1 rounded-full text-xs lg:text-sm 
               text-orange-600 font-semibold mb-4"
                         >
                             Kits disponíveis
@@ -110,7 +110,7 @@ export default function KitsComponent() {
                             <span className="text-orange-500">desafio</span>
                         </h1>
 
-                        <p className="mt-3 text-xs sm:text-sm lg:text-base font-medium text-black/80 max-w-xl mx-auto">
+                        <p className="mt-3 text-xs sm:text-sm lg:text-base font-medium text-black/80 max-w-2xl mx-auto">
                             Escolha a corrida parceira e{" "}
                             <span className="font-bold">receba seu kit em casa</span>{" "}
                             com toda a comodidade.
@@ -139,7 +139,7 @@ export default function KitsComponent() {
                             return (
                                 <div
                                     key={event.id}
-                                    className={`group bg-white border border-gray-500/20 rounded-2xl overflow-hidden 
+                                    className={`group bg-white border border-gray-500/20 rounded-md overflow-hidden 
                     flex flex-col transition-all duration-300 relative
                     ${isPopular ? "ring-1 ring-orange-400 shadow-xl shadow-orange-500/30" : ""}
                   `}
@@ -163,7 +163,7 @@ export default function KitsComponent() {
                                                 </span>
                                             ) : (
                                                 <span
-                                                    className={`px-3 py-1 rounded-md text-[11px] font-bold
+                                                    className={`px-3 py-1 rounded-full text-[11px] font-bold
                             ${event.status === "Disponível"
                                                             ? "bg-orange-500 text-white"
                                                             : event.status === "Em Breve"
@@ -183,8 +183,7 @@ export default function KitsComponent() {
                                             alt={event.name}
                                             width={400}
                                             height={250}
-                                            className="w-full h-48 object-cover transition-transform duration-300 
-                        group-hover:scale-105"
+                                            className="w-full h-48 object-cover"
                                         />
                                     </div>
 
@@ -230,10 +229,12 @@ export default function KitsComponent() {
                                                         setSelectedEvent(event);
                                                         setIsRegisterOpen(true);
                                                     }}
-                                                    className={`w-full text-sm py-2 rounded-lg font-semibold transition cursor-pointer
+                                                    className={`w-full text-sm py-2 rounded-sm font-semibold transition-all duration-200
+                            ease-[cubic-bezier(0.2,0.8,0.2,1)] cursor-pointer transform-gpu
+                            hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]
                             ${isPopular
-                                                            ? "bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 text-white hover:opacity-90"
-                                                            : "bg-black text-orange-200 hover:bg-orange-600 hover:text-black"
+                                                            ? "bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 text-white hover:brightness-105"
+                                                            : "bg-black text-white hover:bg-orange-600 hover:text-black"
                                                         }`}
                                                 >
                                                     Fazer inscrição
@@ -245,7 +246,7 @@ export default function KitsComponent() {
                                                     setSelectedEvent(event);
                                                     setIsAboutOpen(true);
                                                 }}
-                                                className="w-full text-sm py-2 rounded-lg border border-black/20 
+                                                className="w-full text-sm py-2 rounded-sm border border-black/20 
                           text-black/70 font-semibold transition cursor-pointer hover:bg-gray-100"
                                             >
                                                 Sobre

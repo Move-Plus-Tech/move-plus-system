@@ -46,7 +46,7 @@ export default function ProfileDropdown({ user, menuItems }: ProfileDropdownProp
         </div>
 
         {role === "ADMIN" && (
-          <span className="px-2 py-0.5 text-[10px] font-bold bg-green-700 text-white rounded-sm ml-1">
+          <span className="px-2 py-0.5 text-[10px] font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-center cursor-pointer transition-all duration-200 ease-[cubic-bezier(0.2,0.8,0.2,1)] rounded-sm ml-1">
             ADMIN
           </span>
         )}

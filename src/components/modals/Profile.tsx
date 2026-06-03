@@ -67,7 +67,7 @@ export default function UserProfileModal({ isOpen, onClose }: { isOpen: boolean;
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 h-screen overflow-hidden">
 
       <div
-        className={`relative w-full max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-200 ${mounted ? "scale-100 opacity-100" : "scale-95 opacity-0"
+        className={`relative w-full max-w-4xl bg-white rounded-sm shadow-xl overflow-hidden transform transition-all duration-200 ${mounted ? "scale-100 opacity-100" : "scale-95 opacity-0"
           }`}
       >
 
@@ -75,7 +75,7 @@ export default function UserProfileModal({ isOpen, onClose }: { isOpen: boolean;
           onClick={onClose}
           className="absolute top-4 right-4 z-10 p-2 hover:bg-gray-100 rounded-full transition cursor-pointer"
         >
-          <MdClose size={22} className="text-gray-500 hover:text-black" />
+          <MdClose size={18} className="text-gray-500 hover:text-black" />
         </button>
 
         <div className="flex flex-col lg:flex-row">

@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function MainContent() {
     return (
         <>
-            <div id="inicio" className="relative w-[54vh] h-[54vh] overflow-hidden rounded-lg">
+            <div id="inicio" className="relative w-[54vh] h-[54vh] overflow-hidden rounded-sm">
                 <Image
                     src="https://res.cloudinary.com/dytw21kw2/image/upload/v1769720572/entregador_kmanhe.jpg"
                     alt="Entregador Move+"
@@ -13,11 +13,10 @@ export default function MainContent() {
                 />
             </div>
 
-
             {/* Texto */}
             <div className="text-center lg:text-left max-w-xl">
 
-                <div className="bg-orange-500/20 max-w-32 px-4 py-1 rounded-full text-xs lg:text-sm 
+                <div className="border max-w-32 text-center py-1 rounded-full text-xs lg:text-sm 
         text-orange-600 font-semibold mb-4">
                     Nossa missão
                 </div>

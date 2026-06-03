@@ -112,7 +112,7 @@ export default function Header() {
                           label: (
                             <div className="flex gap-2 text-xs text-hero-foreground">
                               <BsFileBarGraphFill size={15} />
-                              <span className="text-white">Gerenciamento de kits</span>
+                              <span className="text-white">Painel de Administrador</span>
                             </div>
                           ),
                           onClick: () => {
@@ -211,7 +211,7 @@ export default function Header() {
                             label: (
                               <div className="flex gap-2 text-xs text-hero-foreground">
                                 <BsFileBarGraphFill size={15} />
-                                <span className="text-white">Gerenciamento de kits</span>
+                                <span className="text-white">Painel de Administrador</span>
                               </div>
                             ),
                             onClick: () => {

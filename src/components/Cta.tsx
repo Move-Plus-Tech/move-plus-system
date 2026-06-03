@@ -1,36 +1,64 @@
-import { FaLongArrowAltRight } from "react-icons/fa";
+import Link from "next/link";
+import { ArrowRight, Check } from "lucide-react";
 
 export default function Cta() {
-  return (
-    <section className="w-full bg-white py-16 sm:py-20 px-4">
-      <div
-        className="mx-auto max-w-5xl flex flex-col items-center 
-        rounded-2xl bg-orange-300/20 
-        px-6 py-10 sm:px-10 sm:py-14 lg:px-16 lg:py-16"
-      >
-        <h1 className="text-2xl sm:text-3xl lg:text-5xl font-black text-center text-black">
-          Pronto para sua próxima{" "}
-          <span className="text-orange-500">conquista?</span>
-        </h1>
+  const trustItems = [
+    "Entrega antes da prova garantida",
+    "BH e região atendidas",
+    "100% de satisfação",
+  ];
 
-        <p
-          className="mt-4 text-center text-xs sm:text-sm lg:text-base 
-          font-medium text-black/80 max-w-2xl"
+  return (
+    <section className="relative w-full overflow-hidden bg-[#0a0a0a] py-20 px-4">
+      {/* Linhas diagonais de fundo */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "repeating-linear-gradient(-60deg, transparent, transparent 28px, rgba(249,115,22,0.06) 28px, rgba(249,115,22,0.06) 30px)",
+        }}
+      />
+
+      <div className="relative mx-auto flex max-w-3xl flex-col items-center">
+        {/* Headline */}
+        <h2
+          className="text-center font-black uppercase leading-none tracking-wide text-white"
+          style={{
+            fontSize: "clamp(3rem, 8vw, 4rem)",
+            lineHeight: 0.95,
+          }}
         >
-          Deixe a logística com a gente e foque no que realmente importa:{" "}
-          <span className="font-bold">cruzar a linha de chegada.</span>
+          Sem fila.{" "}
+          <span className="block text-orange-500">Sem estresse.</span>
+          Na sua porta.
+        </h2>
+
+        {/* Subtítulo */}
+        <p className="mt-5 max-w-md text-center text-sm leading-relaxed text-white/50 sm:text-base">
+          Você foca no treino. A gente cuida do kit.{" "} 
+          <strong className="text-white/80"> <br /> Retire zero, corra 100%.</strong>
         </p>
 
-        <a href="#kits"
-          className="neon-button mt-8 sm:mt-10 flex items-center gap-2 
-          rounded-lg bg-orange-500 
-          px-4 py-3 sm:px-6 
-          text-xs sm:text-sm lg:text-base 
-          text-white transition hover:scale-[1.03] cursor-pointer"
+        {/* CTA */}
+        <Link
+          href="#kits"
+          className="neon-button mx-auto lg:mx-0 flex w-fit cursor-pointer 
+        py-3 px-3 sm:py-3 sm:px-5 mt-5 mb-2 bg-orange-500 rounded-sm items-center gap-2 text-white 
+        text-xs sm:text-sm lg:text-base"
         >
-          <span>Encontrar meu kit</span>
-          <FaLongArrowAltRight className="w-4 h-4 sm:w-5 sm:h-5" />
-        </a>
+          Encontrar meu kit
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </Link>
+
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          {trustItems.map((item) => (
+            <div key={item} className="flex items-center gap-1.5">
+              <Check className="h-3.5 w-3.5 text-orange-500" />
+              <span className="text-xs font-medium text-white/35">{item}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -155,15 +155,14 @@ export default function EventRegisterModal({
           relative bg-white
           w-full max-w-[414px] md:max-w-[600px]
           max-h-[90dvh]
-          rounded-xl shadow-xl
+          rounded-sm shadow-xl
           px-6 py-5
           overflow-y-auto thin-grey-scrollbar
         "
             >
-                {/* Close nunca some */}
                 <button
                     onClick={handleClose}
-                    className="sticky top-0 ml-auto block text-gray-700 z-50 bg-white cursor-pointer"
+                    className="sticky top-0 ml-auto block text-black z-50 hover:bg-gray-100 cursor-pointer p-1 rounded-full transition"
                     aria-label="Fechar"
                 >
                     <MdClose size={20} />
@@ -177,7 +176,7 @@ export default function EventRegisterModal({
                     Preencha os campos obrigatórios para completar sua inscrição.
                 </p>
 
-                <div className="text-sm text-black text-center mt-3 bg-gray-100 px-4 py-2 rounded-md">
+                <div className="mx-auto flex text-sm text-black items-center justify-center text-center w-[90%] mt-3 bg-gray-100 px-4 py-2 rounded-md">
                     <span className="font-bold">Valor:</span> {formatCurrency(basePrice)} +{" "}
                     <span className="font-bold">Taxa:</span> {formatCurrency(includedFee)} —{" "}
                     <span className="font-bold text-[#db5614]">
@@ -246,7 +245,7 @@ export default function EventRegisterModal({
                     <div className="w-[90%] py-3 flex gap-2 flex-wrap">
                         <span className="w-full text-sm text-gray-700">Distância *</span>
                         {distanceOptions.map((distance) => (
-                            <label key={distance} className="inline-flex items-center gap-2 text-sm text-gray-800">
+                            <label key={distance} className="inline-flex cursor-pointer items-center gap-2 text-sm text-gray-800">
                                 <input
                                     type="radio"
                                     name="distance"
@@ -254,7 +253,7 @@ export default function EventRegisterModal({
                                     checked={form.distance === distance}
                                     onChange={(e) => setForm({ ...form, distance: e.target.value })}
                                     style={{ accentColor: "#db5614" }}
-                                    className="w-4 h-4"
+                                    className="w-4 h-4 cursor-pointer"
                                 />
                                 {distance}
                             </label>
@@ -294,10 +293,12 @@ export default function EventRegisterModal({
                     <button
                         type="submit"
                         disabled={loading}
-                        className={`w-[90%] text-sm h-10 font-bold rounded-md mt-4 transition-colors
-              ${loading ? "bg-gray-400 text-gray-200 cursor-not-allowed" : "bg-black text-orange-200 hover:bg-orange-600 hover:text-black cursor-pointer"}`}
+                        className={`w-[90%] text-sm h-10 font-bold rounded-sm mt-4 ${loading
+                                ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                                : "bg-black text-white hover:bg-orange-600 hover:text-black transition-all duration-200 ease-[cubic-bezier(0.2,0.8,0.2,1)] transform-gpu hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] cursor-pointer"
+                            }`}
                     >
-                        {loading ? "Processando..." : "Prosseguir para pagamento"}
+                        {loading ? "Processando" : "Prosseguir para pagamento"}
                     </button>
                 </form>
             </div>
