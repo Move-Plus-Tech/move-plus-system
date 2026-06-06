@@ -47,8 +47,9 @@ export default function LoginModal() {
             );
             loginContext(data.user, data.token);
             closeModal();
-        } catch (error: any) {
-            toast.error(error?.message || error);
+        } catch (error: unknown) {
+            const message = error instanceof Error ? error.message : "Erro ao fazer login.";
+            toast.error(message);
         } finally {
             setLoading(false);
         }
