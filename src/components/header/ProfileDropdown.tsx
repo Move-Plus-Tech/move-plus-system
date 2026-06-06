@@ -10,9 +10,10 @@ interface ProfileDropdownProps {
     avatarUrl?: string;
   };
   menuItems: { label: ReactNode; onClick: () => void }[];
+  isAdminTheme?: boolean;
 }
 
-export default function ProfileDropdown({ user, menuItems }: ProfileDropdownProps) {
+export default function ProfileDropdown({ user, menuItems, isAdminTheme = false }: ProfileDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { role } = useAuth();
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -41,8 +42,8 @@ export default function ProfileDropdown({ user, menuItems }: ProfileDropdownProp
         )}
 
         <div className="flex flex-col items-start gap-0.5 pl-0">
-          <p className="font-semibold text-white text-xs leading-tight">{user.name}</p>
-          <span className="text-[9px] text-gray-400 leading-tight">Ver perfil</span>
+          <p className={isAdminTheme ? "font-semibold text-black text-xs leading-tight" : "font-semibold text-white text-xs leading-tight"}>{user.name}</p>
+          <span className={isAdminTheme ? "text-[9px] text-gray-600 leading-tight" : "text-[9px] text-gray-400 leading-tight"}>Ver perfil</span>
         </div>
 
         {role === "ADMIN" && (
@@ -53,13 +54,13 @@ export default function ProfileDropdown({ user, menuItems }: ProfileDropdownProp
       </div>
 
       <div
-        className={`absolute right-0 mt-2 w-56 rounded-xl border bg-black shadow-lg transition-all duration-200 ease-out ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+        className={`absolute right-0 mt-2 w-56 rounded-xl border shadow-lg transition-all duration-200 ease-out ${isAdminTheme ? "bg-white border-black/20" : "bg-black border-white/10"} ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
           } origin-top-right`}
       >
 
-        <div className="px-4 py-3 border-b">
-          <p className="font-semibold text-white">Olá, {user.name.split(" ")[0]}!</p>
-          <p className="text-[11px] text-orange-500">{user.email}</p>
+        <div className={isAdminTheme ? "px-4 py-3 border-b border-black/10" : "px-4 py-3 border-b border-white/10"}>
+          <p className={isAdminTheme ? "font-semibold text-black" : "font-semibold text-white"}>Olá, {user.name.split(" ")[0]}!</p>
+          <p className={isAdminTheme ? "text-[11px] text-gray-600" : "text-[11px] text-orange-500"}>{user.email}</p>
         </div>
 
 
@@ -71,7 +72,10 @@ export default function ProfileDropdown({ user, menuItems }: ProfileDropdownProp
                 item.onClick();
                 setIsOpen(false);
               }}
-              className="w-full text-left font-medium px-4 py-2 text-sm text-orange-500 hover:bg-white/10 transition-colors cursor-pointer"
+              className={isAdminTheme
+                ? "w-full text-left font-medium px-4 py-2 text-sm text-black hover:bg-black/5 transition-colors cursor-pointer"
+                : "w-full text-left font-medium px-4 py-2 text-sm text-orange-500 hover:bg-white/10 transition-colors cursor-pointer"
+              }
             >
               {item.label}
             </button>
