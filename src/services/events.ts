@@ -1,3 +1,10 @@
+export type ComplementaryItem = {
+  id: number;
+  tipo: string;
+  label: string;
+  opções: string[];
+};
+
 export type Event = {
   id: number;
   name: string;
@@ -13,6 +20,7 @@ export type Event = {
   imagekitUrl: string;
   urlLinkAbout: string;
   about: string;
+  itemComplementarId?: number;
 };
 
 export type CreateEventData = {
@@ -29,6 +37,7 @@ export type CreateEventData = {
   imagekitUrl: string;
   urlLinkAbout: string;
   about: string;
+  itemComplementarId?: number;
 };
 
 export type EventRegistration = {
@@ -61,6 +70,12 @@ export async function getEvents(): Promise<Event[]> {
   return res.json();
 }
 
+export async function getComplementaryItems(): Promise<ComplementaryItem[]> {
+  const res = await fetch(`${API_URL}/complementary-itens`);
+  if (!res.ok) throw new Error("Erro ao buscar itens complementares");
+  return res.json();
+}
+
 export async function deleteEvent(id: string) {
   const res = await fetch(`${API_URL}/events/${id}`, {
     method: "DELETE",
@@ -80,7 +95,10 @@ export async function createEvent(data: CreateEventData): Promise<Event> {
   return res.json();
 }
 
-export async function updateEvent(id: number, data: CreateEventData): Promise<Event> {
+export async function updateEvent(
+  id: number,
+  data: CreateEventData,
+): Promise<Event> {
   const res = await fetch(`${API_URL}/events/${id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
@@ -94,7 +112,7 @@ export async function updateEvent(id: number, data: CreateEventData): Promise<Ev
 // Inscrição em evento (mercado pago checkout)
 export async function createCheckout(
   eventId: number,
-  payload: any
+  payload: any,
 ): Promise<CheckoutResponse> {
   const response = await fetch(`${API_URL}/events/${eventId}/checkout`, {
     method: "POST",
@@ -133,7 +151,7 @@ export async function createCheckout(
 // Buscar eventos de um usuário
 export async function getMyEvents(email: string): Promise<EventRegistration[]> {
   const res = await fetch(
-    `${API_URL}/events/my?email=${encodeURIComponent(email)}`
+    `${API_URL}/events/my?email=${encodeURIComponent(email)}`,
   );
   if (!res.ok) throw new Error("Erro ao buscar meus eventos");
   return res.json();

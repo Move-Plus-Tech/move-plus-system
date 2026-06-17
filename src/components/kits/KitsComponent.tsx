@@ -21,6 +21,8 @@ import {
     Event,
     getMyEvents,
     EventRegistration,
+    getComplementaryItems,
+    ComplementaryItem,
 } from "@/services/events";
 
 import { formatDateBR } from "@/utils/formatDate";
@@ -29,11 +31,12 @@ export default function KitsComponent() {
     const { user, email } = useAuth();
     const { openModal } = useLoginModal();
 
-    const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+    const [selectedEvent, setSelectedEvent] = useState<Event & { complementaryItem?: ComplementaryItem } | null>(null);
     const [isAboutOpen, setIsAboutOpen] = useState(false);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
     const [allEvents, setAllEvents] = useState<Event[]>([]);
+    const [complementaryItems, setComplementaryItems] = useState<ComplementaryItem[]>([]);
     const [registrations, setRegistrations] = useState<EventRegistration[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -47,10 +50,21 @@ export default function KitsComponent() {
     }, [allEvents]);
 
     useEffect(() => {
-        getEvents()
-            .then(setAllEvents)
-            .catch(console.error)
-            .finally(() => setLoading(false));
+        const loadData = async () => {
+            try {
+                const [eventsData, itemsData] = await Promise.all([
+                    getEvents(),
+                    getComplementaryItems(),
+                ]);
+                setAllEvents(eventsData);
+                setComplementaryItems(itemsData);
+            } catch (error) {
+                console.error("Erro ao buscar dados:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadData();
     }, []);
 
     useEffect(() => {
@@ -92,6 +106,16 @@ export default function KitsComponent() {
             style: "currency",
             currency: "BRL",
         }).format(value);
+
+    const enrichEventWithComplementaryItem = (eventData: Event) => {
+        const complementaryItem = complementaryItems.find(
+            (item) => item.id === eventData.itemComplementarId
+        );
+        return {
+            ...eventData,
+            complementaryItem,
+        };
+    };
 
     return (
         <>
@@ -244,7 +268,7 @@ export default function KitsComponent() {
                                                 <button
                                                     onClick={() => {
                                                         if (!user) return openModal();
-                                                        setSelectedEvent(event);
+                                                        setSelectedEvent(enrichEventWithComplementaryItem(event));
                                                         setIsRegisterOpen(true);
                                                     }}
                                                     className={`w-full text-sm py-2 rounded-sm font-semibold transition-all duration-200
@@ -262,7 +286,7 @@ export default function KitsComponent() {
                                             <button
                                                 disabled={isComingSoon}
                                                 onClick={() => {
-                                                    setSelectedEvent(event);
+                                                    setSelectedEvent(enrichEventWithComplementaryItem(event));
                                                     setIsAboutOpen(true);
                                                 }}
                                                 className="w-full text-sm py-2 rounded-sm border border-black/20 

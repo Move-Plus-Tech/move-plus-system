@@ -75,6 +75,9 @@ const Field = ({
 const inputStyle =
   "w-full h-11 px-3.5 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all placeholder:text-gray-400";
 
+const selectStyle =
+  "w-full h-11 px-3.5 text-sm bg-gray-50 curssor-pointer border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-gray-600";
+
 const textareaStyle =
   "w-full px-3.5 py-3 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all placeholder:text-gray-400 resize-none";
 
@@ -101,6 +104,7 @@ export default function EventForm() {
     setSearch,
     showForm,
     stats,
+    complementaryItems,
   } = useEventForm();
 
   return (
@@ -216,7 +220,7 @@ export default function EventForm() {
 
                   <Field label="Status">
                     <select name="status" value={form.status} onChange={handleChange}
-                      className={inputStyle}>
+                      className={selectStyle}>
                       <option>Disponível</option>
                       <option>Esgotado</option>
                       <option>Em Breve</option>
@@ -234,6 +238,18 @@ export default function EventForm() {
                     <input name="distances" type="text"
                       value={form.distances} onChange={handleChange}
                       placeholder="Ex: 3 Km, 5 Km, 10 Km" className={inputStyle} required />
+                  </Field>
+
+                  <Field label="Item Complementar" icon={<Package size={12} />}>
+                    <select name="itemComplementarId" value={form.itemComplementarId || ""} onChange={handleChange}
+                      className={selectStyle}>
+                      <option value="">Selecione um item complementar</option>
+                      {complementaryItems.map((item) => (
+                        <option key={item.id} value={item.id}>
+                          {item.tipo}
+                        </option>
+                      ))}
+                    </select>
                   </Field>
 
                   <Field label="Descrição">
@@ -269,9 +285,8 @@ export default function EventForm() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-sm text-sm font-semibold text-white transition cursor-pointer ${
-                    loading ? "bg-gray-300 cursor-not-allowed" : "bg-gray-900 hover:bg-gray-700"
-                  }`}
+                  className={`inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-sm text-sm font-semibold text-white transition cursor-pointer ${loading ? "bg-gray-300 cursor-not-allowed" : "bg-gray-900 hover:bg-gray-700"
+                    }`}
                 >
                   {loading
                     ? (isEditing ? "Salvando..." : "Cadastrando...")
