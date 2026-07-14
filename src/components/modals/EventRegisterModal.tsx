@@ -83,6 +83,12 @@ export default function EventRegisterModal({
 
     const onlyDigits = (s: string) => s.replace(/\D/g, "");
 
+    const normalizeBirthDateToISO = (value: string) => {
+        const digits = onlyDigits(value);
+        if (digits.length !== 8) return "";
+        return `${digits.slice(4, 8)}-${digits.slice(2, 4)}-${digits.slice(0, 2)}`;
+    };
+
     function formatInputDate(value: string) {
         const digits = value.replace(/\D/g, "").slice(0, 8);
         if (!digits) return "";
@@ -121,15 +127,12 @@ export default function EventRegisterModal({
         e.preventDefault();
         setLoading(true);
         try {
-            const digits = onlyDigits(form.birthDate);
-            const toISO = (d: string) =>
-                `${d.slice(4, 8)}-${d.slice(2, 4)}-${d.slice(0, 2)}`;
             const payload = {
                 email: form.email,
                 fullName: form.fullName,
                 phone: form.phone,
                 cpf: form.cpf,
-                birthDate: digits.length === 8 ? toISO(digits) : form.birthDate,
+                birthDate: normalizeBirthDateToISO(form.birthDate),
                 distance: form.distance,
                 shirtSize: form.shirtSize,
                 ...(form.itemComplementarData.tipo && form.itemComplementarData.valor && {
@@ -253,12 +256,10 @@ export default function EventRegisterModal({
                             }
                             onChange={(e) => {
                                 const digits = e.target.value.replace(/\D/g, "").slice(0, 8);
-                                if (digits.length === 8) {
-                                    const iso = `${digits.slice(4, 8)}-${digits.slice(2, 4)}-${digits.slice(0, 2)}`;
-                                    setForm({ ...form, birthDate: iso });
-                                } else {
-                                    setForm({ ...form, birthDate: digits });
-                                }
+                                setForm({
+                                    ...form,
+                                    birthDate: digits.length === 8 ? normalizeBirthDateToISO(digits) : digits,
+                                });
                             }}
                             className={inputStyle}
                             required
