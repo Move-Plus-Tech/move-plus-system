@@ -53,7 +53,7 @@ export default function Hero() {
 
                     <div>
                         <h1 className="text-white text-2xl lg:text-4xl font-black">
-                            <AnimatedNumber from={0} to={262} duration={1000} />+
+                            <AnimatedNumber from={0} to={262} duration={1000} /><span className="text-orange-500">+</span>
                         </h1>
                         <p className="text-gray-400 text-xs lg:text-sm font-medium 
             flex items-center self-center">
@@ -63,7 +63,7 @@ export default function Hero() {
 
                     <div>
                         <h1 className="text-white text-2xl lg:text-4xl font-black">
-                            <AnimatedNumber from={0} to={35} duration={1000} />+
+                            <AnimatedNumber from={0} to={35} duration={1000} /><span className="text-orange-500">+</span>
                         </h1>
                         <p className="text-gray-400 text-xs lg:text-sm font-medium 
             flex items-center self-center">

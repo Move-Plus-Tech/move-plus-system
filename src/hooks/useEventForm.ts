@@ -27,7 +27,7 @@ const initialState = {
   itemComplementarId: undefined as number | undefined,
 };
 
-type EventFormState = typeof initialState & { id?: number };
+export type EventFormState = typeof initialState & { id?: number };
 type FormFieldElement =
   | HTMLInputElement
   | HTMLTextAreaElement
