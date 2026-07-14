@@ -15,20 +15,43 @@ export function logout() {
   localStorage.removeItem('user');
 }
 
-// Função para fazer requisições autenticadas
-export async function fetchWithAuth(url: string, options: RequestInit = {}) {
-  const token = getToken();
-  const headers = {
-    ...options.headers,
-    Authorization: `Bearer ${token}`,
-    'Content-Type': 'application/json',
-  };
+function getApiBaseUrl() {
+  return '/api';
+}
 
-  const res = await fetch(url, { ...options, headers });
+async function requestJson(path: string, options: RequestInit = {}) {
+  const url = `${getApiBaseUrl()}${path}`;
+  const token = getToken();
+
+  const res = await fetch(url, {
+    ...options,
+    headers: {
+      ...(options.headers || {}),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(options.method && options.method !== 'GET' ? { 'Content-Type': 'application/json' } : {}),
+    },
+  });
 
   if (!res.ok) {
-    throw new Error('Erro na requisição autenticada');
+    let message = 'Erro na requisição';
+    try {
+      const errorPayload = await res.json();
+      message = errorPayload.message || message;
+    } catch {
+      // ignore
+    }
+    throw new Error(message);
+  }
+
+  const contentType = res.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    return null;
   }
 
   return res.json();
+}
+
+// Função para fazer requisições autenticadas
+export async function fetchWithAuth(path: string, options: RequestInit = {}) {
+  return requestJson(path, options);
 }

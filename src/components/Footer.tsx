@@ -63,7 +63,7 @@ export default function Footer() {
               moveplusoficial@gmail.com
             </a>
 
-            <a href="https://wa.me/5531996702827" target="_blank" className="text-sm text-gray-400 hover:text-white transition cursor-pointer">
+            <a href="https://wa.me/5531996702827" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 hover:text-white transition cursor-pointer">
               (31) 9670-2827
             </a>
           </div>

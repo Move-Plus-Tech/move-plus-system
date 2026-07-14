@@ -46,6 +46,7 @@ export default function Contact({ isOpen, onClose }: ContactProps) {
                             <a
                                 href="https://wa.me/5531996702827"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 className="text-orange-500 hover:text-orange-400 transition"
                             >
                                 (31) 9670-2827

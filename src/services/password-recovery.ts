@@ -1,6 +1,6 @@
 // Solicitar código de recuperação de senha
 export async function requestPasswordReset(email: string) {
-  const response = await fetch(`${process.env.API_URL}/password/request`, {
+  const response = await fetch(`/api/password/request`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email }),
@@ -16,7 +16,7 @@ export async function requestPasswordReset(email: string) {
 
 // Validar código de recuperação
 export async function validateResetCode(email: string, code: string) {
-  const response = await fetch(`${process.env.API_URL}/password/validate`, {
+  const response = await fetch(`/api/password/validate`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, code }),
@@ -36,7 +36,7 @@ export async function resetPassword(
   code: string,
   newPassword: string
 ) {
-  const response = await fetch(`${process.env.API_URL}/password/reset`, {
+  const response = await fetch(`/api/password/reset`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, code, newPassword }),
@@ -53,7 +53,7 @@ export async function resetPassword(
 // Reenviar código
 export async function resendPasswordResetCode(email: string) {
   const response = await fetch(
-    `${process.env.API_URL}/auth/resend-password-reset-code`,
+    `/api/auth/resend-password-reset-code`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },

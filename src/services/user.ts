@@ -8,7 +8,7 @@ export type CreateUserData = {
 };
 
 export async function registerUser(data: CreateUserData) {
-  const response = await fetch(`${process.env.API_URL}/users/register`, {
+  const response = await fetch(`/api/users/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export async function registerUser(data: CreateUserData) {
 }
 
 export async function loginUser(email: string, password: string) {
-  const response = await fetch(`${process.env.API_URL}/users/login`, {
+  const response = await fetch(`/api/users/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ identifier: email, password }),
@@ -41,13 +41,11 @@ export async function loginUser(email: string, password: string) {
   localStorage.setItem("token", data.token);
   localStorage.setItem("user", JSON.stringify(data.user));
 
-  document.cookie = `token=${data.token}; path=/; max-age=86400; samesite=lax`;
-
   return data;
 }
 
 export async function updateUser(id: string, data: any) {
-  const response = await fetch (`${process.env.API_URL}/users/${id}`, {
+  const response = await fetch (`/api/users/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
