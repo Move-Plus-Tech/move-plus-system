@@ -257,6 +257,7 @@ export function EventFormPanel({
 
             <Field label="Preço (R$)" icon={<DollarSign size={12} />}>
               <input name="price" type="text" inputMode="decimal" value={form.price} onChange={onChange} placeholder="Ex: 49.90" className={inputStyle} required />
+              <p className="text-xs text-gray-400 mt-1">Valor deve ser maior que zero</p>
             </Field>
 
             <Field label="Distâncias" icon={<Layers size={12} />}>

@@ -240,24 +240,51 @@ export function useEventForm() {
     e.preventDefault();
     setLoading(true);
 
+    const price = toDatabasePrice(form.price);
+    
+    // Validate required fields
+    if (!form.name || !form.title || !form.location || !form.imageUrl || !form.imagekitUrl || !form.about) {
+      toast.error("Por favor, preencha todos os campos obrigatórios");
+      setLoading(false);
+      return;
+    }
+
+    if (price <= 0) {
+      toast.error("Preço deve ser maior que zero");
+      setLoading(false);
+      return;
+    }
+
+    const isoDate = toISODate(formatInputDateTime(form.time));
+    if (!isoDate) {
+      toast.error("Data inválida");
+      setLoading(false);
+      return;
+    }
+
     const payload = {
-      ...form,
-      price: toDatabasePrice(form.price),
-      distances: parseDistances(form.distances),
-      slots: 100,
+      name: form.name,
       status: form.status,
-      time: toISODate(formatInputDateTime(form.time)),
-      itemComplementarId: form.itemComplementarId,
+      price: price,
+      distances: parseDistances(form.distances),
+      location: form.location,
+      time: isoDate,
+      type: form.type,
+      title: form.title,
+      slots: 100,
+      imageUrl: form.imageUrl,
+      imagekitUrl: form.imagekitUrl,
+      urlLinkAbout: form.urlLinkAbout,
+      about: form.about,
+      ...(form.itemComplementarId && { itemComplementarId: form.itemComplementarId }),
     };
 
     try {
       if (isEditing) {
-        const { id, ...data } = payload;
-        await updateEvent(id!, data);
+        await updateEvent(form.id!, payload);
         toast.success("Kit atualizado com sucesso!");
       } else {
-        const { id, ...data } = payload;
-        await createEvent(data);
+        await createEvent(payload);
         toast.success("Kit criado com sucesso!");
       }
 
@@ -265,8 +292,10 @@ export function useEventForm() {
       setShowForm(false);
       setSelectedComplementaryItemValues({});
       await loadEvents();
-    } catch {
-      toast.error("Erro ao salvar kit");
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Erro ao salvar kit";
+      toast.error(errorMessage);
+      console.error("Submit error:", error);
     } finally {
       setLoading(false);
     }
