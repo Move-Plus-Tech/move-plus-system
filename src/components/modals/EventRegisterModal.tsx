@@ -302,9 +302,9 @@ export default function EventRegisterModal({
                     <div className="space-y-2">
                         <Image
                             src={
-                                event.imageUrl &&
-                                    (event.imageUrl.startsWith("/") || event.imageUrl.startsWith("http"))
-                                    ? event.imageUrl
+                                event.imagekitUrl &&
+                                    (event.imagekitUrl.startsWith("/") || event.imagekitUrl.startsWith("http"))
+                                    ? event.imagekitUrl
                                     : "/fallback.jpg"
                             }
                             alt="Tabela de tamanhos"
