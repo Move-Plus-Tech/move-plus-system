@@ -127,12 +127,15 @@ export default function EventRegisterModal({
         e.preventDefault();
         setLoading(true);
         try {
+            const birthDateIso = /^\d{4}-\d{2}-\d{2}$/.test(form.birthDate)
+                ? form.birthDate
+                : normalizeBirthDateToISO(form.birthDate);
             const payload = {
                 email: form.email,
                 fullName: form.fullName,
                 phone: form.phone,
                 cpf: form.cpf,
-                birthDate: normalizeBirthDateToISO(form.birthDate),
+                birthDate: birthDateIso || null,
                 distance: form.distance,
                 shirtSize: form.shirtSize,
                 ...(form.itemComplementarData.tipo && form.itemComplementarData.valor && {
