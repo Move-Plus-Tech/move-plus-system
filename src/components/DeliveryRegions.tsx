@@ -9,8 +9,8 @@ export default function DeliveryRegions() {
     >
 
       <div className="flex items-center gap-2 px-4 py-1 rounded-full 
-        text-xs sm:text-sm border text-orange-400 mb-4 mt-6">
-        <TbTruck size={18} className="text-orange-400" />
+        text-xs sm:text-sm border text-[#FF4D1C] mb-4 mt-6">
+        <TbTruck size={18} className="text-[#FF4D1C]" />
         Área de Cobertura
       </div>
 

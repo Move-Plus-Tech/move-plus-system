@@ -88,7 +88,7 @@ export default function RegisterModal() {
     >
       <div
         className={`
-          relative w-full max-w-4xl bg-white rounded-2xl shadow-xl
+          relative w-full max-w-4xl bg-white rounded-lg shadow-xl
           transform transition-all duration-200
           ${mounted ? "scale-100 opacity-100" : "scale-95 opacity-0"}
         `}

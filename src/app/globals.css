@@ -83,3 +83,77 @@ body::-webkit-scrollbar {
 .pulse-strong {
   animation: strongPulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+@keyframes ticketbarScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticketbar-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 77, 28, 0.32);
+  border-bottom: 1px solid rgba(255, 77, 28, 0.18);
+  background: linear-gradient(90deg, rgba(6, 6, 6, 0.85) 0%, rgba(18, 18, 18, 0.75) 50%, rgba(6, 6, 6, 0.85) 100%);
+  backdrop-filter: blur(3px);
+}
+
+.ticketbar-track {
+  display: flex;
+  width: max-content;
+  animation: ticketbarScroll 32s linear infinite;
+  will-change: transform;
+}
+
+.ticketbar-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  padding: 0.65rem 1rem;
+  padding-bottom: calc(0.65rem + env(safe-area-inset-bottom));
+}
+
+.ticketbar-item {
+  white-space: nowrap;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.ticketbar-item::after {
+  content: "|";
+  margin-left: 1rem;
+  color: rgba(255, 77, 28, 0.8);
+}
+
+@media (max-width: 640px) {
+  .ticketbar-track {
+    animation-duration: 24s;
+  }
+
+  .ticketbar-group {
+    padding: 0.55rem 0.75rem;
+    padding-bottom: calc(0.55rem + env(safe-area-inset-bottom));
+  }
+
+  .ticketbar-item {
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticketbar-track {
+    animation: none;
+  }
+}
