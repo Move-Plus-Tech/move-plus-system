@@ -93,7 +93,7 @@ export default function ResetCodeModal() {
             <div className="bg-white rounded-2xl w-[360px] p-8 relative shadow-xl">
 
                 <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center mx-auto mb-5">
-                    <IoMailOpenOutline size={22} className="text-orange-500" />
+                    <IoMailOpenOutline size={22} className="text-[#FF4D1C]" />
                 </div>
 
                 <h2 className="text-[17px] font-semibold text-gray-900 text-center tracking-tight">
@@ -117,7 +117,7 @@ export default function ResetCodeModal() {
                             onPaste={(e) => handlePaste(e, i)}
                             className={`w-11 h-[52px] text-center text-xl font-semibold border-[1.5px] rounded-md outline-none transition-all
                 ${digit
-                                    ? "border-orange-400 bg-orange-50 text-orange-500"
+                                    ? "border-orange-400 bg-orange-50 text-[#FF4D1C]"
                                     : "border-gray-200 bg-gray-50 text-gray-900 focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-orange-100"
                                 }`}
                         />
@@ -130,7 +130,7 @@ export default function ResetCodeModal() {
                     className={`w-full h-[46px] rounded-sm text-sm font-semibold flex items-center justify-center gap-2 transition-all
             ${!isFull || loading
                             ? "bg-gray-100 text-gray-300 cursor-not-allowed"
-                            : "bg-orange-500 hover:bg-orange-600 active:scale-[0.98] text-white cursor-pointer"
+                            : "bg-[#FF4D1C] hover:bg-orange-600 active:scale-[0.98] text-white cursor-pointer"
                         }`}
                 >
                     <IoCheckmarkCircleOutline size={16} />
@@ -142,7 +142,7 @@ export default function ResetCodeModal() {
                     <button
                         onClick={handleResend}
                         disabled={resendLoading}
-                        className="text-orange-500 font-medium hover:underline cursor-pointer disabled:text-gray-300 disabled:cursor-not-allowed"
+                        className="text-[#FF4D1C] font-medium hover:underline cursor-pointer disabled:text-gray-300 disabled:cursor-not-allowed"
                     >
                         {resendLoading ? "Reenviando..." : "Reenviar código"}
                     </button>

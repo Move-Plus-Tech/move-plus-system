@@ -44,7 +44,7 @@ export default function ForgotPasswordModal() {
         </button>
 
         <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center mb-5">
-          <IoLockClosedOutline size={22} className="text-orange-500" />
+          <IoLockClosedOutline size={22} className="text-[#FF4D1C]" />
         </div>
 
         <h2 className="text-[17px] font-semibold text-gray-900 tracking-tight">
@@ -71,7 +71,7 @@ export default function ForgotPasswordModal() {
           className={`w-full h-[46px] mt-3.5 rounded-sm text-sm font-semibold flex items-center justify-center gap-2 transition-all
             ${!email.trim() || loading
               ? "bg-gray-100 text-gray-300 cursor-not-allowed"
-              : "bg-orange-500 hover:bg-orange-600 active:scale-[0.98] text-white cursor-pointer"
+              : "bg-[#FF4D1C] hover:bg-orange-600 active:scale-[0.98] text-white cursor-pointer"
             }`}
         >
           {loading ? (

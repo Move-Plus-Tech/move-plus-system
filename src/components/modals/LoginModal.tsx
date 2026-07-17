@@ -121,7 +121,7 @@ export default function LoginModal() {
                             onChange={(e) =>
                                 setForm({ ...form, identifier: e.target.value })
                             }
-                            className="w-full h-12 border border-gray-200 rounded-md px-3 text-orange-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-orange-500"
+                            className="w-full h-12 border border-gray-200 rounded-md px-3 text-orange-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#FF4D1C]"
                         />
 
                         <input
@@ -130,7 +130,7 @@ export default function LoginModal() {
                             onChange={(e) =>
                                 setForm({ ...form, password: e.target.value })
                             }
-                            className="w-full h-12 border border-gray-200 rounded-md px-3 text-orange-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-orange-500"
+                            className="w-full h-12 border border-gray-200 rounded-md px-3 text-orange-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#FF4D1C]"
                         />
 
                         <button

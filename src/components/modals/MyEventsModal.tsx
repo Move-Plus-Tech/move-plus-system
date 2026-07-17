@@ -89,7 +89,7 @@ export default function MyEventsModal({ openModalEvents, setOpenModalEvents }: M
             <div className="relative my-auto w-full max-w-[560px] max-h-[90dvh] bg-white rounded-sm shadow-2xl border border-black/5 overflow-hidden">
                 <div className="px-6 pt-6 pb-4 bg-gradient-to-b from-orange-50 to-white border-b border-gray-200">
                     <div className="text-center">
-                        <h1 className="text-lg font-black tracking-wide text-orange-500 uppercase">Histórico de Compras</h1>
+                        <h1 className="text-lg font-black tracking-wide text-[#FF4D1C] uppercase">Histórico de Compras</h1>
                         <h2 className="text-xs font-semibold mt-1 text-black/70">Navegue por todos os seus kits já adquiridos</h2>
                     </div>
 
@@ -117,7 +117,7 @@ export default function MyEventsModal({ openModalEvents, setOpenModalEvents }: M
                         </div>
                     ) : (
                         <div className="min-h-[360px] flex flex-col items-center justify-center text-center px-4">
-                            <div className="w-14 h-14 rounded-sm bg-orange-100 text-orange-500 flex items-center justify-center mb-4">
+                            <div className="w-14 h-14 rounded-sm bg-orange-100 text-[#FF4D1C] flex items-center justify-center mb-4">
                                 <IoShirt size={30} />
                             </div>
                             <h2 className="text-lg font-bold text-black mb-1">Você ainda não possui kits</h2>
@@ -125,7 +125,7 @@ export default function MyEventsModal({ openModalEvents, setOpenModalEvents }: M
                             <a
                                 href="#kits"
                                 onClick={handleCloseModal}
-                                className="mx-auto flex w-fit cursor-pointer py-3 px-5 bg-orange-500 rounded-sm items-center gap-2 text-white text-sm font-semibold transition-all duration-200 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:bg-orange-600 active:scale-[0.98]"
+                                className="mx-auto flex w-fit cursor-pointer py-3 px-5 bg-[#FF4D1C] rounded-sm items-center gap-2 text-white text-sm font-semibold transition-all duration-200 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:bg-orange-600 active:scale-[0.98]"
                             >
                                 Veja os kits disponíveis
                             </a>

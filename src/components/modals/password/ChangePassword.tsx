@@ -64,7 +64,7 @@ export default function ChangePasswordModal() {
         </button>
 
         <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center mb-5">
-          <IoShieldCheckmarkOutline size={22} className="text-orange-500" />
+          <IoShieldCheckmarkOutline size={22} className="text-[#FF4D1C]" />
         </div>
 
         <h2 className="text-[17px] font-semibold text-gray-900 tracking-tight">Nova senha</h2>
@@ -139,7 +139,7 @@ export default function ChangePasswordModal() {
           disabled={!canSubmit}
           className={`w-full h-[46px] mt-5 rounded-sm text-sm font-semibold flex items-center justify-center gap-2 transition-all
             ${canSubmit
-              ? "bg-orange-500 hover:bg-orange-600 active:scale-[0.98] text-white cursor-pointer"
+              ? "bg-[#FF4D1C] hover:bg-orange-600 active:scale-[0.98] text-white cursor-pointer"
               : "bg-gray-100 text-gray-300 cursor-not-allowed"
             }`}
         >

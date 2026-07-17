@@ -112,7 +112,7 @@ export default function Header() {
                     onClick={() => openModal()}
                     className={useAdminTheme
                       ? "px-5 py-2 text-sm font-semibold text-black bg-white border border-black/30 rounded-full hover:bg-black/5 transition-all cursor-pointer"
-                      : "px-7 neon-button py-2 text-sm font-medium text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 rounded-sm hover:brightness-90 transition-all cursor-pointer"
+                      : "px-7 py-2 text-sm font-medium text-white bg-[#FF4D1C] rounded-sm hover:brightness-90 transition-all cursor-pointer"
                     }
                   >
                     Entrar
@@ -204,7 +204,7 @@ export default function Header() {
                   }
                 >
                   <span>{link.label}</span>
-                  <span><FaLongArrowAltRight size={15} className={useAdminTheme ? "text-black" : "text-orange-500"} /></span>
+                  <span><FaLongArrowAltRight size={15} className={useAdminTheme ? "text-black" : "text-[#FF4D1C]"} /></span>
                 </a>
 
               ))}
@@ -218,7 +218,7 @@ export default function Header() {
                       }}
                       className={useAdminTheme
                         ? "w-full py-2 text-md font-semibold text-black bg-white border border-black/30 rounded-lg hover:bg-black/5 transition-all cursor-pointer"
-                        : "w-full py-2 text-md font-medium text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 rounded-lg hover:brightness-90 transition-all cursor-pointer"
+                        : "w-full py-2 text-md font-medium text-white bg-gradient-to-r from-[#FF4D1C] via-orange-600 to-orange-700 rounded-lg hover:brightness-90 transition-all cursor-pointer"
                       }
                     >
                       Entrar

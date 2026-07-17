@@ -30,7 +30,7 @@ export default function Cta() {
           }}
         >
           Sem fila.{" "}
-          <span className="block text-orange-500">Sem estresse.</span>
+          <span className="block text-[#FF4D1C]">Sem estresse.</span>
           Na sua porta.
         </h2>
 
@@ -40,11 +40,10 @@ export default function Cta() {
           <strong className="text-white/80"> <br /> Retire zero, corra 100%.</strong>
         </p>
 
-        {/* CTA */}
         <Link
           href="#kits"
-          className="neon-button mx-auto lg:mx-0 flex w-fit cursor-pointer 
-        py-3 px-3 sm:py-3 sm:px-5 mt-5 mb-2 bg-orange-500 rounded-sm items-center gap-2 text-white 
+          className="mx-auto lg:mx-0 flex w-fit cursor-pointer 
+        py-3 px-3 sm:py-3 sm:px-5 mt-5 mb-2 bg-[#FF4D1C] rounded-sm items-center gap-2 text-white 
         text-xs sm:text-sm lg:text-base"
         >
           Encontrar meu kit
@@ -54,7 +53,7 @@ export default function Cta() {
         <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           {trustItems.map((item) => (
             <div key={item} className="flex items-center gap-1.5">
-              <Check className="h-3.5 w-3.5 text-orange-500" />
+              <Check className="h-3.5 w-3.5 text-[#FF4D1C]" />
               <span className="text-xs font-medium text-white/35">{item}</span>
             </div>
           ))}

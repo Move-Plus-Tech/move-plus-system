@@ -12,7 +12,7 @@ export default function HowItWorks() {
       </div>
 
       <h1 className="text-2xl uppercase sm:text-3xl lg:text-5xl font-black text-center text-black">
-        Simples como <span className="text-orange-500">1..2..3</span>
+        Simples como <span className="text-[#FF4D1C]">1..2..3</span>
       </h1>
 
       <p className="text-center text-xs sm:text-sm lg:text-base font-medium mt-3 
@@ -27,18 +27,17 @@ export default function HowItWorks() {
 
         {/* Linha vertical — mobile */}
         <div className="absolute lg:hidden left-1/2 -translate-x-1/2 
-          top-10 bottom-10 w-px bg-orange-500/40 z-0" />
+          top-10 bottom-10 w-px bg-[#FF4D1C]/40 z-0" />
 
         {/* Card 01 */}
         <div className="relative z-10 flex flex-col w-full max-w-sm items-center justify-center
           hover:shadow-lg transition bg-white rounded-sm px-6 py-8 border border-gray-400/30">
 
-          <h1 className="absolute text-3xl lg:text-4xl font-black text-orange-500/20 right-6 top-4">
+          <h1 className="absolute text-3xl lg:text-4xl font-black text-[#FF4D1C]/20 right-6 top-4">
             01
           </h1>
 
-          <div className="flex items-center mb-5 bg-gradient-to-r 
-            from-orange-400 via-orange-500 to-orange-600 w-14 h-14 rounded-lg">
+          <div className="flex items-center mb-5 bg-[#FF4D1C] w-14 h-14 rounded-lg">
             <FiBox size={32} className="text-white m-auto" />
           </div>
 
@@ -50,16 +49,14 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        {/* Card 02 */}
         <div className="relative z-10 flex flex-col w-full max-w-sm items-center justify-center
           hover:shadow-lg transition bg-white rounded-sm px-6 py-8 border border-gray-400/30">
 
-          <h1 className="absolute text-3xl lg:text-4xl font-black text-orange-500/20 right-6 top-4">
+          <h1 className="absolute text-3xl lg:text-4xl font-black text-[#FF4D1C]/20 right-6 top-4">
             02
           </h1>
 
-          <div className="flex items-center mb-5 bg-gradient-to-r 
-            from-orange-400 via-orange-500 to-orange-600 w-14 h-14 rounded-lg">
+          <div className="flex items-center mb-5 bg-[#FF4D1C] w-14 h-14 rounded-lg">
             <TbTruck size={32} className="text-white m-auto" />
           </div>
 
@@ -71,16 +68,14 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        {/* Card 03 */}
         <div className="relative z-10 flex flex-col w-full max-w-sm items-center justify-center
           hover:shadow-lg transition bg-white rounded-sm px-6 py-8 border border-gray-400/30">
 
-          <h1 className="absolute text-3xl lg:text-4xl font-black text-orange-500/20 right-6 top-4">
+          <h1 className="absolute text-3xl lg:text-4xl font-black text-[#FF4D1C]/20 right-6 top-4">
             03
           </h1>
 
-          <div className="flex items-center mb-5 bg-gradient-to-r 
-            from-orange-400 via-orange-500 to-orange-600 w-14 h-14 rounded-lg">
+          <div className="flex items-center mb-5 bg-[#FF4D1C] w-14 h-14 rounded-lg">
             <LuHouse size={32} className="text-white m-auto" />
           </div>
 
@@ -94,7 +89,7 @@ export default function HowItWorks() {
 
         {/* Linha horizontal — desktop */}
         <hr className="hidden lg:block absolute w-full border-t-2 
-          border-orange-500/40 top-1/2 -translate-y-1/2 z-0" />
+          border-[#FF4D1C]/40 top-1/2 -translate-y-1/2 z-0" />
 
       </div>
     </div>

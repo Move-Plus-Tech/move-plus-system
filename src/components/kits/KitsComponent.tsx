@@ -131,7 +131,7 @@ export default function KitsComponent() {
 
                         <h1 className="text-2xl sm:text-3xl lg:text-5xl font-black text-black">
                             Encontre seu próximo{" "}
-                            <span className="text-orange-500">desafio</span>
+                            <span className="text-[#FF4D1C]">desafio</span>
                         </h1>
 
                         <p className="mt-3 text-xs sm:text-sm lg:text-base font-medium text-black/80 max-w-2xl mx-auto">
@@ -167,20 +167,20 @@ export default function KitsComponent() {
                                     className={`group bg-white rounded-md overflow-hidden flex flex-col 
                                         transition-all duration-300 relative
                                         ${isPopular
-                                            ? "border-2 border-orange-500 shadow-lg shadow-orange-500/20"
+                                            ? "border-2 border-[#FF4D1C] shadow-lg shadow-[#FF4D1C]/20"
                                             : "border border-gray-500/20"
                                         }`}
                                 >
                                     {/* Image area */}
                                     <div className="relative">
                                         {isPopular && (
-                                            <div className="absolute inset-0 z-10 bg-gradient-to-t from-orange-500/30 via-transparent to-transparent" />
+                                            <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#FF4D1C]/30 via-transparent to-transparent" />
                                         )}
 
                                         <div className="absolute top-4 right-4 z-20 flex flex-row gap-2 items-center">
                                             {isPopular ? (
                                                 <span className="px-3 py-1 rounded-full text-[11px] font-bold
-                                                    bg-orange-500 text-white shadow-md shadow-orange-500/40
+                                                    bg-[#FF4D1C] text-white shadow-md shadow-[#FF4D1C]/40
                                                     flex items-center gap-1.5">
                                                     <IoFlame size={12} />
                                                     MAIS PROCURADO
@@ -213,7 +213,7 @@ export default function KitsComponent() {
 
                                     {/* Urgency bar — only for popular */}
                                     {isPopular && (
-                                        <div className="bg-orange-500 px-4 py-1.5 flex items-center gap-2">
+                                        <div className="bg-[#FF4D1C] px-4 py-1.5 flex items-center gap-2">
                                             <IoFlame size={13} className="text-white" />
                                             <span className="text-white text-[11px] font-bold tracking-wide uppercase">
                                                 Alta demanda — garanta o seu!
@@ -228,19 +228,19 @@ export default function KitsComponent() {
 
                                         <div className="space-y-2 text-sm text-gray-600">
                                             <div className="flex items-center gap-2">
-                                                <MdCalendarMonth size={20} className="text-orange-500" />
+                                                <MdCalendarMonth size={20} className="text-[#FF4D1C]" />
                                                 {formatDateBR(event.time)}
                                             </div>
 
                                             <div className="flex items-center gap-2">
-                                                <MdLocationPin size={20} className="text-orange-500" />
+                                                <MdLocationPin size={20} className="text-[#FF4D1C]" />
                                                 {event.location}
                                             </div>
                                         </div>
 
                                         {/* Price */}
                                         {eventPrice > 0 && (
-                                            <div className={`mt-4 font-bold text-2xl ${isPopular ? "text-orange-500" : "text-black"}`}>
+                                            <div className={`mt-4 font-bold text-2xl ${isPopular ? "text-[#FF4D1C]" : "text-black"}`}>
                                                 {formatCurrency(eventPrice)}
                                             </div>
                                         )}
@@ -275,7 +275,7 @@ export default function KitsComponent() {
                                                         ease-[cubic-bezier(0.2,0.8,0.2,1)] cursor-pointer transform-gpu
                                                         hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]
                                                         ${isPopular
-                                                            ? "bg-orange-500 text-white hover:bg-orange-600"
+                                                            ? "bg-[#FF4D1C] text-white hover:bg-orange-600"
                                                             : "bg-black text-white hover:bg-gray-800"
                                                         }`}
                                                 >

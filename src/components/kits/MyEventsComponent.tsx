@@ -27,12 +27,12 @@ export default function MyEventsComponent({ registration }: MyEventsComponentPro
                     <p className="text-[10px] text-black/70 select-none">Você se inscreveu em {createdAt}</p>
 
                     <div className="flex items-center gap-2 mt-2 text-sm text-gray-600">
-                        <MdCalendarMonth className="text-orange-500" size={18} />
+                        <MdCalendarMonth className="text-[#FF4D1C]" size={18} />
                         <span>{displayDate}</span>
                     </div>
 
                     <div className="flex items-center gap-2 mt-1 text-sm text-gray-600">
-                        <MdLocationPin className="text-orange-500" size={18} />
+                        <MdLocationPin className="text-[#FF4D1C]" size={18} />
                         <span>{event.location}</span>
                     </div>
 

@@ -142,7 +142,7 @@ export default function RegisterModal() {
                       setForm({ ...form, name: e.target.value })
                     }
                     className="w-full h-12 pl-10 pr-3 text-sm border border-gray-200 rounded-md
-                    focus:outline-none focus:ring-1 focus:ring-orange-500"
+                    focus:outline-none focus:ring-1 focus:ring-[#FF4D1C]"
                   />
                 </div>
               </div>
@@ -162,7 +162,7 @@ export default function RegisterModal() {
                       setForm({ ...form, cpf: digits });
                     }}
                     className="w-full h-12 pl-10 pr-3 text-sm border border-gray-200 rounded-md
-                    focus:outline-none focus:ring-1 focus:ring-orange-500"
+                    focus:outline-none focus:ring-1 focus:ring-[#FF4D1C]"
                   />
                 </div>
               </div>
@@ -180,7 +180,7 @@ export default function RegisterModal() {
                       setForm({ ...form, email: e.target.value })
                     }
                     className="w-full h-12 pl-10 pr-3 text-sm border border-gray-200 rounded-md
-                    focus:outline-none focus:ring-1 focus:ring-orange-500"
+                    focus:outline-none focus:ring-1 focus:ring-[#FF4D1C]"
                   />
                 </div>
               </div>
@@ -200,7 +200,7 @@ export default function RegisterModal() {
                       setForm({ ...form, phone: digits });
                     }}
                     className="w-full h-12 pl-10 pr-3 text-sm border border-gray-200 rounded-md
-                    focus:outline-none focus:ring-1 focus:ring-orange-500"
+                    focus:outline-none focus:ring-1 focus:ring-[#FF4D1C]"
                   />
                 </div>
               </div>
@@ -218,7 +218,7 @@ export default function RegisterModal() {
                       setForm({ ...form, password: e.target.value })
                     }
                     className="w-full h-12 pl-10 pr-3 text-sm border border-gray-200 rounded-md
-                    focus:outline-none focus:ring-1 focus:ring-orange-500"
+                    focus:outline-none focus:ring-1 focus:ring-[#FF4D1C]"
                   />
                 </div>
               </div>

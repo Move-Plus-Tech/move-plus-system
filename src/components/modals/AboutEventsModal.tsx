@@ -67,7 +67,7 @@ export default function AboutEventsModal({
                     <MdClose size={18} />
                 </button>
 
-                <h1 className="text-2xl text-center font-semibold text-orange-500 mt-2">
+                <h1 className="text-2xl text-center font-semibold text-[#FF4D1C] mt-2">
                     {event?.name}
                 </h1>
 

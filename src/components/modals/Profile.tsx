@@ -83,7 +83,7 @@ export default function UserProfileModal({ isOpen, onClose }: { isOpen: boolean;
           {/* COLUNA ESQUERDA: PERFIL & STATUS */}
           <div className="lg:w-1/3 flex flex-col justify-center items-center px-6 py-10 bg-gray-50 border-b lg:border-b-0 lg:border-r border-gray-100">
             <div className="relative mb-4 group">
-              <div className="w-28 h-28 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-4xl shadow-lg ring-2 ring-white">
+              <div className="w-28 h-28 bg-[#FF4D1C] rounded-full flex items-center justify-center text-white font-bold text-4xl shadow-lg ring-2 ring-white">
                 {data?.name ? data.name.charAt(0) : "?"}
               </div>
               <div className="absolute bottom-1 right-1 bg-green-500 w-6 h-6 rounded-full flex items-center justify-center" title="Conta Verificada">
@@ -104,7 +104,7 @@ export default function UserProfileModal({ isOpen, onClose }: { isOpen: boolean;
               onClick={() => setIsEditing(!isEditing)}
               className="mt-8 flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-full text-xs font-semibold text-gray-700 hover:bg-white hover:shadow-sm transition cursor-pointer"
             >
-              <MdEdit size={16} className="text-orange-500" />
+              <MdEdit size={16} className="text-[#FF4D1C]" />
               {isEditing ? "Cancelar Edição" : "Editar Perfil"}
             </button>
           </div>
@@ -122,13 +122,13 @@ export default function UserProfileModal({ isOpen, onClose }: { isOpen: boolean;
               <div>
                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Nome Completo</label>
                 <div className="relative mt-1">
-                  <FiUser className={`absolute left-3 top-1/2 -translate-y-1/2 transition-colors ${isEditing ? "text-orange-500" : "text-gray-400"}`} />
+                  <FiUser className={`absolute left-3 top-1/2 -translate-y-1/2 transition-colors ${isEditing ? "text-[#FF4D1C]" : "text-gray-400"}`} />
                   <input
                     disabled={!isEditing}
                     type="text"
                     value={data?.name || ""}
                     onChange={(e) => setData({ ...data, name: e.target.value })}
-                    className="w-full h-12 pl-10 pr-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 disabled:bg-gray-50 disabled:text-gray-500 transition-all"
+                    className="w-full h-12 pl-10 pr-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF4D1C]/20 focus:border-[#FF4D1C] disabled:bg-gray-50 disabled:text-gray-500 transition-all"
                   />
                 </div>
               </div>
@@ -152,13 +152,13 @@ export default function UserProfileModal({ isOpen, onClose }: { isOpen: boolean;
                 <div>
                   <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">WhatsApp / Celular</label>
                   <div className="relative mt-1">
-                    <FiPhone className={`absolute left-3 top-1/2 -translate-y-1/2 transition-colors ${isEditing ? "text-orange-500" : "text-gray-400"}`} />
+                    <FiPhone className={`absolute left-3 top-1/2 -translate-y-1/2 transition-colors ${isEditing ? "text-[#FF4D1C]" : "text-gray-400"}`} />
                     <input
                       disabled={!isEditing}
                       type="text"
                       value={data?.phone ? formatPhoneBR(data.phone) : ""}
                       onChange={(e) => setData({ ...data, phone: onlyDigits(e.target.value).slice(0, 11) })}
-                      className="w-full h-12 pl-10 pr-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 disabled:bg-gray-50 disabled:text-gray-500 transition-all"
+                      className="w-full h-12 pl-10 pr-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF4D1C]/20 focus:border-[#FF4D1C] disabled:bg-gray-50 disabled:text-gray-500 transition-all"
                     />
                   </div>
                 </div>
@@ -168,13 +168,13 @@ export default function UserProfileModal({ isOpen, onClose }: { isOpen: boolean;
               <div>
                 <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">E-mail</label>
                 <div className="relative mt-1">
-                  <FiMail className={`absolute left-3 top-1/2 -translate-y-1/2 transition-colors ${isEditing ? "text-orange-500" : "text-gray-400"}`} />
+                  <FiMail className={`absolute left-3 top-1/2 -translate-y-1/2 transition-colors ${isEditing ? "text-[#FF4D1C]" : "text-gray-400"}`} />
                   <input
                     disabled={!isEditing}
                     type="email"
                     value={data?.email || ""}
                     onChange={(e) => setData({ ...data, email: e.target.value })}
-                    className="w-full h-12 pl-10 pr-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 disabled:bg-gray-50 disabled:text-gray-500 transition-all"
+                    className="w-full h-12 pl-10 pr-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF4D1C]/20 focus:border-[#FF4D1C] disabled:bg-gray-50 disabled:text-gray-500 transition-all"
                   />
                 </div>
               </div>

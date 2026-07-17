@@ -15,7 +15,7 @@ export default function DeliveryRegions() {
       </div>
 
       <h1 className="text-xl sm:text-2xl lg:text-5xl font-black text-center text-white">
-        Confira as <span className="text-orange-500">regiões atendidas</span>
+        Confira as <span className="text-[#FF4D1C]">regiões atendidas</span>
       </h1>
 
       <p className="text-center text-xs sm:text-sm lg:text-base font-medium mt-3 
@@ -28,7 +28,7 @@ export default function DeliveryRegions() {
       <div className="mt-10 flex flex-col gap-6 w-full max-w-3xl">
 
         {/* BH */}
-        <div className="bg-[#141414] border border-orange-500/40 
+        <div className="bg-[#141414] border border-[#FF4D1C]/40 
           rounded-sm p-5 sm:p-6">
           
           <div className="flex flex-wrap items-center gap-2 mb-4">
@@ -37,7 +37,7 @@ export default function DeliveryRegions() {
               Belo Horizonte – MG
             </span>
 
-            <span className="bg-orange-500 text-black text-[10px] font-bold 
+            <span className="bg-[#FF4D1C] text-black text-[10px] font-bold 
               px-2 py-0.5 rounded-full">
               POPULAR
             </span>
@@ -56,7 +56,7 @@ export default function DeliveryRegions() {
               <span
                 key={region}
                 className="px-3 py-1 text-xs font-semibold rounded-full 
-                  bg-orange-500/20 text-orange-400 border border-orange-500/40"
+                  bg-[#FF4D1C]/20 text-orange-400 border border-[#FF4D1C]/40"
               >
                 {region}
               </span>
@@ -69,7 +69,7 @@ export default function DeliveryRegions() {
         </div>
 
         {/* Nova Lima */}
-        <div className="bg-[#141414] border border-orange-500/40 
+        <div className="bg-[#141414] border border-[#FF4D1C]/40 
           rounded-sm p-5 sm:p-6">
 
           <div className="flex items-center gap-2 mb-4">
@@ -85,7 +85,7 @@ export default function DeliveryRegions() {
                 <span
                   key={region}
                   className="px-3 py-1 text-xs font-semibold rounded-full 
-                    bg-orange-500/10 text-orange-400 border border-orange-500/30"
+                    bg-[#FF4D1C]/10 text-orange-400 border border-[#FF4D1C]/30"
                 >
                   {region}
                 </span>
@@ -99,7 +99,7 @@ export default function DeliveryRegions() {
         </div>
 
         {/* Contagem */}
-        <div className="bg-[#141414] border border-orange-500/40 
+        <div className="bg-[#141414] border border-[#FF4D1C]/40 
           rounded-sm p-5 sm:p-6">
 
           <div className="flex items-center gap-2 mb-4">
@@ -115,7 +115,7 @@ export default function DeliveryRegions() {
                 <span
                   key={region}
                   className="px-3 py-1 text-xs font-semibold rounded-full 
-                    bg-orange-500/10 text-orange-400 border border-orange-500/30"
+                    bg-[#FF4D1C]/10 text-orange-400 border border-[#FF4D1C]/30"
                 >
                   {region}
                 </span>

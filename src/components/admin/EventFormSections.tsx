@@ -59,13 +59,13 @@ export type EventFormFieldElement =
   | HTMLSelectElement;
 
 const inputStyle =
-  "w-full h-11 px-3.5 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all placeholder:text-gray-400";
+  "w-full h-11 px-3.5 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF4D1C]/20 focus:border-[#FF4D1C] transition-all placeholder:text-gray-400";
 
 const selectStyle =
-  "w-full h-11 px-3.5 text-sm bg-gray-50 cursor-pointer border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-gray-600";
+  "w-full h-11 px-3.5 text-sm bg-gray-50 cursor-pointer border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF4D1C]/20 focus:border-[#FF4D1C] transition-all text-gray-600";
 
 const textareaStyle =
-  "w-full px-3.5 py-3 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all placeholder:text-gray-400 resize-none";
+  "w-full px-3.5 py-3 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF4D1C]/20 focus:border-[#FF4D1C] transition-all placeholder:text-gray-400 resize-none";
 
 export function StatusBadge({ status }: { status: string }) {
   const cfg = STATUS_CONFIG[status] ?? STATUS_CONFIG.Disponível;
@@ -197,7 +197,7 @@ export function EventFormPanel({
       <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-gray-100">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-orange-50 rounded-sm flex items-center justify-center shrink-0">
-            {isEditing ? <Pencil size={15} className="text-orange-500" /> : <Plus size={15} className="text-orange-500" />}
+            {isEditing ? <Pencil size={15} className="text-[#FF4D1C]" /> : <Plus size={15} className="text-[#FF4D1C]" />}
           </div>
           <div>
             <h2 className="text-sm font-semibold text-gray-900">
@@ -326,7 +326,7 @@ export function EmptyEventsState({
         {showForm ? "Nenhum kit encontrado para essa busca." : "Nenhum kit cadastrado ainda."}
       </p>
       {!showForm && (
-        <button onClick={onCreate} className="mt-4 inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-orange-500 hover:text-orange-600 transition cursor-pointer">
+        <button onClick={onCreate} className="mt-4 inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-[#FF4D1C] hover:text-orange-600 transition cursor-pointer">
           <Plus size={14} /> Cadastrar primeiro kit
         </button>
       )}
@@ -429,7 +429,7 @@ export function AdminHeaderActions({
 
       <button
         onClick={onCreate}
-        className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold rounded-sm transition-colors shadow-sm cursor-pointer"
+        className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-[#FF4D1C] hover:bg-orange-600 text-white text-sm font-semibold rounded-sm transition-colors shadow-sm cursor-pointer"
       >
         <Plus size={16} />
         <span className="hidden sm:inline">Novo Kit</span>

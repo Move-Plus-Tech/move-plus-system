@@ -31,7 +31,7 @@ export default function Contact({ isOpen, onClose }: ContactProps) {
                         <div className="flex justify-between items-center cursor-pointer gap-2 hover:bg-black/20 p-2 rounded">
                             <a
                                 href="mailto:moveplusoficial@gmail.com"
-                                className="text-orange-500 hover:text-orange-400 transition"
+                                className="text-[#FF4D1C] hover:text-orange-400 transition"
                             >
                                 moveplusoficial@gmail.com
                             </a>
@@ -47,7 +47,7 @@ export default function Contact({ isOpen, onClose }: ContactProps) {
                                 href="https://wa.me/5531996702827"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-orange-500 hover:text-orange-400 transition"
+                                className="text-[#FF4D1C] hover:text-orange-400 transition"
                             >
                                 (31) 9670-2827
                             </a>

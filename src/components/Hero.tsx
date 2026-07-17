@@ -6,75 +6,67 @@ import AnimatedNumber from "./ui/AnimatedNumber";
 
 export default function Hero() {
     return (
-        <div className="relative">
-            <div className="absolute inset-0 bg-black/70 z-5"></div>
-            <div className="absolute top-1/5 left-0 right-0 px-6 lg:px-20 z-10 flex flex-col lg:gap-0 
-            text-left lg:ml-20">
+        <div className="relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40 z-[5]"></div>
 
-                <div className="flex items-center gap-2 rounded-full px-3.5 py-1.5 w-fit mb-4">
-                    <FaTruck size={16} className="text-orange-500" />
-                    <span className="text-orange-500 text-xs font-bold">Entrega disponível em regiões selecionadas</span>
+            <div className="absolute top-[16%] sm:top-[18%] lg:top-[20%] left-0 right-0 px-5 sm:px-6 lg:px-20 z-10 flex flex-col text-left lg:ml-20">
+
+                <div className="relative flex items-center gap-2 border border-dashed border-orange-400
+                px-3.5 py-1.5 w-fit mb-6 -rotate-1 bg-transparent backdrop-blur-sm">
+                    <FaTruck size={14} className="text-orange-400" />
+                    <span className="text-orange-400 text-[11px] font-bold tracking-wide uppercase">
+                        Entrega disponível em regiões selecionadas
+                    </span>
                 </div>
 
                 <div>
-                    <h1 className="text-white uppercase font-black text-2xl sm:text-4xl lg:text-6xl">
+                    <h1 className="text-white uppercase font-black text-3xl sm:text-5xl lg:text-7xl leading-[0.92] tracking-tight">
                         Seu kit.
                     </h1>
 
-                    <h2 className="uppercase font-black text-2xl sm:text-4xl lg:text-6xl text-orange-500">
+                    <h2 className="uppercase font-extrabold text-3xl sm:text-5xl lg:text-7xl text-[#FF4D1C] inline-block leading-[0.92] mt-1 tracking-tight">
                         Do jeito mais fácil.
                     </h2>
 
-                    <p className="text-gray-300 text-xs sm:text-[16px] mt-4">
+                    <p className="text-white text-sm sm:text-base leading-relaxed mt-6 max-w-xl">
                         A Move+ busca seu kit esportivo direto com o organizador e <br className="hidden sm:block" />
                         entrega no seu endereço em Belo Horizonte e regiões atendidas. <br className="hidden sm:block" /> Sem filas, sem estresse. Deixa com a gente.
                     </p>
                 </div>
 
-                <div className="flex gap-1 sm:gap-4 flex sm:flex-nowrap justify-center lg:justify-start">
-                    <a href="#kits" className="neon-button mx-auto lg:mx-0 flex w-fit cursor-pointer 
-        py-3 px-3 sm:py-3 sm:px-5 mt-8 sm:mt-10 bg-orange-500 rounded-sm items-center gap-2 text-white 
-        text-xs sm:text-sm lg:text-base">
+                <div className="mt-8 sm:mt-10 flex gap-3 sm:gap-4 flex-wrap sm:flex-nowrap justify-start">
+                    <a href="#kits" className="mx-auto lg:mx-0 flex w-fit cursor-pointer
+        py-3 px-4 sm:px-6 bg-[#FF4D1C] rounded-sm items-center gap-2 text-white
+        text-sm lg:text-base hover:bg-[#ff6a3f] transition-colors">
                         <span>Ver Kits disponíveis</span>
                         <FaLongArrowAltRight size={14} className="sm:w-5 sm:h-5" />
                     </a>
 
-                    <a href="#delivery-regions" className="mx-auto lg:mx-0 flex w-fit cursor-pointer 
-        py-3 px-2 sm:py-3 sm:px-5 mt-8 sm:mt-10 bg-transparent border border-white/40 hover:bg-white/10 
-        rounded-sm items-center gap-2 text-white text-xs sm:text-sm lg:text-base">
+                    <a href="#delivery-regions" className="mx-auto lg:mx-0 flex w-fit cursor-pointer
+        py-3 px-4 sm:px-6 bg-transparent border border-white/40 hover:bg-white/10
+        rounded-sm items-center gap-2 text-white text-sm lg:text-base">
                         <span>Consultar região</span>
                         <TbTruckDelivery size={14} className="sm:w-5 sm:h-5" />
                     </a>
                 </div>
 
-                <hr className="border-gray-500/30 max-w-[60vh] mt-8 lg:mt-12" />
-
-                <div className="flex gap-10 mt-6 lg:mt-8">
-
-                    <div>
-                        <h1 className="text-white text-2xl lg:text-4xl font-black">
-                            <AnimatedNumber from={0} to={262} duration={1000} /><span className="text-orange-500">+</span>
-                        </h1>
-                        <p className="text-gray-400 text-xs lg:text-sm font-medium 
-            flex items-center self-center">
-                            Kits entregues
-                        </p>
-                    </div>
-
-                    <div>
-                        <h1 className="text-white text-2xl lg:text-4xl font-black">
-                            <AnimatedNumber from={0} to={35} duration={1000} /><span className="text-orange-500">+</span>
-                        </h1>
-                        <p className="text-gray-400 text-xs lg:text-sm font-medium 
-            flex items-center self-center">
-                            Corridas parceiras
-                        </p>
-                    </div>
-
-                    <div>
-                        <h1 className="text-white text-2xl lg:text-4xl font-black">100%</h1>
-                        <p className="text-gray-400 text-xs lg:text-sm font-medium 
-            flex items-center self-center">
+                <div className="flex gap-0 gap-y-4 mt-8 lg:mt-10 w-fit flex-wrap">
+                    {[
+                        { to: 262, label: "Kits entregues" },
+                        { to: 35, label: "Corridas parceiras" },
+                    ].map((stat, i) => (
+                        <div key={i} className="min-w-[150px] border-l-2 border-orange-400 pl-4 pr-8 first:border-l-0 first:pl-0">
+                            <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight tabular-nums">
+                                <AnimatedNumber from={0} to={stat.to} duration={1000} /><span className="text-[#FF4D1C]">+</span>
+                            </h1>
+                            <p className="text-white text-[11px] sm:text-xs font-medium uppercase tracking-wide mt-1">
+                                {stat.label}
+                            </p>
+                        </div>
+                    ))}
+                    <div className="min-w-[130px] border-l-2 border-orange-400 pl-4">
+                        <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight tabular-nums">100%</h1>
+                        <p className="text-white text-[11px] sm:text-xs font-medium uppercase tracking-wide mt-1">
                             Satisfação
                         </p>
                     </div>
@@ -83,13 +75,13 @@ export default function Hero() {
             </div>
 
             <Image
-                src="https://res.cloudinary.com/dytw21kw2/image/upload/v1770854089/bgMain_ygepmr.jpg"
+                src="https://res.cloudinary.com/dytw21kw2/image/upload/v1784314198/person-jogging-park_hnruu9.jpg"
                 alt="Move+"
                 width={1920}
                 height={1080}
                 quality={100}
                 priority
-                className="w-full h-[75vh] lg:h-[900px] object-cover "
+                className="w-full opacity-50 h-[75vh] lg:h-[900px] object-cover"
             />
         </div>
     );

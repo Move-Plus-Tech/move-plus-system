@@ -28,10 +28,10 @@ interface EventRegisterModalProps {
 }
 
 const inputStyle =
-    "w-full h-11 px-3.5 text-sm bg-gray-50 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all placeholder:text-gray-400 text-gray-900";
+    "w-full h-11 px-3.5 text-sm bg-gray-50 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-[#FF4D1C]/20 focus:border-[#FF4D1C] transition-all placeholder:text-gray-400 text-gray-900";
 
 const selectStyle =
-    "w-full h-11 px-3.5 text-sm bg-gray-50 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all text-gray-700 cursor-pointer appearance-none";
+    "w-full h-11 px-3.5 text-sm bg-gray-50 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-[#FF4D1C]/20 focus:border-[#FF4D1C] transition-all text-gray-700 cursor-pointer appearance-none";
 
 const Field = ({
     label,
@@ -158,7 +158,7 @@ export default function EventRegisterModal({
                 <div className="sticky top-0 bg-white z-10 flex items-center justify-between px-5 py-4 border-b border-gray-100">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 bg-orange-50 rounded-sm flex items-center justify-center shrink-0">
-                            <CreditCard size={15} className="text-orange-500" />
+                            <CreditCard size={15} className="text-[#FF4D1C]" />
                         </div>
                         <div>
                             <h2 className="text-sm font-semibold text-gray-900">Inscrição</h2>
@@ -186,8 +186,8 @@ export default function EventRegisterModal({
                     </div>
                     <div className="w-px h-8 bg-gray-200" />
                     <div className="space-y-0.5 text-right">
-                        <p className="text-xs text-orange-500 uppercase tracking-wide font-semibold">Total</p>
-                        <p className="text-sm font-bold text-orange-500">{formatCurrency(priceWithFee)}</p>
+                        <p className="text-xs text-[#FF4D1C] uppercase tracking-wide font-semibold">Total</p>
+                        <p className="text-sm font-bold text-[#FF4D1C]">{formatCurrency(priceWithFee)}</p>
                     </div>
                 </div>
 
@@ -281,7 +281,7 @@ export default function EventRegisterModal({
                                 <label
                                     key={distance}
                                     className={`inline-flex items-center gap-2 px-3 py-2 rounded-sm border text-xs font-semibold cursor-pointer transition-all ${form.distance === distance
-                                        ? "border-orange-500 bg-orange-50 text-orange-600"
+                                        ? "border-[#FF4D1C] bg-orange-50 text-orange-600"
                                         : "border-gray-200 bg-gray-50 text-gray-600 hover:border-gray-300"
                                         }`}
                                 >

@@ -90,7 +90,7 @@ export default function EventForm() {
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder="Buscar kit..."
-                className="w-full h-9 pl-8 pr-3 text-sm bg-gray-50 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition"
+                className="w-full h-9 pl-8 pr-3 text-sm bg-gray-50 border border-gray-200 rounded-sm focus:outline-none focus:ring-2 focus:ring-[#FF4D1C]/20 focus:border-[#FF4D1C] transition"
               />
             </div>
           </div>

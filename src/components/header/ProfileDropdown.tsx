@@ -36,7 +36,7 @@ export default function ProfileDropdown({ user, menuItems, isAdminTheme = false 
         className="flex items-center gap-2 cursor-pointer select-none"
       >
         {user.avatarUrl && (
-          <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-medium text-sm">
+          <div className="w-8 h-8 bg-[#FF4D1C] rounded-full flex items-center justify-center text-white font-medium text-sm">
             {user.avatarUrl}
           </div>
         )}
@@ -60,7 +60,7 @@ export default function ProfileDropdown({ user, menuItems, isAdminTheme = false 
 
         <div className={isAdminTheme ? "px-4 py-3 border-b border-black/10" : "px-4 py-3 border-b border-white/10"}>
           <p className={isAdminTheme ? "font-semibold text-black" : "font-semibold text-white"}>Olá, {user.name.split(" ")[0]}!</p>
-          <p className={isAdminTheme ? "text-[11px] text-gray-600" : "text-[11px] text-orange-500"}>{user.email}</p>
+          <p className={isAdminTheme ? "text-[11px] text-gray-600" : "text-[11px] text-[#FF4D1C]"}>{user.email}</p>
         </div>
 
 
@@ -74,7 +74,7 @@ export default function ProfileDropdown({ user, menuItems, isAdminTheme = false 
               }}
               className={isAdminTheme
                 ? "w-full text-left font-medium px-4 py-2 text-sm text-black hover:bg-black/5 transition-colors cursor-pointer"
-                : "w-full text-left font-medium px-4 py-2 text-sm text-orange-500 hover:bg-white/10 transition-colors cursor-pointer"
+                : "w-full text-left font-medium px-4 py-2 text-sm text-[#FF4D1C] hover:bg-white/10 transition-colors cursor-pointer"
               }
             >
               {item.label}
