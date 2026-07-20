@@ -8,7 +8,9 @@ import {
   EventFormPanel,
   EventListItem,
 } from "./EventFormSections";
+
 import { Search } from "lucide-react";
+import Registrations from "./Registrations";
 
 const GOOGLE_SHEETS_URL = process.env.INSCRICOES_SHEET_URL!;
 
@@ -110,6 +112,8 @@ export default function EventForm() {
             </div>
           )}
         </div>
+
+        <Registrations />
       </div>
     </div>
   );

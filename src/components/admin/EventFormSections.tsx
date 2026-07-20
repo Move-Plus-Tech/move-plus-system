@@ -416,17 +416,6 @@ export function AdminHeaderActions({
 
   return (
     <div className="flex items-center gap-2 shrink-0">
-      <a
-        href={googleSheetsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 text-sm font-semibold rounded-sm transition-colors shadow-sm cursor-pointer"
-      >
-        <FileSpreadsheet size={16} />
-        <span className="hidden sm:inline">Inscrições</span>
-        <span className="sm:hidden">Sheet</span>
-      </a>
-
       <button
         onClick={onCreate}
         className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-[#FF4D1C] hover:bg-orange-600 text-white text-sm font-semibold rounded-sm transition-colors shadow-sm cursor-pointer"

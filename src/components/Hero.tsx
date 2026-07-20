@@ -9,7 +9,7 @@ export default function Hero() {
     return (
         <div className="relative overflow-hidden min-h-[760px] sm:min-h-[820px] lg:min-h-[900px]">
             <Image
-                src="https://res.cloudinary.com/dytw21kw2/image/upload/v1784314198/person-jogging-park_hnruu9.jpg"
+                src="https://res.cloudinary.com/dytw21kw2/image/upload/v1784591206/person-jogging-park_hnruu9_fphcsb.jpg"
                 alt="Move+"
                 fill
                 quality={100}

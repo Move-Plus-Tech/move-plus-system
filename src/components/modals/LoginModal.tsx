@@ -128,7 +128,7 @@ export default function LoginModal() {
 
                 <div className="relative w-full lg:w-1/2 h-56 sm:h-64 lg:h-[600px] bg-neutral-900">
                     <Image
-                        src="https://res.cloudinary.com/dytw21kw2/image/upload/v1784326714/close-up-women-running-outdoors_m2xknv.jpg"
+                        src="https://res.cloudinary.com/dytw21kw2/image/upload/v1784591206/close-up-women-running-outdoors_m2xknv_kuf6rb.jpg"
                         alt=""
                         fill
                         className="object-cover"
