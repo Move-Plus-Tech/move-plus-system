@@ -1,18 +1,12 @@
-// Retorna o usuário logado do localStorage
-export function getLoggedUser() {
-  const user = localStorage.getItem('user');
-  return user ? JSON.parse(user) : null;
-}
-
-// Retorna o token JWT
-export function getToken() {
-  return localStorage.getItem('token');
-}
-
-// Remove usuário e token (logout)
-export function logout() {
+// Remove dados de autenticação legados do armazenamento do navegador.
+export async function logout() {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
+  localStorage.removeItem('email');
+  await fetch('/api/auth/logout', {
+    method: 'POST',
+    credentials: 'same-origin',
+  }).catch(() => undefined);
 }
 
 function getApiBaseUrl() {
@@ -21,13 +15,12 @@ function getApiBaseUrl() {
 
 async function requestJson(path: string, options: RequestInit = {}) {
   const url = `${getApiBaseUrl()}${path}`;
-  const token = getToken();
 
   const res = await fetch(url, {
     ...options,
+    credentials: options.credentials ?? 'same-origin',
     headers: {
       ...(options.headers || {}),
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(options.method && options.method !== 'GET' ? { 'Content-Type': 'application/json' } : {}),
     },
   });

@@ -1,3 +1,5 @@
+"use client";
+
 import { useEventForm } from "@/hooks/useEventForm";
 import DeleteEventModal from "./DeleteEventModal";
 import {

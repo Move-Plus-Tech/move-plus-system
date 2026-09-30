@@ -65,7 +65,7 @@ export default function RegisterModal() {
       toast.success("Conta criada com sucesso! 🎉");
 
       const loginData = await loginUser(form.email, form.password);
-      loginContext(loginData.user, loginData.token);
+      loginContext(loginData.user);
 
       closeModal();
     } catch (error: any) {

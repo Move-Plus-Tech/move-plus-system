@@ -1,4 +1,3 @@
-import { getToken } from "@/services/auth";
 import type { RegistrationFilters, RegistrationResponseItem } from "@/types/registration";
 
 const API_BASE_URL = "/api";
@@ -14,14 +13,6 @@ function buildQueryParams(filters: RegistrationFilters) {
   return params;
 }
 
-function buildHeaders() {
-  const token = getToken();
-
-  return {
-    ...(token ? { Authorization: `Bearer ${token}` } : {}),
-  };
-}
-
 export async function getRegistrations(
   filters: RegistrationFilters,
 ): Promise<RegistrationResponseItem[]> {
@@ -31,7 +22,7 @@ export async function getRegistrations(
 
   const response = await fetch(url, {
     method: "GET",
-    headers: buildHeaders(),
+    credentials: "same-origin",
   });
 
   if (!response.ok) {
@@ -48,7 +39,7 @@ export async function exportRegistrations(filters: RegistrationFilters) {
 
   const response = await fetch(url, {
     method: "GET",
-    headers: buildHeaders(),
+    credentials: "same-origin",
   });
 
   if (!response.ok) {

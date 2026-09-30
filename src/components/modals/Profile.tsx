@@ -16,7 +16,7 @@ import { formatCpf } from "@/utils/formatCpf";
 
 
 export default function UserProfileModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const { user, token, loginUser } = useAuth();
+  const { user, loginUser } = useAuth();
   const [mounted, setMounted] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -42,16 +42,19 @@ export default function UserProfileModal({ isOpen, onClose }: { isOpen: boolean;
 
   async function handleUpdate(event: React.FormEvent) {
     event.preventDefault();
-    if (!data || !data.id) {
-      toast.error("Erro ao atualizar perfil: ID do usuário não disponível.");
+    if (!data) {
       return;
     }
 
     setLoading(true);
     try {
-      const updated = await updateUser(data.id, data);
+      const updated = await updateUser({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+      });
       toast.success("Perfil atualizado com sucesso!");
-      loginUser(updated, token || "");
+      loginUser(updated);
     } catch (error) {
       toast.error("Erro ao atualizar perfil.");
     } finally {

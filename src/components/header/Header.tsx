@@ -26,7 +26,7 @@ const navLinks = [
 ];
 
 export default function Header() {
-  const { user, logout, hydrated, role } = useAuth();
+  const { user, logout, hydrated, canManageAdmin } = useAuth();
   const pathname = usePathname();
   const { openModal } = useLoginModal();
   const [openModalMyEvents, setOpenModalMyEvents] = useState(false);
@@ -145,7 +145,7 @@ export default function Header() {
                       ),
                       onClick: () => setOpenModalMyEvents(true),
                     },
-                    ...(role === "ADMIN"
+                    ...(canManageAdmin
                       ? [
                         {
                           label: (
@@ -251,7 +251,7 @@ export default function Header() {
                         ),
                         onClick: () => setOpenModalMyEvents(true),
                       },
-                      ...(role === "ADMIN"
+                      ...(canManageAdmin
                         ? [
                           {
                             label: (

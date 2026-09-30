@@ -33,7 +33,13 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    ".next/auth-proxy-test-51535/types/**/*.ts",
+    ".next/auth-proxy-test-51535/dev/types/**/*.ts",
+    ".next/auth-proxy-test-52538/types/**/*.ts",
+    ".next/auth-proxy-test-52538/dev/types/**/*.ts",
+    ".next/auth-proxy-test-56960/types/**/*.ts",
+    ".next/auth-proxy-test-56960/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

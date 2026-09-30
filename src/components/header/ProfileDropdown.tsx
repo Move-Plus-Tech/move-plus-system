@@ -15,7 +15,7 @@ interface ProfileDropdownProps {
 
 export default function ProfileDropdown({ user, menuItems, isAdminTheme = false }: ProfileDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const { role } = useAuth();
+  const { canManageAdmin } = useAuth();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function ProfileDropdown({ user, menuItems, isAdminTheme = false 
           <span className={isAdminTheme ? "text-[9px] text-gray-600 leading-tight" : "text-[9px] text-gray-400 leading-tight"}>Ver perfil</span>
         </div>
 
-        {role === "ADMIN" && (
+        {canManageAdmin && (
           <span className="px-2 py-0.5 text-[10px] font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-center cursor-pointer transition-all duration-200 ease-[cubic-bezier(0.2,0.8,0.2,1)] rounded-sm ml-1">
             ADMIN
           </span>

@@ -51,18 +51,21 @@ export default function KitsComponent() {
 
     useEffect(() => {
         const loadData = async () => {
-            try {
-                const [eventsData, itemsData] = await Promise.all([
+            const [eventsResult, itemsResult] = await Promise.allSettled([
                     getEvents(),
                     getComplementaryItems(),
-                ]);
-                setAllEvents(eventsData);
-                setComplementaryItems(itemsData);
-            } catch (error) {
-                console.error("Erro ao buscar dados:", error);
-            } finally {
-                setLoading(false);
+            ]);
+
+            if (eventsResult.status === "fulfilled") {
+                setAllEvents(eventsResult.value);
+            } else {
+                console.error("Erro ao buscar eventos:", eventsResult.reason);
             }
+
+            setComplementaryItems(
+                itemsResult.status === "fulfilled" ? itemsResult.value : [],
+            );
+            setLoading(false);
         };
         loadData();
     }, []);

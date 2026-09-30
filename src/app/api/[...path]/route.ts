@@ -1,9 +1,42 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { AUTH_COOKIE_NAME } from "../auth/cookie";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const API_BASE_URL = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL;
+const LOGIN_PRIVATE_FIELDS = new Set([
+  "id",
+  "role",
+  "token",
+  "accesstoken",
+  "access_token",
+]);
+
+function forwardSetCookies(upstream: Response, response: NextResponse) {
+  for (const cookie of upstream.headers.getSetCookie()) {
+    response.headers.append("set-cookie", cookie);
+  }
+}
+
+function sanitizeLoginPayload(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    return value.map(sanitizeLoginPayload);
+  }
+
+  if (!value || typeof value !== "object") {
+    return value;
+  }
+
+  return Object.fromEntries(
+    Object.entries(value).flatMap(([key, nestedValue]) =>
+      LOGIN_PRIVATE_FIELDS.has(key.toLowerCase())
+        ? []
+        : [[key, sanitizeLoginPayload(nestedValue)]],
+    ),
+  );
+}
 
 export async function GET(
   request: NextRequest,
@@ -69,6 +102,7 @@ async function proxy(
   try {
     const { path = [] } = await paramsPromise;
     const normalizedPath = path.filter(Boolean).join("/");
+    const isLoginRequest = normalizedPath === "users/login";
     const baseUrl = API_BASE_URL.replace(/\/$/, "");
     const targetUrl = new URL(
       normalizedPath ? `${baseUrl}/${normalizedPath}` : baseUrl,
@@ -82,6 +116,12 @@ async function proxy(
     const headers = new Headers(request.headers);
     headers.delete("host");
     headers.delete("cookie");
+    headers.delete("authorization");
+
+    const sessionToken = request.cookies.get(AUTH_COOKIE_NAME)?.value;
+    if (sessionToken && !isLoginRequest) {
+      headers.set("cookie", `${AUTH_COOKIE_NAME}=${sessionToken}`);
+    }
 
     const hasBody = !["GET", "HEAD", "DELETE"].includes(method);
     const body = hasBody ? await request.arrayBuffer() : undefined;
@@ -92,9 +132,7 @@ async function proxy(
       body,
     });
 
-    const responseBody = await upstream.arrayBuffer();
     const responseHeaders = new Headers();
-
     upstream.headers.forEach((value, key) => {
       const lowerKey = key.toLowerCase();
       if (
@@ -107,10 +145,31 @@ async function proxy(
       }
     });
 
-    return new NextResponse(responseBody, {
+    if (isLoginRequest && upstream.ok) {
+      const loginPayload: unknown = await upstream.clone().json().catch(() => null);
+      if (!loginPayload || typeof loginPayload !== "object" || Array.isArray(loginPayload)) {
+        return NextResponse.json(
+          { message: "Resposta de login inválida" },
+          { status: 502 },
+        );
+      }
+
+      const response = NextResponse.json(sanitizeLoginPayload(loginPayload), {
+        status: upstream.status,
+        headers: responseHeaders,
+      });
+      forwardSetCookies(upstream, response);
+      return response;
+    }
+
+    const responseBody = await upstream.arrayBuffer();
+
+    const response = new NextResponse(responseBody, {
       status: upstream.status,
       headers: responseHeaders,
     });
+    forwardSetCookies(upstream, response);
+    return response;
   } catch {
     return NextResponse.json(
       { message: "Failed to proxy request to upstream API" },

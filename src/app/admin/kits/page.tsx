@@ -1,30 +1,33 @@
-"use client";
-
-import { useEffect } from "react";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import EventForm from "@/components/admin/EventForm";
-import { useRouter } from "next/navigation";
-import { useAuthUser } from "@/hooks/useAuthUser";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import { AUTH_COOKIE_NAME } from "@/app/api/auth/cookie";
 
-export default function AdminKits() {
-  const router = useRouter();
-  const { user, loading } = useAuthUser();
+const API_BASE_URL = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL;
 
-  useEffect(() => {
-    if (!loading) {
-      if (!user || user.role !== "ADMIN") {
-        router.replace("/login");
-      }
-    }
-  }, [user, loading, router]);
+async function canAccessAdminPage() {
+  const sessionToken = (await cookies()).get(AUTH_COOKIE_NAME)?.value;
+  if (!sessionToken || !API_BASE_URL) return false;
 
-  if (loading)
-    return (
-      <div className="flex bg-white items-center justify-center min-h-screen w-full">
-        <LoadingSpinner />
-      </div>
-    );
-  if (!user || user.role !== "ADMIN") return null;
+  try {
+    const apiBaseUrl = API_BASE_URL.replace(/\/$/, "");
+    const response = await fetch(`${apiBaseUrl}/auth/me`, {
+      headers: { cookie: `${AUTH_COOKIE_NAME}=${sessionToken}` },
+      cache: "no-store",
+    });
+    if (!response.ok) return false;
+
+    const profile = await response.json();
+    return profile?.capabilities?.manageAdmin === true;
+  } catch {
+    return false;
+  }
+}
+
+export default async function AdminKits() {
+  if (!(await canAccessAdminPage())) {
+    redirect("/");
+  }
 
   return (
     <div className="bg-white min-h-screen py-30">

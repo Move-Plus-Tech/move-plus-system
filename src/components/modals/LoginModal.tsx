@@ -75,7 +75,7 @@ export default function LoginModal() {
                 form.identifier.trim(),
                 form.password
             );
-            loginContext(data.user, data.token);
+            loginContext(data.user);
             resetForm();
             closeModal();
         } catch (error: unknown) {
