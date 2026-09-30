@@ -20,6 +20,7 @@ import { ChangePasswordModalProvider } from "@/context/password/changePasswordMo
 import ChangePasswordModal from "@/components/modals/password/ChangePassword";
 
 import PaymentSuccessModalHandler from "@/components/PaymentSuccessModalHandler";
+import DevToolsBlocker from "@/components/DevToolsBlocker";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -62,6 +63,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br" className={inter.className}>
       <body>
+        <DevToolsBlocker />
 
         <AuthProvider>
           <LoginModalProvider>
